@@ -1,0 +1,93 @@
+.step__content {
+  padding-left: 0.6rem;
+}
+
+.step__buttons {
+  margin: 1rem 0;
+}
+
+.step_buttons-left {
+  margin-right: 1rem;
+}
+
+.section {
+  margin: 1rem 0;
+}
+
+.section__divider {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.question {
+  margin: 2.5rem 0;
+
+  &.question--landscape {
+    
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+.question__title {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.question__subtitle {
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.question__group-container {
+  .question__group-item:first-child {
+    margin-top: 1rem;
+  }
+}
+
+.question__group-item {
+  width: 100%;
+  margin: 2.5rem 0;
+}
+
+.question__radio {
+}
+
+.question__radio-landscape {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.question__radio-item {
+  max-width: 15rem;
+  min-width: 12rem;
+  width: 25%;
+}
+
+@media all and (max-width: 960px) {
+  .question__radio-item {
+    min-width: 10rem;
+    width: 50%;
+  }
+}
+
+/* Small screens */
+@media all and (max-width: 500px) {
+  .question__radio-landscape {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
+  .question__radio-item {
+    width: 100%;
+  }
+}

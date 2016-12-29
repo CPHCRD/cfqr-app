@@ -1,0 +1,616 @@
+.page {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.6;
+  word-wrap: break-word;
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.page > article {
+  width: 90%;
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.page a {
+  background-color: transparent;
+}
+
+.page a:active,
+.page a:hover {
+  outline: 0;
+}
+
+.page strong {
+  font-weight: 500;
+}
+
+.page img {
+  border: 0;
+}
+
+.page hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+.page pre {
+  overflow: auto;
+}
+
+.page code,
+.page kbd,
+.page pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.page input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.page html input[disabled] {
+  cursor: default;
+}
+
+.page input {
+  line-height: normal;
+}
+
+.page input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.page input {
+  font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.page a {
+  color: #4078c0;
+  text-decoration: none;
+}
+
+.page a:hover,
+.page a:active {
+  text-decoration: underline;
+}
+
+.page hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.page hr:before {
+  display: table;
+  content: "";
+}
+
+.page hr:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.page h1,
+.page h2,
+.page h3,
+.page h4,
+.page h5,
+.page h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+/*
+.page h1 {
+  font-size: 30px;
+}
+
+.page h2 {
+  font-size: 21px;
+}
+
+.page h3 {
+  font-size: 16px;
+}
+
+.page h4 {
+  font-size: 14px;
+}
+
+.page h5 {
+  font-size: 12px;
+}
+
+.page h6 {
+  font-size: 11px;
+}
+*/
+.page blockquote {
+  margin: 0;
+}
+
+.page ul,
+.page ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.page ol ol,
+.page ul ol {
+  list-style-type: lower-roman;
+}
+
+.page ul ul ol,
+.page ul ol ol,
+.page ol ul ol,
+.page ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.page dd {
+  margin-left: 0;
+}
+
+.page code {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.page pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.page .select::-ms-expand {
+  opacity: 0;
+}
+
+.page .octicon {
+  font: normal normal normal 16px/1 octicons-anchor;
+  display: inline-block;
+  text-decoration: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.page .octicon-link:before {
+  content: '\f05c';
+}
+
+.page>*:first-child {
+  margin-top: 0 !important;
+}
+
+.page>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.page a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page .anchor {
+  display: inline-block;
+  padding-right: 2px;
+  margin-left: -18px;
+}
+
+.page .anchor:focus {
+  outline: none;
+}
+
+.page h1,
+.page h2,
+.page h3,
+.page h4,
+.page h5,
+.page h6 {
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.page h1 .octicon-link,
+.page h2 .octicon-link,
+.page h3 .octicon-link,
+.page h4 .octicon-link,
+.page h5 .octicon-link,
+.page h6 .octicon-link {
+  color: #000;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.page h1:hover .anchor,
+.page h2:hover .anchor,
+.page h3:hover .anchor,
+.page h4:hover .anchor,
+.page h5:hover .anchor,
+.page h6:hover .anchor {
+  text-decoration: none;
+}
+
+.page h1:hover .anchor .octicon-link,
+.page h2:hover .anchor .octicon-link,
+.page h3:hover .anchor .octicon-link,
+.page h4:hover .anchor .octicon-link,
+.page h5:hover .anchor .octicon-link,
+.page h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+
+.page h1 {
+  padding-bottom: 0.3em;
+  font-size: 2em;
+  line-height: 1.25;
+  border-bottom: 1px solid #eee;
+  margin: 0.67em 0;
+}
+
+.page h1 .anchor {
+  line-height: 1;
+}
+
+.page h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.5em;
+  line-height: 1.334;
+  border-bottom: 1px solid #eee;
+}
+
+.page h2 .anchor {
+  line-height: 1;
+}
+
+.page h3 {
+  font-size: 1.25em;
+  line-height: 1.4;
+}
+
+.page h3 .anchor {
+  line-height: 1.2;
+}
+
+.page h4 {
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+.page h4 .anchor {
+  line-height: 1.2;
+}
+
+.page h5 {
+  font-size: 1em;
+  line-height: 1.715;
+}
+
+.page h5 .anchor {
+  line-height: 0.875;
+}
+
+.page h6 {
+  font-size: 0.75em;
+  color: #777;
+}
+
+.page h6 .anchor {
+  line-height: 1.1;
+}
+
+.page p,
+.page blockquote,
+.page ul,
+.page ol,
+.page dl,
+.page pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.page ul,
+.page ol {
+  padding-left: 2em;
+}
+
+.page ul ul,
+.page ul ol,
+.page ol ol,
+.page ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.page li>p {
+  margin-top: 16px;
+}
+
+.page dl {
+  padding: 0;
+}
+
+.page dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.page dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.page blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.page blockquote>:first-child {
+  margin-top: 0;
+}
+
+.page blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.page table tr {
+  background-color: #fff;
+}
+
+.page table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.page img {
+  max-width: 100%;
+  box-sizing: content-box;
+  background-color: #fff;
+}
+
+.page code {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.page code:before,
+.page code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.page pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.page .highlight {
+  margin-bottom: 16px;
+}
+
+.page .highlight pre,
+.page pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.page .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.page pre {
+  word-wrap: normal;
+}
+
+.page pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.page pre code:before,
+.page pre code:after {
+  content: normal;
+}
+
+.page kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+
+.page .pl-c {
+  color: #969896;
+}
+
+.page .pl-c1,
+.page .pl-s .pl-v {
+  color: #0086b3;
+}
+
+.page .pl-e,
+.page .pl-en {
+  color: #795da3;
+}
+
+.page .pl-s .pl-s1,
+.page .pl-smi {
+  color: #333;
+}
+
+.page .pl-ent {
+  color: #63a35c;
+}
+
+.page .pl-k {
+  color: #a71d5d;
+}
+
+.page .pl-pds,
+.page .pl-s,
+.page .pl-s .pl-pse .pl-s1,
+.page .pl-sr,
+.page .pl-sr .pl-cce,
+.page .pl-sr .pl-sra,
+.page .pl-sr .pl-sre {
+  color: #183691;
+}
+
+.page .pl-v {
+  color: #ed6a43;
+}
+
+.page .pl-id {
+  color: #b52a1d;
+}
+
+.page .pl-ii {
+  background-color: #b52a1d;
+  color: #f8f8f8;
+}
+
+.page .pl-sr .pl-cce {
+  color: #63a35c;
+  font-weight: bold;
+}
+
+.page .pl-ml {
+  color: #693a17;
+}
+
+.page .pl-mh,
+.page .pl-mh .pl-en,
+.page .pl-ms {
+  color: #1d3e81;
+  font-weight: bold;
+}
+
+.page .pl-mq {
+  color: #008080;
+}
+
+.page .pl-mi {
+  color: #333;
+  font-style: italic;
+}
+
+.page .pl-mb {
+  color: #333;
+  font-weight: bold;
+}
+
+.page .pl-md {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.page .pl-mi1 {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.page .pl-mdr {
+  color: #795da3;
+  font-weight: bold;
+}
+
+.page .pl-mo {
+  color: #1d3e81;
+}
+
+.page kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+
+.page:before {
+  display: table;
+  content: "";
+}
+
+.page:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.page .task-list-item {
+  list-style-type: none;
+}
+
+.page .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.page .task-list-item input {
+  margin: 0 0.35em 0.25em -1.6em;
+  vertical-align: middle;
+}
+
+.page :checked+.radio-label {
+  z-index: 1;
+  position: relative;
+  border-color: #4078c0;
+}

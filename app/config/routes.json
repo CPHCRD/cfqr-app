@@ -1,0 +1,28 @@
+{
+  "home": {
+    "url": "/",
+    "icon": "home"
+  },
+  "questionnaire": {
+    "url": "/questionnaire",
+    "icon": "note_add"
+  },
+  "about": {
+    "url": "/about",
+    "icon": "people"
+  },
+  "terms": {
+    "url": "/terms",
+    "icon": "list"
+  },
+  "divider-one": true,
+  "statistics": {
+    "url": "/statistics",
+    "icon": "assessment"
+  },
+  "settings": {
+    "url": "/settings",
+    "icon": "settings"
+  },
+  "divider-two": true
+}

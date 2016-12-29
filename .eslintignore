@@ -1,0 +1,7 @@
+app/dist/*
+app/node_modules/*
+app/main.js
+public/*
+release/*
+test/*
+setup.js

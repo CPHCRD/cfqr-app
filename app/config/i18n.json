@@ -1,0 +1,13 @@
+{
+  "defaultLocale": "en-US",
+  "availableLocales": {
+    "en-US": {
+      "name": "English",
+      "flag": "🇺🇸"
+    },
+    "fr-FR": {
+      "name": "Français",
+      "flag": "🇫🇷"
+    }
+  }
+}

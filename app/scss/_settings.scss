@@ -1,0 +1,13 @@
+.settings__block {
+  margin: 1rem 0;
+  padding: 0.1rem 2rem;
+  display: block;
+  box-sizing: border-box;
+  
+  &:after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    clear: both;
+  }
+}

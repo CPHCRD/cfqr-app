@@ -1,0 +1,16 @@
+{
+  "name": "cfqr",
+  "productName": "cfqr-questionnaire",
+  "version": "0.1.0",
+  "description": "Electron application based on React, React Router, Webpack",
+  "main": "./main.js",
+  "author": {
+    "name": "Jonathan Argentiero",
+    "email": "jonathan.argentiero@gmail.com",
+    "url": "https://github.com/jonathanargentiero"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "source-map-support": "^0.4.3"
+  }
+}
