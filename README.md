@@ -2,6 +2,14 @@
 
 [![Build Status](https://travis-ci.org/CFQR/cfqr-app.svg?branch=master)](https://travis-ci.org/CFQR/cfqr-app)
 
+## Preview
+
+You can find a live version of the application at [http://cfqr-app.netlify.com/](http://cfqr-app.netlify.com/).
+
+<a href="https://www.netlify.com">
+  <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="netlify-logo" />
+</a>
+
 ## Install
 
 * **Note: requires a node version >= 6 and an npm version >= 3.**

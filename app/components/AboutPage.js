@@ -15,6 +15,13 @@ class AboutPage extends Component {
       <article>
         <h2>{ i18n('about-title') }</h2>
         <p>{ i18n('about-description') }</p>
+        {process.env.isWeb ?
+          <div>
+            <a href="https://www.netlify.com">
+              <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="netlify-logo" />
+            </a>
+          </div> : ''
+        }
       </article>
     );
   }
