@@ -35,10 +35,11 @@ class StatisticsQuestionnaireScore extends Component {
     const finalScores = {};
     Object.keys(scoresByType).forEach(scoreTypeKey => {
       const scoreType = scoresByType[scoreTypeKey];
-      finalScores[scoreTypeKey] = (scoreType.total - scoreType.count) / ((scoreType.count * 3) * 100);
+      finalScores[scoreTypeKey] = ((scoreType.total - scoreType.count) / (scoreType.count * 3)) * 100;
       if (isNaN(finalScores[scoreTypeKey])) {
         finalScores[scoreTypeKey] = 0;
       }
+      finalScores[scoreTypeKey] = +finalScores[scoreTypeKey].toFixed(2);
     });
     return finalScores;
   }
