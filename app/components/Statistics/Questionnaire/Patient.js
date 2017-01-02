@@ -13,7 +13,7 @@ import Subheader from 'material-ui/Subheader';
 import { connect } from '../../../actions';
 
 import { format as dateFormat } from '../../../config/date.json';
-import { race, gender, relationship, marital, work, school, grade } from '../../../config/patient.json';
+import { race, gender, relationship, marital, work, school } from '../../../config/patient.json';
 
 class StatisticsQuestionnairePatient extends Component {
 
@@ -110,8 +110,7 @@ class StatisticsQuestionnairePatient extends Component {
   }
 
   render() {
-    const { i18n, questionnaireData } = this.props;
-console.log(questionnaireData)
+    const { i18n } = this.props;
     return (
       <List>
         <Subheader>{i18n('statistics-questionnaire-patient')}</Subheader>

@@ -6,7 +6,6 @@ import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 
 import { connect } from '../../../actions';
-import { getQuestionsFromData } from '../../../utils/questionnaire';
 import { findOneIntoDatabase } from '../../../api/database';
 
 import AdminLogin from '../../Login';
@@ -15,8 +14,6 @@ import StatisticsQuestionnaireAnswers from './Answers';
 import StatisticsQuestionnaireScore from './Score';
 
 import { format as dateFormat } from '../../../config/date.json';
-
-const cfqrQuestions = getQuestionsFromData();
 
 const getIdFromHash = () => {
   const { hash } = window.location;
