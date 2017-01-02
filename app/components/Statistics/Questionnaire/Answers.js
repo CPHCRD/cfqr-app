@@ -7,9 +7,15 @@ class StatisticsQuestionnaireAnswers extends Component {
 
   static propTypes = {
     i18n: PropTypes.func,
+    cfqrData: PropTypes.shape({
+      scores: PropTypes.object
+    }),
     questionnaireData: PropTypes.instanceOf(Object)
   };
 
+    // const { type } = questionnaireData;
+    // const answerKey = `${type}-${key}`;
+    
   render() {
     const { i18n, questionnaireData } = this.props;
     return (<div>

@@ -1,17 +1,19 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
-import cfqrData from 'cfqr-data';
 
 import { connect } from '../../../actions';
 
 class StatisticsQuestionnaireScore extends Component {
 
   static propTypes = {
+    cfqrData: PropTypes.shape({
+      scores: PropTypes.object
+    }),
     questionnaireData: PropTypes.instanceOf(Object)
   };
 
   calculateScoreByType() {
-    const { questionnaireData } = this.props;
+    const { questionnaireData, cfqrData } = this.props;
     const { scores, type } = questionnaireData;
     const questionsScores = cfqrData.scores[type];
     if (!questionsScores) {

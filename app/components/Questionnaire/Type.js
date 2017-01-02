@@ -7,7 +7,7 @@ import { connect } from '../../actions';
 class QuestionnaireType extends PureComponent {
 
   static propTypes = {
-    data: PropTypes.shape({
+    cfqrData: PropTypes.shape({
       elements: PropTypes.object
     }).isRequired,
     i18n: PropTypes.func,
@@ -27,8 +27,8 @@ class QuestionnaireType extends PureComponent {
   }
 
   render() {
-    const { i18n, data, questionnaire, changeQuestionnaire } = this.props;
-    const { elements } = data;
+    const { i18n, cfqrData, questionnaire, changeQuestionnaire } = this.props;
+    const { elements } = cfqrData;
 
     return (
       <div>

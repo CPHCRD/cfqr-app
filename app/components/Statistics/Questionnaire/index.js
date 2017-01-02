@@ -2,6 +2,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import FontIcon from 'material-ui/FontIcon';
+import { List, ListItem } from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
 
 import { connect } from '../../../actions';
 import { getQuestionsFromData } from '../../../utils/questionnaire';
@@ -11,6 +13,8 @@ import AdminLogin from '../../Login';
 import StatisticsQuestionnairePatient from './Patient';
 import StatisticsQuestionnaireAnswers from './Answers';
 import StatisticsQuestionnaireScore from './Score';
+
+import { format as dateFormat } from '../../../config/date.json';
 
 const cfqrQuestions = getQuestionsFromData();
 
@@ -26,7 +30,8 @@ class StatisticsQuestionnaire extends Component {
   static propTypes = {
     i18n: PropTypes.func,
     errorLog: PropTypes.func,
-    auth: PropTypes.bool
+    auth: PropTypes.bool,
+    locale: PropTypes.string
   };
 
   state = {
@@ -52,39 +57,74 @@ class StatisticsQuestionnaire extends Component {
       });
   }
 
+  renderQuestionnaireInfo(key, answer) {
+    const { i18n, locale } = this.props;
+
+    switch (key) {
+      case 'createdAt':
+        return (
+          <ListItem
+            className="statistics__element"
+            key={`statistics-questionnaire-${key}`}
+            disabled={true}
+          >
+            <strong>{i18n(`statistics-questionnaire-${key}`)}: </strong>
+            {new global.Intl
+              .DateTimeFormat(locale, dateFormat.full)
+              .format(answer)}
+          </ListItem>
+        );
+      case 'type':
+        return (
+          <ListItem
+            className="statistics__element"
+            key={`statistics-questionnaire-${key}`}
+            disabled={true}
+          >
+            <strong>{i18n(`statistics-questionnaire-${key}`)}: </strong>
+            {i18n(answer)}
+          </ListItem>
+        );
+      default:
+        return '';
+    }
+  }
+
   render() {
     const { auth, i18n } = this.props;
     const { data } = this.state;
     if (!data) {
       return (<div />);
     }
-    const { type: questionnaireType } = data;
-    const questions = cfqrQuestions[questionnaireType];
     if (!data._id) {
       this.getQuestionnaire();
     }
 
     return (
-      (!auth) ? <AdminLogin /> : <Tabs style={{ margin: '0 -5% 0 -5%' }}>
-        <Tab
-          icon={<FontIcon className="material-icons">assignment_ind</FontIcon>}
-          label={i18n('statistics-questionnaire-patient')}
-        >
-          <StatisticsQuestionnairePatient questionnaireData={data} questionnaireQuestions={questions} />
-        </Tab>
-        <Tab
-          icon={<FontIcon className="material-icons">assignment</FontIcon>}
-          label={i18n('statistics-questionnaire-answers')}
-        >
-          <StatisticsQuestionnaireAnswers questionnaireData={data} />
-        </Tab>
-        <Tab
-          icon={<FontIcon className="material-icons">assessment</FontIcon>}
-          label={i18n('statistics-questionnaire-score')}
-        >
-          <StatisticsQuestionnaireScore questionnaireData={data} />
-        </Tab>
-      </Tabs>
+      (!auth) ? <AdminLogin /> : <div>
+
+        <List>
+          <Subheader>{i18n('statistics-questionnaire-info')}</Subheader>
+          {Object.keys(data).map(key => this.renderQuestionnaireInfo(
+            key,
+            data[key]))}
+        </List>
+        <StatisticsQuestionnairePatient questionnaireData={data} />
+        <Tabs style={{ margin: '0 -5% 0 -5%' }}>
+          <Tab
+            icon={<FontIcon className="material-icons">assignment</FontIcon>}
+            label={i18n('statistics-questionnaire-answers')}
+          >
+            <StatisticsQuestionnaireAnswers questionnaireData={data} />
+          </Tab>
+          <Tab
+            icon={<FontIcon className="material-icons">assessment</FontIcon>}
+            label={i18n('statistics-questionnaire-score')}
+          >
+            <StatisticsQuestionnaireScore questionnaireData={data} />
+          </Tab>
+        </Tabs>
+      </div>
     );
   }
 }

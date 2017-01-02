@@ -29,7 +29,7 @@ import QuestionnairePatient from './Patient';
 class Questionnaire extends PureComponent {
 
   static propTypes = {
-    data: PropTypes.shape({
+    cfqrData: PropTypes.shape({
       elements: PropTypes.object
     }),
     config: PropTypes.shape({
@@ -134,14 +134,14 @@ class Questionnaire extends PureComponent {
   }
 
   render() {
-    const { i18n, config, data, questionnaire,
+    const { i18n, config, cfqrData, questionnaire,
       counter, setQuestionnaireStep, resetQuestionnaire } = this.props;
     const { step } = counter;
     const { routes } = config;
     const { type } = questionnaire;
     let elements = [];
     if (type) {
-      elements = data.elements[type];
+      elements = cfqrData.elements[type];
     }
     const patientId = questionnaire['patient-id'] ? questionnaire['patient-id'] : i18n('questionnaire-select-patient');
     const questionnaireType = type ? i18n(type) : i18n('questionnaire-select-questionnaire');

@@ -19,7 +19,7 @@ const config = { routes, i18n };
 
 const mapStateToProps = (state) => ({
   config,
-  data: cfqrData,
+  cfqrData,
   counter: state.counter,
   locale: state.locale,
   questionnaire: state.questionnaire,

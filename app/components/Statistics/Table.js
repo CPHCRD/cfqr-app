@@ -3,18 +3,17 @@ import React, { Component, PropTypes } from 'react';
 import { hashHistory } from 'react-router';
 import { Table, TableBody, TableHeader,
   TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
+import Avatar from 'material-ui/Avatar';
+import FontIcon from 'material-ui/FontIcon';
+import {
+  grey50,
+  blue900,
+  pink300,
+} from 'material-ui/styles/colors';
 
 import { connect } from '../../actions';
 
-const dateOptions = {
-  year: 'numeric',
-  month: 'numeric',
-  day: 'numeric',
-  hour: 'numeric',
-  minute: 'numeric',
-  second: 'numeric',
-  hour12: false
-};
+import { format as dateFormat } from '../../config/date.json';
 
 class StatisticsTable extends Component {
 
@@ -46,7 +45,6 @@ class StatisticsTable extends Component {
             <TableHeaderColumn>Date</TableHeaderColumn>
             <TableHeaderColumn>Type</TableHeaderColumn>
             <TableHeaderColumn>Patient</TableHeaderColumn>
-            <TableHeaderColumn>Score</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody
@@ -58,12 +56,20 @@ class StatisticsTable extends Component {
           >
             <TableRowColumn>
               {new global.Intl
-                .DateTimeFormat(locale, dateOptions)
+                .DateTimeFormat(locale, dateFormat.full)
                 .format(row.createdAt)}
             </TableRowColumn>
             <TableRowColumn>{i18n(row.type)}</TableRowColumn>
-            <TableRowColumn>{row.patient}</TableRowColumn>
-            <TableRowColumn>???</TableRowColumn>
+            <TableRowColumn>
+              <Avatar
+                icon={<FontIcon className="material-icons">
+                  {row.type === 'qst-child-parent' ? 'people' : 'person'}
+                </FontIcon>}
+                color={grey50}
+                size={20}
+                backgroundColor={row.gender === 1 ? pink300 : blue900}
+              /> {row.patient}
+            </TableRowColumn>
           </TableRow>)}
         </TableBody>
       </Table>

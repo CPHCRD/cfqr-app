@@ -1,0 +1,48 @@
+{
+  "gender": [
+    "male",
+    "female"
+  ],
+  "race": [
+    "caucasian",
+    "african-american",
+    "hispanic",
+    "asian",
+    "native-american",
+    "other"
+  ],
+  "relationship": [
+    "mother",
+    "father",
+    "grandmother",
+    "grandfather",
+    "other-relative",
+    "foster-mother",
+    "foster-father",
+    "other"
+  ],
+  "marital": [
+    "single",
+    "married",
+    "widowed",
+    "divorced",
+    "separated",
+    "remarried",
+    "with-partner"
+  ],
+  "work": [
+    "seeking",
+    "working",
+    "homemaker",
+    "not-working-health",
+    "not-working"
+  ],
+  "school": [
+    "high-school",
+    "high-school-diploma",
+    "vocational-school",
+    "college",
+    "college-degree",
+    "profesionnal-degree"
+  ]
+}
