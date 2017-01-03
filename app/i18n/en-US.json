@@ -1,6 +1,7 @@
 {
   "site-title": "CFQ-R questionnaire",
   "deployed-by": "This web application deploys by",
+  "print": "Print",
   "home-menu-text": "Home",
   "home-title": "Cystic Fibrosis Questionnaire Revised (CFQ-R)",
   "home-description-1": "This software calculates the score derived from the CFQ-R questionnaire alghoritm (4 versions availaible). It may be used clinically during routine CF care and for CF resarch.",
