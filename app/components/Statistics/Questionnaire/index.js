@@ -87,7 +87,7 @@ class StatisticsQuestionnaire extends Component {
   }
 
   renderQuestionnaireDebug(key, answer) {
-    const { i18n, locale } = this.props;
+    const { locale } = this.props;
 
     switch (key) {
       case 'updatedAt':
@@ -151,17 +151,17 @@ class StatisticsQuestionnaire extends Component {
           {Object.keys(data).map(key => this.renderQuestionnaireDebug(
             key,
             data[key]))}
-            <ListItem
-              className="statistics__element"
-              key="statistics-questionnaire-debug-object"
-              disabled={true}
-            >
-              <strong>Debug object</strong>
-              <br /><br />
-              <i>
-                {JSON.stringify(data)}
-              </i>
-            </ListItem>
+          <ListItem
+            className="statistics__element"
+            key="statistics-questionnaire-debug-object"
+            disabled={true}
+          >
+            <strong>Debug object</strong>
+            <br /><br />
+            <i>
+              {JSON.stringify(data)}
+            </i>
+          </ListItem>
         </List>
       </div>
     );
