@@ -76,15 +76,19 @@ class Statistics extends Component {
 
     const dataMarkup = (
       <div>
-        <AutoComplete
-          hintText={i18n('statistics-filter-patient-hint')}
-          floatingLabelText={i18n('statistics-filter-patient-label')}
-          floatingLabelFixed={true}
-          defaultValue=""
-          dataSource={this.state.dataSource}
-          onChange={(e, value) => this.setSearchValue(value)}
-        />
-        <StatisticsTable rowUrl="questionnaire" urlId="_id" rows={data} />
+        {data.length > 0 ?
+          <div>
+            <AutoComplete
+              hintText={i18n('statistics-filter-patient-hint')}
+              floatingLabelText={i18n('statistics-filter-patient-label')}
+              floatingLabelFixed={true}
+              defaultValue=""
+              dataSource={this.state.dataSource}
+              onChange={(e, value) => this.setSearchValue(value)}
+            />
+            <StatisticsTable rowUrl="questionnaire" urlId="_id" rows={data} />
+          </div>
+        : i18n('no-data')}
       </div>
     );
 

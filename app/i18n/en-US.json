@@ -3,6 +3,7 @@
   "deployed-by": "This web application deploys by",
   "print": "Print",
   "abort": "Abort",
+  "no-data": "No data available.",
   "questionnaire-abort-title": "Do you want to quit this questionnaire?",
   "questionnaire-abort-text": "Current answers will be lost.",
   "cancel": "Cancel",
