@@ -268,7 +268,6 @@ class Questionnaire extends PureComponent {
             <RaisedButton
               label={i18n('abort')}
               style={{ margin: '0 0.5rem 1rem 0' }}
-              icon={<FontIcon className="muidocs-icon-custom-github" />}
               onTouchTap={() => {
                 resetQuestionnaire();
                 this.setState({
