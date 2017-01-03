@@ -1,9 +1,8 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
-import { Tabs, Tab } from 'material-ui/Tabs';
-import FontIcon from 'material-ui/FontIcon';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
+import Divider from 'material-ui/Divider';
 
 import { connect } from '../../../actions';
 import { findOneIntoDatabase } from '../../../api/database';
@@ -87,6 +86,41 @@ class StatisticsQuestionnaire extends Component {
     }
   }
 
+  renderQuestionnaireDebug(key, answer) {
+    const { i18n, locale } = this.props;
+
+    switch (key) {
+      case 'updatedAt':
+        return (
+          <ListItem
+            className="statistics__element"
+            key={`statistics-questionnaire-${key}`}
+            disabled={true}
+          >
+            <strong>{key}: </strong>
+            {new global.Intl
+              .DateTimeFormat(locale, dateFormat.full)
+              .format(answer)}
+          </ListItem>
+        );
+      case '_id':
+      case 'appVersion':
+      case 'dataVersion':
+        return (
+          <ListItem
+            className="statistics__element"
+            key={`statistics-questionnaire-${key}`}
+            disabled={true}
+          >
+            <strong>{key}: </strong>
+            {answer}
+          </ListItem>
+        );
+      default:
+        return '';
+    }
+  }
+
   render() {
     const { auth, i18n } = this.props;
     const { data } = this.state;
@@ -99,28 +133,36 @@ class StatisticsQuestionnaire extends Component {
 
     return (
       (!auth) ? <AdminLogin /> : <div>
-
         <List>
           <Subheader>{i18n('statistics-questionnaire-info')}</Subheader>
           {Object.keys(data).map(key => this.renderQuestionnaireInfo(
             key,
             data[key]))}
         </List>
+        <Divider />
         <StatisticsQuestionnairePatient questionnaireData={data} />
-        <Tabs style={{ margin: '0 -5% 0 -5%' }}>
-          <Tab
-            icon={<FontIcon className="material-icons">assignment</FontIcon>}
-            label={i18n('statistics-questionnaire-answers')}
-          >
-            <StatisticsQuestionnaireAnswers questionnaireData={data} />
-          </Tab>
-          <Tab
-            icon={<FontIcon className="material-icons">assessment</FontIcon>}
-            label={i18n('statistics-questionnaire-score')}
-          >
-            <StatisticsQuestionnaireScore questionnaireData={data} />
-          </Tab>
-        </Tabs>
+        <Divider />
+        <StatisticsQuestionnaireScore questionnaireData={data} />
+        <Divider />
+        <StatisticsQuestionnaireAnswers questionnaireData={data} />
+        <Divider />
+        <List>
+          <Subheader>Debug</Subheader>
+          {Object.keys(data).map(key => this.renderQuestionnaireDebug(
+            key,
+            data[key]))}
+            <ListItem
+              className="statistics__element"
+              key="statistics-questionnaire-debug-object"
+              disabled={true}
+            >
+              <strong>Debug object</strong>
+              <br /><br />
+              <i>
+                {JSON.stringify(data)}
+              </i>
+            </ListItem>
+        </List>
       </div>
     );
   }

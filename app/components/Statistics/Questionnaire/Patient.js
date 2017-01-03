@@ -13,7 +13,6 @@ import Subheader from 'material-ui/Subheader';
 import { connect } from '../../../actions';
 
 import { format as dateFormat } from '../../../config/date.json';
-import { race, gender, relationship, marital, work, school } from '../../../config/patient.json';
 
 class StatisticsQuestionnairePatient extends Component {
 
@@ -47,7 +46,11 @@ class StatisticsQuestionnairePatient extends Component {
           </div>
           <div className="statistics__patient-info">
             {i18n('statistics-questionnaire-gender')}:
-            <strong> {i18n(`statistics-questionnaire-gender-${gender[questionnaireData.gender]}`)}</strong>
+            <strong> {i18n(`statistics-questionnaire-gender-${questionnaireData.gender}`)}</strong>
+          </div>
+          <div className="statistics__patient-info">
+            {i18n('statistics-questionnaire-race')}:
+            <strong> {i18n(`statistics-questionnaire-race-${questionnaireData.race}`)}</strong>
           </div>
           <div className="statistics__patient-info">
             {i18n('statistics-questionnaire-birth-date')}:
@@ -55,9 +58,27 @@ class StatisticsQuestionnairePatient extends Component {
                 .DateTimeFormat(locale, dateFormat.date)
                 .format(questionnaireData['birth-date'])}</strong>
           </div>
+          {questionnaireData['grade-young-child'] ? <div className="statistics__patient-info">
+            {i18n('statistics-questionnaire-grade')}:
+            <strong> {
+              i18n(`statistics-questionnaire-grade-young-child-${questionnaireData['grade-young-child']}`)
+            }</strong>
+          </div> : ''}
+          {questionnaireData['grade-older-child'] ? <div className="statistics__patient-info">
+            {i18n('statistics-questionnaire-grade')}:
+            <strong> {
+              i18n(`statistics-questionnaire-grade-older-child-${questionnaireData['grade-older-child']}`)
+            }</strong>
+          </div> : ''}
+          {questionnaireData['grade-teen-adult'] ? <div className="statistics__patient-info">
+            {i18n('statistics-questionnaire-grade')}:
+            <strong> {
+              i18n(`statistics-questionnaire-grade-teen-adult-${questionnaireData['grade-teen-adult']}`)
+            }</strong>
+          </div> : ''}
           {questionnaireData.work ? <div className="statistics__patient-info">
-            {i18n('statistics-questionnaire-work')}:
-            <strong> {i18n(`statistics-questionnaire-work-${work[questionnaireData.work]}`)}</strong>
+            {i18n('statistics-questionnaire-work-status')}:
+            <strong> {i18n(`statistics-questionnaire-work-${questionnaireData.work}`)}</strong>
           </div> : ''}
         </div>
       </ListItem>
@@ -80,7 +101,7 @@ class StatisticsQuestionnairePatient extends Component {
       >
         <div>
           <div className="statistics__patient-name">
-            {i18n(`statistics-questionnaire-relationship-${relationship[questionnaireData.relationship]}`)}
+            {i18n(`statistics-questionnaire-relationship-${questionnaireData.relationship}`)}
           </div>
           <div className="statistics__patient-info">
             {i18n('statistics-questionnaire-birth-date')}:
@@ -89,20 +110,16 @@ class StatisticsQuestionnairePatient extends Component {
                 .format(questionnaireData['birth-parent'])}</strong>
           </div>
           <div className="statistics__patient-info">
-            {i18n('statistics-questionnaire-race')}:
-            <strong> {i18n(`statistics-questionnaire-race-${race[questionnaireData.race]}`)}</strong>
-          </div>
-          <div className="statistics__patient-info">
             {i18n('statistics-questionnaire-marital')}:
-            <strong> {i18n(`statistics-questionnaire-marital-${marital[questionnaireData.marital]}`)}</strong>
+            <strong> {i18n(`statistics-questionnaire-marital-${questionnaireData['marital-parent']}`)}</strong>
           </div>
           <div className="statistics__patient-info">
             {i18n('statistics-questionnaire-school-level')}:
-            <strong> {i18n(`statistics-questionnaire-school-${school[questionnaireData.school]}`)}</strong>
+            <strong> {i18n(`statistics-questionnaire-school-${questionnaireData['school-parent']}`)}</strong>
           </div>
           <div className="statistics__patient-info">
             {i18n('statistics-questionnaire-work-status')}:
-            <strong> {i18n(`statistics-questionnaire-work-${work[questionnaireData.work]}`)}</strong>
+            <strong> {i18n(`statistics-questionnaire-work-${questionnaireData['work-parent']}`)}</strong>
           </div>
         </div>
       </ListItem>
@@ -110,12 +127,26 @@ class StatisticsQuestionnairePatient extends Component {
   }
 
   render() {
-    const { i18n } = this.props;
+    const { i18n, questionnaireData } = this.props;
+    const { type } = questionnaireData;
     return (
       <List>
         <Subheader>{i18n('statistics-questionnaire-patient')}</Subheader>
         {this.renderPatientInfo()}
-        {this.renderPatientParentInfo()}
+        {type === 'qst-child-parent' ? this.renderPatientParentInfo() : ''}
+        <ListItem
+          className="statistics__element"
+          key="qst-stats-patient-vacation"
+          disabled={true}
+        >
+          <div className="statistics__patient-info">
+            {i18n('statistics-questionnaire-vacation-recent')}:
+            <strong> {questionnaireData.vacation ?
+              i18n('statistics-questionnaire-no') :
+              i18n('statistics-questionnaire-yes')
+            }</strong>
+          </div>
+        </ListItem>
       </List>
     );
   }
