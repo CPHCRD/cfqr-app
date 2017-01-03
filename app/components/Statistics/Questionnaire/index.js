@@ -17,6 +17,7 @@ import AdminLogin from '../../Login';
 import StatisticsPatientInfo from '../Patient/Info';
 import StatisticsQuestionnaireAnswers from './Answers';
 import StatisticsQuestionnaireScore from './Score';
+import Print from '../../Print';
 
 import { format as dateFormat } from '../../../config/date.json';
 
@@ -134,6 +135,7 @@ class StatisticsQuestionnaire extends Component {
     return (
       (!auth) ? <AdminLogin /> : <div>
         <List>
+          <Print style={{ float: 'right' }} />
           <Subheader>{i18n('statistics-questionnaire-info')}</Subheader>
           {Object.keys(data).map(key => this.renderQuestionnaireInfo(
             key,

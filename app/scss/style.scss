@@ -19,3 +19,9 @@ body {
 @import 'questionnaire';
 @import 'settings';
 @import 'statistics';
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
