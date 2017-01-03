@@ -1,7 +1,7 @@
 {
   "name": "cfqr-app",
   "productName": "CFQ-R questionnaire application",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "Electron application based on React, React Router, Webpack",
   "main": "main.js",
   "scripts": {
