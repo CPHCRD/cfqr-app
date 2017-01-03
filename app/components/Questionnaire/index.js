@@ -49,6 +49,7 @@ class Questionnaire extends PureComponent {
   };
 
   state = {
+    abortDialog: false,
     missingAnswers: false,
     resultId: ''
   };
@@ -58,6 +59,9 @@ class Questionnaire extends PureComponent {
      * The component rendering will be controlled manually.
      */
     if (nextState.resultId !== this.state.resultId) {
+      return true;
+    }
+    if (nextState.abortDialog !== this.state.abortDialog) {
       return true;
     }
     if (nextState.missingAnswers !== this.state.missingAnswers) {
@@ -101,6 +105,18 @@ class Questionnaire extends PureComponent {
   snackbarClose(attribute) {
     this.setState({
       [attribute]: false
+    });
+  }
+
+  showAbortDialog() {
+    this.setState({
+      abortDialog: true
+    });
+  }
+
+  hideAbortDialog() {
+    this.setState({
+      abortDialog: false
     });
   }
 
@@ -148,7 +164,6 @@ class Questionnaire extends PureComponent {
 
     return (
       <div style={{ maxWidth: '105%', margin: '0 -5%' }}>
-        <button onTouchTap={() => resetQuestionnaire()}>reset</button>
         <Stepper activeStep={step} orientation="vertical">
           <Step>
             <StepLabel>{patientId}</StepLabel>
@@ -205,6 +220,11 @@ class Questionnaire extends PureComponent {
                   onTouchTap={this.handleFinish}
                   className="step__buttons-left"
                 />
+                <RaisedButton
+                  label={i18n('abort')}
+                  className="step__buttons-right"
+                  onTouchTap={this.showAbortDialog.bind(this)}
+                />
               </div>
             </StepContent>
           </Step>
@@ -235,6 +255,32 @@ class Questionnaire extends PureComponent {
           open={!!this.state.resultId}
         >
           {i18n('questionnaire-text-done')}
+        </Dialog>
+        <Dialog
+          title={i18n('questionnaire-abort-title')}
+          actions={[
+            <RaisedButton
+              label={i18n('cancel')}
+              secondary
+              style={{ margin: '0 0.5rem 1rem 0' }}
+              onTouchTap={this.hideAbortDialog.bind(this)}
+            />,
+            <RaisedButton
+              label={i18n('abort')}
+              style={{ margin: '0 0.5rem 1rem 0' }}
+              icon={<FontIcon className="muidocs-icon-custom-github" />}
+              onTouchTap={() => {
+                resetQuestionnaire();
+                this.setState({
+                  abortDialog: false
+                });
+              }}
+            />
+          ]}
+          modal
+          open={!!this.state.abortDialog}
+        >
+          {i18n('questionnaire-abort-text')}
         </Dialog>
       </div>
     );
