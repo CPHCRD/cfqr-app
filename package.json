@@ -153,7 +153,7 @@
     "webpack-validator": "^2.2.9"
   },
   "dependencies": {
-    "cfqr-data": "git+https://github.com/CFQR/cfqr-data.git#v1.0.9",
+    "cfqr-data": "git+https://github.com/CFQR/cfqr-data.git#v1.1.0",
     "electron-debug": "^1.0.1",
     "font-awesome": "^4.7.0",
     "material-design-icons": "^3.0.1",
