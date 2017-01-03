@@ -13,7 +13,7 @@ const BASE_FILTER = {
   }
 };
 
-class Statistics extends Component {
+class Patients extends Component {
 
   static propTypes = {
     i18n: PropTypes.func,
@@ -34,13 +34,23 @@ class Statistics extends Component {
   componentWillReceiveProps(nextProps) {
     const { statistics } = nextProps;
     const { filter, sort } = statistics;
-    this.getQuestionnaires(filter, { sort });
+    this.getPatients(filter, { sort });
   }
 
   getQuestionnaires(...options) {
     const { errorLog } = this.props;
 
     return findIntoDatabase(...options)
+      .then(results => results)
+      .catch(err => {
+        errorLog(err);
+      });
+  }
+
+  getPatients(...options) {
+    const { errorLog } = this.props;
+
+    this.getQuestionnaires(...options)
       .then(questionnaires => {
         const patients = {};
         questionnaires.forEach(qst => {
@@ -50,10 +60,10 @@ class Statistics extends Component {
           patients[qst.patient] = qst;
         });
         this.setState({
-          data: questionnaires,
+          data: Object.keys(patients).map(key => patients[key]),
           dataSource: Object.keys(patients)
         });
-        return true;
+        return patients;
       })
       .catch(err => {
         errorLog(err);
@@ -65,6 +75,8 @@ class Statistics extends Component {
     const filter = Object.assign({}, BASE_FILTER);
     if (value) {
       filter.patient = { $regex: new RegExp(value) };
+    } else {
+      filter.patient = { $regex: new RegExp(/.+/) };
     }
 
     setFilter(filter);
@@ -84,7 +96,7 @@ class Statistics extends Component {
           dataSource={this.state.dataSource}
           onChange={(e, value) => this.setSearchValue(value)}
         />
-        <StatisticsTable rowUrl="questionnaire" urlId="_id" rows={data} />
+        <StatisticsTable rowUrl="patient" urlId="patient" rows={data} />
       </div>
     );
 
@@ -94,4 +106,4 @@ class Statistics extends Component {
   }
 }
 
-export default connect(Statistics);
+export default connect(Patients);

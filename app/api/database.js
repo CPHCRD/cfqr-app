@@ -66,7 +66,7 @@ export function insertIntoDatabase(doc: Object) {
   });
 }
 
-export function findIntoDatabase(options: Object, params: Object) {
+export function findIntoDatabase(options: Object, params: Object = {}) {
   return new Promise((resolve, reject) => {
     let findPromise = Database.find(options);
     if (params.sort) {

@@ -1,25 +1,24 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import Divider from 'material-ui/Divider';
+import FontIcon from 'material-ui/FontIcon';
+import FlatButton from 'material-ui/FlatButton';
+import Toggle from 'material-ui/Toggle';
+import { cyan700 } from 'material-ui/styles/colors';
 
 import { connect } from '../../../actions';
 import { findOneIntoDatabase } from '../../../api/database';
+import { getIdFromHash } from '../../../utils/misc';
 
 import AdminLogin from '../../Login';
-import StatisticsQuestionnairePatient from './Patient';
+import StatisticsPatientInfo from '../Patient/Info';
 import StatisticsQuestionnaireAnswers from './Answers';
 import StatisticsQuestionnaireScore from './Score';
 
 import { format as dateFormat } from '../../../config/date.json';
-
-const getIdFromHash = () => {
-  const { hash } = window.location;
-  const pathParts = hash.split('/');
-  const pathIdWithQuery = pathParts[pathParts.length - 1];
-  return pathIdWithQuery.split('?')[0];
-};
 
 class StatisticsQuestionnaire extends Component {
 
@@ -31,6 +30,7 @@ class StatisticsQuestionnaire extends Component {
   };
 
   state = {
+    debug: false,
     data: {}
   };
 
@@ -140,14 +140,35 @@ class StatisticsQuestionnaire extends Component {
             data[key]))}
         </List>
         <Divider />
-        <StatisticsQuestionnairePatient questionnaireData={data} />
+        <StatisticsPatientInfo questionnaireData={data} />
+        {data.patient ?
+          <FlatButton
+            containerElement={<Link
+              className="statistics__patient-link"
+              to={`/statistics/patient/${data.patient}`}
+              style={{ color: cyan700 }}
+            >{i18n('statistics-patient-click-here')}</Link>}
+            label={i18n('statistics-patient-view-information')}
+            labelPosition="before"
+            primary={true}
+            icon={<FontIcon color={cyan700} className="material-icons">folder_shared</FontIcon>}
+          /> : ''}
         <Divider />
         <StatisticsQuestionnaireScore questionnaireData={data} />
         <Divider />
         <StatisticsQuestionnaireAnswers questionnaireData={data} />
-        <Divider />
-        <List>
-          <Subheader>Debug</Subheader>
+        <div style={{ maxWidth: 150, marginTop: '1rem' }}>
+          <Toggle
+            label="Debug"
+            defaultToggled={this.state.debug}
+            onToggle={() => {
+              this.setState({
+                debug: !this.state.debug
+              });
+            }}
+          />
+        </div>
+        {this.state.debug ? <List>
           {Object.keys(data).map(key => this.renderQuestionnaireDebug(
             key,
             data[key]))}
@@ -163,6 +184,7 @@ class StatisticsQuestionnaire extends Component {
             </i>
           </ListItem>
         </List>
+        : ''}
       </div>
     );
   }

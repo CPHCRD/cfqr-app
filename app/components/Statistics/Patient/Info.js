@@ -14,7 +14,7 @@ import { connect } from '../../../actions';
 
 import { format as dateFormat } from '../../../config/date.json';
 
-class StatisticsQuestionnairePatient extends Component {
+class StatisticsPatientInfo extends Component {
 
   static propTypes = {
     i18n: PropTypes.func,
@@ -128,6 +128,9 @@ class StatisticsQuestionnairePatient extends Component {
 
   render() {
     const { i18n, questionnaireData } = this.props;
+    if (!questionnaireData) {
+      return (<div />);
+    }
     const { type } = questionnaireData;
     return (
       <List>
@@ -152,4 +155,4 @@ class StatisticsQuestionnairePatient extends Component {
   }
 }
 
-export default connect(StatisticsQuestionnairePatient);
+export default connect(StatisticsPatientInfo);

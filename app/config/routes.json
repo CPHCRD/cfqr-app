@@ -16,6 +16,10 @@
     "icon": "list"
   },
   "divider-one": true,
+  "patients": {
+    "url": "/patients",
+    "icon": "folder_shared"
+  },
   "statistics": {
     "url": "/statistics",
     "icon": "assessment"

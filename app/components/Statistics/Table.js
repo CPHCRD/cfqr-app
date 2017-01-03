@@ -20,6 +20,8 @@ class StatisticsTable extends Component {
   static propTypes = {
     i18n: PropTypes.func,
     rows: PropTypes.instanceOf(Array),
+    rowUrl: PropTypes.string,
+    urlId: PropTypes.string,
     locale: PropTypes.string
   };
 
@@ -27,8 +29,8 @@ class StatisticsTable extends Component {
     if (!rowNumber) {
       return false;
     }
-    const { rows } = this.props;
-    hashHistory.push(`/statistics/questionnaire/${rows[rowNumber]._id}`);
+    const { rows, rowUrl, urlId } = this.props;
+    hashHistory.push(`/statistics/${rowUrl}/${rows[rowNumber][urlId]}`);
   }
 
   render() {
@@ -66,7 +68,8 @@ class StatisticsTable extends Component {
                   {row.type === 'qst-child-parent' ? 'people' : 'person'}
                 </FontIcon>}
                 color={grey50}
-                size={20}
+                size={22}
+                style={{ marginRight: '0.25rem' }}
                 backgroundColor={row.gender === 1 ? pink300 : blue900}
               /> {row.patient}
             </TableRowColumn>
