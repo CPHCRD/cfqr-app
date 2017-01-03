@@ -69,7 +69,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CFQR/cfqr.git"
+    "url": "git+https://github.com/CFQR/cfqr-app.git"
   },
   "author": {
     "name": "Jonathan Argentiero",
@@ -78,7 +78,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CFQR/cfqr/issues"
+    "url": "https://github.com/CFQR/cfqr-app/issues"
   },
   "keywords": [
     "electron",
