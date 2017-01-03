@@ -34,6 +34,7 @@ class StatisticsQuestionnaireAnswers extends Component {
       <ListItem
         className="statistics__element"
         disabled={true}
+        style={{ padding: 0 }}
       >
         <Table>
           <TableHeader

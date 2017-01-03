@@ -16,7 +16,6 @@ class SettingsPage extends Component {
     return (
       <article>
         <h2>{ i18n('settings-title') }</h2>
-        <p>{ i18n('settings-description') }</p>
         <Settings />
       </article>
     );

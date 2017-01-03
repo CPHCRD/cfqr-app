@@ -15,8 +15,7 @@ class PatientsPage extends Component {
 
     return (
       <article>
-        <h2>{ i18n('statistics-title') }</h2>
-        <p>{ i18n('statistics-description') }</p>
+        <h2>{i18n('patients-title')}</h2>
         <Patients />
       </article>
     );

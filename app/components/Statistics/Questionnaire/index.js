@@ -144,7 +144,7 @@ class StatisticsQuestionnaire extends Component {
         {data.patient ?
           <FlatButton
             containerElement={<Link
-              className="statistics__patient-link"
+              className="statistics__patient-link no-print"
               to={`/statistics/patient/${data.patient}`}
               style={{ color: cyan700 }}
             >{i18n('statistics-patient-click-here')}</Link>}
@@ -157,7 +157,7 @@ class StatisticsQuestionnaire extends Component {
         <StatisticsQuestionnaireScore questionnaireData={data} />
         <Divider />
         <StatisticsQuestionnaireAnswers questionnaireData={data} />
-        <div style={{ maxWidth: 150, marginTop: '1rem' }}>
+        <div className="no-print" style={{ maxWidth: 150, marginTop: '1rem' }}>
           <Toggle
             label="Debug"
             defaultToggled={this.state.debug}

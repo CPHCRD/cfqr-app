@@ -16,7 +16,6 @@ class StatisticsQuestionnairePage extends Component {
     return (
       <article>
         <h2>{ i18n('statistics-questionnaire-title') }</h2>
-        <p>{ i18n('statistics-questionnaire-description') }</p>
         <StatisticsQuestionnaire />
       </article>
     );

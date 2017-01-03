@@ -35,6 +35,7 @@ class StatisticsPatientQuestionnaires extends Component {
       <ListItem
         className="statistics__element"
         disabled={true}
+        style={{ padding: 0 }}
       >
         <Table
           onRowSelection={this.onRowClick.bind(this)}

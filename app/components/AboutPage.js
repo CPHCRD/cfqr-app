@@ -13,8 +13,14 @@ class AboutPage extends Component {
 
     return (
       <article>
-        <h2>{ i18n('about-title') }</h2>
-        <p>{ i18n('about-description') }</p>
+        <h2>{i18n('about-title')}</h2>
+        <p>{i18n('about-description-1')}</p>
+        <p>
+          {i18n('about-description-2')}
+          <a target="_blank" rel="noopener noreferrer" href={i18n('about-description-link-url')}>
+            {i18n('about-description-link-text')}
+          </a>
+        </p>
         {process.env.isWeb ?
           <div>
             <a href="https://www.netlify.com">
