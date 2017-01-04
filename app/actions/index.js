@@ -25,6 +25,7 @@ const mapStateToProps = (state) => ({
   questionnaire: state.questionnaire,
   database: state.database,
   auth: state.auth,
+  logged: state.logged,
   settings: state.settings,
   statistics: state.statistics,
   routing: state.routing,

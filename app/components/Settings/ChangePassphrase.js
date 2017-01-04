@@ -10,25 +10,25 @@ import { connect } from '../../actions';
 
 const INITIAL_STATE = {
   open: false,
-  password: '',
-  repeatPassword: ''
+  passphrase: '',
+  repeatPassphrase: ''
 };
 
-class SettingsChangePassword extends Component {
+class SettingsChangePassphrase extends Component {
 
   static propTypes = {
     i18n: PropTypes.func,
-    changePassword: PropTypes.func
+    changePassphrase: PropTypes.func
   };
 
   state = INITIAL_STATE;
 
   componentDidUpdate() {
-    const { changePassword } = this.props;
+    const { changePassphrase } = this.props;
 
-    const match = this.checkPasswords();
+    const match = this.checkPassphrase();
     if (match && this.state.open) {
-      changePassword(this.state.password);
+      changePassphrase(this.state.passphrase);
       this.resetState();
     }
   }
@@ -45,19 +45,9 @@ class SettingsChangePassword extends Component {
     this.setState({ open: false });
   };
 
-  changePassword(value) {
-    const newState = { password: value };
-    this.setState(newState);
-  }
-
-  repeatChangePassword(value) {
-    const newState = { repeatPassword: value };
-    this.setState(newState);
-  }
-
-  checkPasswords() {
-    if (this.state.password === this.state.repeatPassword) {
-      if (this.state.password.length < 1) {
+  checkPassphrase() {
+    if (this.state.passphrase === this.state.repeatPassphrase) {
+      if (this.state.passphrase.length < 1) {
         return false;
       }
       return true;
@@ -65,37 +55,47 @@ class SettingsChangePassword extends Component {
     return false;
   }
 
+  changePassphrase(value) {
+    const newState = { passphrase: value };
+    this.setState(newState);
+  }
+
+  repeatChangePassphrase(value) {
+    const newState = { repeatPassphrase: value };
+    this.setState(newState);
+  }
+
   render() {
     const { i18n } = this.props;
     return (
       <div className="settings__section">
-        <h3 style={{ color: cyan700 }}>{i18n('auth-settings-password')}</h3>
-        <p style={{ display: 'block' }}>{i18n('auth-settings-password-text')}</p>
+        <h3 style={{ color: cyan700 }}>{i18n('auth-settings-passphrase')}</h3>
+        <p style={{ display: 'block' }}>{i18n('auth-settings-passphrase-text')}</p>
         <FlatButton
-          label={i18n('auth-settings-password-button')}
+          label={i18n('auth-settings-passphrase-button')}
           secondary
           icon={<FontIcon className="material-icons">vpn_key</FontIcon>}
           onTouchTap={this.handleOpen}
           style={{ marginBottom: '1.5rem' }}
         />
         <Dialog
-          title={i18n('auth-admin-password')}
+          title={i18n('auth-admin-passphrase')}
           modal={false}
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          <p>{i18n('auth-admin-enter-password')}</p>
+          <p>{i18n('auth-admin-enter-passphrase')}</p>
           <TextField
-            hintText={i18n('auth-admin-password')}
+            hintText={i18n('auth-admin-passphrase')}
             type="password"
             autoFocus
-            onChange={(e, value) => this.changePassword(value)}
+            onChange={(e, value) => this.changePassphrase(value)}
           />
-          <p>{i18n('auth-admin-enter-password-again')}</p>
+          <p>{i18n('auth-admin-enter-passphrase-again')}</p>
           <TextField
-            hintText={i18n('auth-admin-password')}
+            hintText={i18n('auth-admin-passphrase')}
             type="password"
-            onChange={(e, value) => this.repeatChangePassword(value)}
+            onChange={(e, value) => this.repeatChangePassphrase(value)}
           />
         </Dialog>
       </div>
@@ -103,4 +103,4 @@ class SettingsChangePassword extends Component {
   }
 }
 
-export default connect(SettingsChangePassword);
+export default connect(SettingsChangePassphrase);

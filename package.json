@@ -154,7 +154,9 @@
   },
   "dependencies": {
     "cfqr-data": "git+https://github.com/CFQR/cfqr-data.git#v1.1.1",
+    "dotenv": "^2.0.0",
     "electron-debug": "^1.0.1",
+    "firebase": "^3.6.4",
     "font-awesome": "^4.7.0",
     "material-design-icons": "^3.0.1",
     "material-ui": "^0.16.6",

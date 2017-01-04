@@ -7,4 +7,8 @@ export function errorLog(error: string = '') {
   if (global.console) {
     global.console.warn(error);
   }
+  return {
+    type: ERROR_LOG,
+    data: error
+  };
 }

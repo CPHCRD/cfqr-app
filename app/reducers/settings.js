@@ -4,8 +4,7 @@ import {
 } from '../actions/database';
 import {
   TOGGLE_ANALYTICS_DONE,
-  TOGGLE_STATISTICS_DONE,
-  CHANGE_PASSWORD_DONE
+  CHANGE_PASSPHRASE_DONE
 } from '../actions/settings';
 
 export default function database(state: Object = {}, action: Object) {
@@ -14,19 +13,14 @@ export default function database(state: Object = {}, action: Object) {
     case LOAD_DATABASE_DONE:
       return Object.assign({}, state, action.data ? action.data : {});
 
-    case CHANGE_PASSWORD_DONE:
+    case CHANGE_PASSPHRASE_DONE:
       return Object.assign({}, state, {
-        password: action.data
+        passphrase: action.data
       });
 
     case TOGGLE_ANALYTICS_DONE:
       return Object.assign({}, state, {
         analytics: action.data
-      });
-
-    case TOGGLE_STATISTICS_DONE:
-      return Object.assign({}, state, {
-        usage: action.data
       });
 
     default:

@@ -3,7 +3,7 @@ import { Database, INFO_OBJECT_ID } from '../api/database';
 import { errorLog } from './error';
 
 export const AUTHENTICATE = 'AUTHENTICATE';
-export function authenticate(password: string) {
+export function authenticate(passphrase: string) {
   return (dispatch: Function) => {
     Database.find({ // eslint-disable-line
       _id: INFO_OBJECT_ID
@@ -11,7 +11,7 @@ export function authenticate(password: string) {
       if (err) {
         dispatch(errorLog(err));
       }
-      if (results[0] && results[0].password === password) {
+      if (results[0] && results[0].passphrase === passphrase) {
         dispatch(authenticateDone(true));
       } else {
         dispatch(authenticateDone(false));
@@ -33,5 +33,19 @@ export function signOut() {
   return {
     type: SIGN_OUT,
     data: true
+  };
+}
+
+export const LOGGED_IN = 'LOGGED_IN';
+export function loggedIn() {
+  return {
+    type: LOGGED_IN
+  };
+}
+
+export const LOGGED_OUT = 'LOGGED_OUT';
+export function loggedOut() {
+  return {
+    type: LOGGED_OUT
   };
 }

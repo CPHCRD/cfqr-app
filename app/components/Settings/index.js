@@ -4,9 +4,9 @@ import Paper from 'material-ui/Paper';
 
 import { connect } from '../../actions';
 import AdminLogin from '../Login';
-import SettingsChangePassword from './ChangePassword';
+import SetttingsConnect from './Connect';
+import SettingsChangePassphrase from './ChangePassphrase';
 import SettingsToggleAnalytics from './ToggleAnalytics';
-import SettingsToggleStatistics from './ToggleStatistics';
 
 class Settings extends Component {
 
@@ -20,9 +20,9 @@ class Settings extends Component {
     return (
       (!auth) ? <AdminLogin /> :
       <div>
-        <Paper className="settings__block" children={<SettingsChangePassword />} zDepth={2} />
+        <Paper className="settings__block" children={<SetttingsConnect />} zDepth={2} />
+        <Paper className="settings__block" children={<SettingsChangePassphrase />} zDepth={2} />
         <Paper className="settings__block" children={<SettingsToggleAnalytics />} zDepth={2} />
-        <Paper className="settings__block" children={<SettingsToggleStatistics />} zDepth={2} />
       </div>
     );
   }

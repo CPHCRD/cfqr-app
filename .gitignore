@@ -31,6 +31,9 @@ yarn.lock
 # OSX
 .DS_Store
 
+# Config
+.env
+
 # App packaged
 release
 public

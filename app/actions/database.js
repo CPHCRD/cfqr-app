@@ -3,7 +3,7 @@ import { ERROR } from './error';
 
 import {
   loadDatastore,
-  initUserIntoDatabase,
+  updateUser,
   findOneIntoDatabase,
   INFO_OBJECT_ID
 } from '../api/database';
@@ -16,7 +16,7 @@ export function loadDatabase() {
       .then(() => findOneIntoDatabase({ _id: INFO_OBJECT_ID }))
       .then(results => {
         if (!results) {
-          return initUserIntoDatabase();
+          return updateUser();
         }
         return results;
       })

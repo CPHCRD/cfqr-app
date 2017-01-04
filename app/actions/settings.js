@@ -2,35 +2,35 @@
 import { Database, INFO_OBJECT_ID } from '../api/database';
 import { ERROR } from './error';
 
-export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
-export function changePassword(newPassword: string) {
+export const CHANGE_PASSPHRASE = 'CHANGE_PASSPHRASE';
+export function changePassphrase(newPassphrase: string) {
   return (dispatch: Function) => {
     Database.find({ // eslint-disable-line
       _id: INFO_OBJECT_ID
     }, (err, results) => {
       if (err) {
-        dispatch(changePasswordDone(err, ''));
+        dispatch(changePassphraseDone(err, ''));
       }
       const doc = results[0];
       if (doc) {
-        doc.password = newPassword;
+        doc.passphrase = newPassphrase;
         Database.update({ // eslint-disable-line
           _id: INFO_OBJECT_ID
         }, doc, (updateErr) => {
           if (updateErr) {
-            dispatch(changePasswordDone(updateErr, ''));
+            dispatch(changePassphraseDone(updateErr, ''));
           }
-          dispatch(changePasswordDone('', newPassword));
+          dispatch(changePassphraseDone('', newPassphrase));
         });
       } else {
-        dispatch(changePasswordDone(`"${INFO_OBJECT_ID}" object not found in database`, ''));
+        dispatch(changePassphraseDone(`"${INFO_OBJECT_ID}" object not found in database`, ''));
       }
     });
   };
 }
 
-export const CHANGE_PASSWORD_DONE = 'CHANGE_PASSWORD_DONE';
-export function changePasswordDone(error: string, value: string | null) {
+export const CHANGE_PASSPHRASE_DONE = 'CHANGE_PASSPHRASE_DONE';
+export function changePassphraseDone(error: string, value: string | null) {
   if (error) {
     return {
       type: ERROR,
@@ -38,7 +38,7 @@ export function changePasswordDone(error: string, value: string | null) {
     };
   }
   return {
-    type: CHANGE_PASSWORD_DONE,
+    type: CHANGE_PASSPHRASE_DONE,
     data: value
   };
 }
@@ -80,47 +80,6 @@ export function toggleAnalyticsDone(error: string | null, value: boolean | null)
   }
   return {
     type: TOGGLE_ANALYTICS_DONE,
-    data: value
-  };
-}
-
-export const TOGGLE_STATISTICS = 'TOGGLE_STATISTICS';
-export function toggleStatistics(value: boolean) {
-  return (dispatch: Function) => {
-    Database.find({ // eslint-disable-line
-      _id: INFO_OBJECT_ID
-    }, (err, results) => {
-      if (err) {
-        dispatch(toggleStatisticsDone(err, null));
-      }
-      const doc = results[0];
-      if (doc) {
-        doc.usage = !!value;
-        Database.update({ // eslint-disable-line
-          _id: INFO_OBJECT_ID
-        }, doc, (updateErr) => {
-          if (updateErr) {
-            dispatch(toggleStatisticsDone(updateErr, null));
-          }
-          dispatch(toggleStatisticsDone(null, value));
-        });
-      } else {
-        dispatch(toggleStatisticsDone(`"${INFO_OBJECT_ID}" object not found in database`, null));
-      }
-    });
-  };
-}
-
-export const TOGGLE_STATISTICS_DONE = 'TOGGLE_STATISTICS_DONE';
-export function toggleStatisticsDone(error: string | null, value: boolean | null) {
-  if (error) {
-    return {
-      type: ERROR,
-      data: error
-    };
-  }
-  return {
-    type: TOGGLE_STATISTICS_DONE,
     data: value
   };
 }

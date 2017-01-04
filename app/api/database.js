@@ -22,13 +22,12 @@ export function loadDatastore() {
   });
 }
 
-export function initUserIntoDatabase() {
-  const infoObject = {
+export function updateUser(info: Object = {}) {
+  const userInfo = Object.assign({
     _id: INFO_OBJECT_ID,
     uuid: uuidV4(),
-    password: '',
+    passphrase: '',
     analytics: true,
-    usage: true,
     os: {
       platform: platform(),
       release: release(),
@@ -36,8 +35,18 @@ export function initUserIntoDatabase() {
     },
     userAgent: navigator.userAgent,
     language: navigator.language
-  };
-  return insertIntoDatabase(infoObject);
+  }, info);
+
+  return new Promise((resolve, reject) => {
+    insertIntoDatabase(userInfo)
+      .then(() => {
+        resolve(userInfo);
+        return userInfo;
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
 }
 
 export function insertIntoDatabase(doc: Object) {

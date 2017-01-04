@@ -23,7 +23,7 @@ class Menu extends Component {
     auth: PropTypes.bool,
     signOut: PropTypes.func,
     settings: PropTypes.shape({
-      password: PropTypes.string
+      passphrase: PropTypes.string
     })
   };
 
@@ -95,7 +95,7 @@ class Menu extends Component {
             />);
           })}
           {
-            (auth && this.props.settings.password) ?
+            (auth && this.props.settings.passphrase) ?
               <MenuItem
                 primaryText={i18n('auth-sign-out')}
                 leftIcon={

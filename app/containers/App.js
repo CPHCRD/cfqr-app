@@ -30,7 +30,7 @@ class App extends Component {
     const { authenticateDone } = nextProps;
     if (nextProps.settings &&
         !nextProps.auth &&
-        nextProps.settings.password === '') {
+        nextProps.settings.passphrase === '') {
       authenticateDone(true);
     }
   }

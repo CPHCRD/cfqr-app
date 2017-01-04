@@ -9,7 +9,6 @@ import {
 } from 'material-ui/Stepper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-import FontIcon from 'material-ui/FontIcon';
 import Snackbar from 'material-ui/Snackbar';
 import Dialog from 'material-ui/Dialog';
 
@@ -248,7 +247,6 @@ class Questionnaire extends PureComponent {
               containerElement={<Link to={routes.home.url}>{i18n('home-button-back')}</Link>}
               label={i18n('home-button-back')}
               style={{ margin: '0 0.5rem 1rem 0' }}
-              icon={<FontIcon className="muidocs-icon-custom-github" />}
             />
           ]}
           modal
