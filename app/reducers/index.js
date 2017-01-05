@@ -47,7 +47,7 @@ import {
 import statistics from './statistics';
 
 const rootReducer = combineReducers({
-  auth: filterActions(auth, [AUTHENTICATE_DONE, SIGN_OUT, LOGGED_IN, LOGGED_OUT]),
+  auth: filterActions(auth, [AUTHENTICATE_DONE, SIGN_OUT, LOAD_DATABASE_DONE]),
   logged: filterActions(logged, [LOGGED_IN, LOGGED_OUT]),
   counter: filterActions(counter, [RESET_QUESTIONNAIRE, SET_QUESTIONNAIRE_STEP]),
   locale: filterActions(locale, [CHANGE_LOCALE]),
@@ -57,6 +57,7 @@ const rootReducer = combineReducers({
   database: filterActions(database, [LOAD_DATABASE_DONE]),
   error: filterActions(error, [ERROR_LOG]),
   settings: filterActions(settings, [
+    LOGGED_OUT, LOGGED_IN,
     LOAD_DATABASE_DONE, TOGGLE_ANALYTICS_DONE, CHANGE_PASSPHRASE_DONE
   ]),
   routing,

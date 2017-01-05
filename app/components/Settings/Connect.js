@@ -11,7 +11,7 @@ import { connect } from '../../actions';
 import AdminLogin from '../Login';
 
 import { updateUser } from '../../api/database';
-import { register, login, saveUserInfo } from '../../api/auth';
+import { register, login, saveUserInfo, updateLoginInfo, logout } from '../../api/auth';
 
 class Settings extends Component {
 
@@ -49,26 +49,16 @@ class Settings extends Component {
     this.setState({ password: value });
   }
 
-  updateUserObjectWithLoginInfo(user) {
-    const { settings } = this.props;
-
-    return Object.assign({}, settings, {
-      uid: user.uid,
-      email: user.email,
-      lastLogin: new Date().toString()
-    });
-  }
-
   loginUser() {
-    const { errorLog, loggedIn, loggedOut } = this.props;
+    const { errorLog, loggedIn, loggedOut, settings: userInfo } = this.props;
 
     if (this.state.email && this.state.password) {
       login(this.state.email, this.state.password)
-        .then(user => this.updateUserObjectWithLoginInfo(user))
+        .then(() => updateLoginInfo(userInfo))
         .then(user => updateUser(user))
-        .then(saveUserInfo)
-        .then(() => {
-          loggedIn();
+        .then(user => saveUserInfo(user))
+        .then(user => {
+          loggedIn(user);
           return true;
         })
         .catch(err => {
@@ -77,6 +67,17 @@ class Settings extends Component {
           this.snackbarOpen(err.message || err);
         });
     }
+  }
+
+  logoutUser() {
+    const { errorLog } = this.props;
+
+    logout()
+      .then(() => true)
+      .catch(err => {
+        errorLog(err);
+        this.snackbarOpen(err.message || err);
+      });
   }
 
   registerUser() {
@@ -96,26 +97,30 @@ class Settings extends Component {
   }
 
   render() {
-    const { i18n, auth, logged } = this.props;
+    const { i18n, auth, logged, settings } = this.props;
+    const { email = '' } = settings;
 
     return (
       (!auth) ? <AdminLogin /> :
       <div>
         <h3 style={{ color: cyan700 }}>{i18n('settings-connect-title')}</h3>
-        <p style={{ display: 'block' }}>{i18n('settings-connect-text')}</p>
+        <p style={{ display: 'block', marginBottom: '-0.5rem' }}>{i18n('settings-connect-text')}</p>
         {!logged ? <div>
           <div style={{ marginBottom: '1rem' }}>
             <TextField
               id="user-email"
               floatingLabelText={i18n('settings-email-address')}
               type="email"
+              defaultValue={email}
               onChange={this.changeEmail.bind(this)}
+              style={{ maxWidth: '100%' }}
             />
             <TextField
               id="user-password"
               floatingLabelText={i18n('settings-password')}
               type="password"
               onChange={this.changePassword.bind(this)}
+              style={{ maxWidth: '100%' }}
             />
           </div>
           <RaisedButton
@@ -139,7 +144,16 @@ class Settings extends Component {
             autoHideDuration={3000}
             onRequestClose={this.snackbarClose.bind(this)}
           />
-        </div> : 'Logged in.' }
+        </div> : <div>
+          <p style={{ marginTop: '1rem', color: cyan700 }}>{i18n('settings-connected')}</p>
+          <FlatButton
+            labelPosition="before"
+            label={i18n('settings-logout')}
+            style={{ margin: '0 0.5rem 1rem 0' }}
+            icon={<FontIcon className="material-icons">exit_to_app</FontIcon>}
+            onTouchTap={this.logoutUser.bind(this)}
+          />
+        </div> }
       </div>
     );
   }

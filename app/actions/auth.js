@@ -37,15 +37,17 @@ export function signOut() {
 }
 
 export const LOGGED_IN = 'LOGGED_IN';
-export function loggedIn() {
+export function loggedIn(userInfo: Object) {
   return {
-    type: LOGGED_IN
+    type: LOGGED_IN,
+    data: userInfo
   };
 }
 
 export const LOGGED_OUT = 'LOGGED_OUT';
-export function loggedOut() {
+export function loggedOut(userInfo: Object) {
   return {
-    type: LOGGED_OUT
+    type: LOGGED_OUT,
+    data: userInfo
   };
 }

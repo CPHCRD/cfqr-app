@@ -27,15 +27,17 @@ export function updateUser(info: Object = {}) {
     _id: INFO_OBJECT_ID,
     uuid: uuidV4(),
     passphrase: '',
-    analytics: true,
+    analytics: true
+  }, info, {
     os: {
       platform: platform(),
       release: release(),
       arch: arch()
     },
     userAgent: navigator.userAgent,
-    language: navigator.language
-  }, info);
+    language: navigator.language,
+    lastVisit: new Date().toString()
+  });
 
   return new Promise((resolve, reject) => {
     insertIntoDatabase(userInfo)

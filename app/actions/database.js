@@ -14,14 +14,15 @@ export function loadDatabase() {
   return (dispatch: Function) => {
     loadDatastore()
       .then(() => findOneIntoDatabase({ _id: INFO_OBJECT_ID }))
-      .then(results => {
-        if (!results) {
+      .then(user => {
+        if (!user) {
           return updateUser();
         }
-        return results;
+        return user;
       })
-      .then(info => {
-        dispatch(loadDatabaseDone(null, info));
+      .then(user => updateUser(user))
+      .then(user => {
+        dispatch(loadDatabaseDone(null, user));
         return true;
       })
       .catch(err => {
