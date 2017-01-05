@@ -6,7 +6,7 @@
   "no-data": "No data available.",
   "cancel": "Cancel",
   "home-menu-text": "Home",
-  "home-title": "Cystic Fibrosis Questionnaire Revised (CFQ-R)",
+  "home-title": "Cystic Fibrosis Questionnaire Revised",
   "home-description-1": "This software calculates the score derived from the CFQ-R questionnaire alghoritm (4 versions availaible). It may be used clinically during routine CF care and for CF resarch.",
   "home-description-2": "Questionnaires can be printed and administered on paper however the software can aid CFQ-R data collection in a clinical setting.",
   "home-description-3": "Results data is stored on the device. Questionnaires from the same patient can be accessed and used to compare results over time. Sensible data can be concelead setting a private passphrase (menu > settings).",
