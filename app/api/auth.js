@@ -50,6 +50,7 @@ export function saveUserInfo(userInfo) {
   const remoteUserInfo = Object.assign({}, userInfo);
   delete remoteUserInfo._id; // useless
   delete remoteUserInfo.token; // unsafe
+  delete remoteUserInfo.password; // unsafe
   return new Promise((resolve, reject) => {
     ref
       .child(`users/${remoteUserInfo.uid}/info`)
