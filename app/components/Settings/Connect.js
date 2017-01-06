@@ -113,14 +113,14 @@ class Settings extends Component {
               type="email"
               defaultValue={email}
               onChange={this.changeEmail.bind(this)}
-              style={{ maxWidth: '100%' }}
+              style={{ maxWidth: '100%', display: 'block' }}
             />
             <TextField
               id="user-password"
               floatingLabelText={i18n('settings-password')}
               type="password"
               onChange={this.changePassword.bind(this)}
-              style={{ maxWidth: '100%' }}
+              style={{ maxWidth: '100%', display: 'block', marginTop: '-1rem' }}
             />
           </div>
           <RaisedButton

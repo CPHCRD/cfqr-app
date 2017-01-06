@@ -61,10 +61,6 @@ const config = validate(merge(baseConfig, {
     })
   ],
 
-  node: {
-    fs: 'empty'
-  },
-
   // https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works
   target: 'web'
 

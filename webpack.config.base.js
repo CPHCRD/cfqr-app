@@ -2,7 +2,11 @@
  * Base webpack config used across other specific configs
  */
 import path from 'path';
+import webpack from 'webpack';
 import validate from 'webpack-validator';
+
+// .env file fallback for environment variables
+require('dotenv').config(); // eslint-disable-line
 
 export default validate({
   module: {
@@ -28,6 +32,13 @@ export default validate({
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        FIREBASE_API_KEY: JSON.stringify(process.env.FIREBASE_API_KEY),
+        FIREBASE_AUTH_DOMAIN: JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
+        FIREBASE_DATABASE_URL: JSON.stringify(process.env.FIREBASE_DATABASE_URL)
+      }
+    }),
   ],
 
   externals: [

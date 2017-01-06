@@ -1,13 +1,5 @@
 import firebase from 'firebase';
 
-// .env file fallback for environment variables
-try {
-  // read the .env file to populate the process.env object.
-  require('dotenv').config(); // eslint-disable-line
-} catch (nothing) {
-  // dotenv is a dev dependency, it may be not set, skip errors blindly in this case.
-}
-
 const fb = firebase.initializeApp({
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
