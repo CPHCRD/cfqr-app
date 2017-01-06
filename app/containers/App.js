@@ -12,10 +12,12 @@ import {
   INFO_OBJECT_ID
 } from '../api/database';
 import {
-  firebaseAuth,
-  updateLoginInfo,
-  saveUserInfo
+  firebaseAuth
 } from '../api/auth';
+import {
+  saveRemoteUserInfo,
+  getRemoteUserInfo
+} from '../api/backup';
 
 /* Mui elements */
 const muiTheme = getMuiTheme({
@@ -48,9 +50,9 @@ class App extends Component {
             }
             return user;
           })
-          .then(user => updateLoginInfo(user))
+          .then(user => getRemoteUserInfo(user))
           .then(user => updateUser(user))
-          .then(user => saveUserInfo(user))
+          .then(user => saveRemoteUserInfo(user))
           .then(user => {
             loggedIn(user);
             return true;
@@ -66,11 +68,8 @@ class App extends Component {
             if (!user) {
               return updateUser();
             }
-            return Object.assign({}, user, {
-              token: ''
-            });
+            return user;
           })
-          .then(user => updateLoginInfo(user))
           .then(user => updateUser(user))
           .then(user => {
             loggedOut(user);

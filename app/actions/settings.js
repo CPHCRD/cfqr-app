@@ -1,36 +1,29 @@
 // @flow
-import { Database, INFO_OBJECT_ID } from '../api/database';
+import { getUser, updateUser } from '../api/database';
 import { ERROR } from './error';
+
+import { saveRemoteUserInfo } from '../api/backup';
 
 export const CHANGE_PASSPHRASE = 'CHANGE_PASSPHRASE';
 export function changePassphrase(newPassphrase: string) {
   return (dispatch: Function) => {
-    Database.find({ // eslint-disable-line
-      _id: INFO_OBJECT_ID
-    }, (err, results) => {
-      if (err) {
-        dispatch(changePassphraseDone(err, ''));
-      }
-      const doc = results[0];
-      if (doc) {
-        doc.passphrase = newPassphrase;
-        Database.update({ // eslint-disable-line
-          _id: INFO_OBJECT_ID
-        }, doc, (updateErr) => {
-          if (updateErr) {
-            dispatch(changePassphraseDone(updateErr, ''));
-          }
-          dispatch(changePassphraseDone('', newPassphrase));
-        });
-      } else {
-        dispatch(changePassphraseDone(`"${INFO_OBJECT_ID}" object not found in database`, ''));
-      }
-    });
+    getUser()
+      .then(user => updateUser(Object.assign({}, user, {
+        passphrase: newPassphrase
+      })))
+      .then(user => {
+        dispatch(changePassphraseDone(null, user.passphrase));
+        return user;
+      })
+      .then(user => saveRemoteUserInfo(user))
+      .catch(err => {
+        dispatch(changePassphraseDone(err, null));
+      });
   };
 }
 
 export const CHANGE_PASSPHRASE_DONE = 'CHANGE_PASSPHRASE_DONE';
-export function changePassphraseDone(error: string, value: string | null) {
+export function changePassphraseDone(error: string | null, value: string | null) {
   if (error) {
     return {
       type: ERROR,
@@ -46,27 +39,18 @@ export function changePassphraseDone(error: string, value: string | null) {
 export const TOGGLE_ANALYTICS = 'TOGGLE_ANALYTICS';
 export function toggleAnalytics(value: boolean) {
   return (dispatch: Function) => {
-    Database.find({ // eslint-disable-line
-      _id: INFO_OBJECT_ID
-    }, (err, results) => {
-      if (err) {
+    getUser()
+      .then(user => updateUser(Object.assign({}, user, {
+        analytics: !!value
+      })))
+      .then(user => {
+        dispatch(toggleAnalyticsDone(null, user.analytics));
+        return user;
+      })
+      .then(user => saveRemoteUserInfo(user))
+      .catch(err => {
         dispatch(toggleAnalyticsDone(err, null));
-      }
-      const doc = results[0];
-      if (doc) {
-        doc.analytics = !!value;
-        Database.update({ // eslint-disable-line
-          _id: INFO_OBJECT_ID
-        }, doc, (updateErr) => {
-          if (updateErr) {
-            dispatch(toggleAnalyticsDone(updateErr, null));
-          }
-          dispatch(toggleAnalyticsDone(null, value));
-        });
-      } else {
-        dispatch(toggleAnalyticsDone(`"${INFO_OBJECT_ID}" object not found in database`, null));
-      }
-    });
+      });
   };
 }
 

@@ -22,6 +22,16 @@ export function loadDatastore() {
   });
 }
 
+export function getUser() {
+  return findOneIntoDatabase({ _id: INFO_OBJECT_ID })
+    .then(user => {
+      if (!user) {
+        return updateUser();
+      }
+      return user;
+    });
+}
+
 export function updateUser(info: Object = {}) {
   const userInfo = Object.assign({
     _id: INFO_OBJECT_ID,
@@ -39,16 +49,7 @@ export function updateUser(info: Object = {}) {
     lastVisit: new Date().toString()
   });
 
-  return new Promise((resolve, reject) => {
-    insertIntoDatabase(userInfo)
-      .then(() => {
-        resolve(userInfo);
-        return userInfo;
-      })
-      .catch(err => {
-        reject(err);
-      });
-  });
+  return insertIntoDatabase(userInfo).then(() => userInfo);
 }
 
 export function insertIntoDatabase(doc: Object) {

@@ -11,7 +11,8 @@ import { connect } from '../../actions';
 import AdminLogin from '../Login';
 
 import { updateUser } from '../../api/database';
-import { register, login, saveUserInfo, updateLoginInfo, logout } from '../../api/auth';
+import { register, login, logout } from '../../api/auth';
+import { updateLoginInfo, saveRemoteUserInfo } from '../../api/backup';
 
 class Settings extends Component {
 
@@ -56,7 +57,7 @@ class Settings extends Component {
       login(this.state.email, this.state.password)
         .then(() => updateLoginInfo(userInfo))
         .then(user => updateUser(user))
-        .then(user => saveUserInfo(user))
+        .then(user => saveRemoteUserInfo(user))
         .then(user => {
           loggedIn(user);
           return true;
