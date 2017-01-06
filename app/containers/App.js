@@ -7,16 +7,17 @@ import { blueGrey600 } from 'material-ui/styles/colors';
 import { connect } from '../actions';
 import Menu from '../components/Menu';
 import {
-  updateUser,
-  findOneIntoDatabase,
-  INFO_OBJECT_ID
+  getUser,
+  updateUser
 } from '../api/database';
 import {
   firebaseAuth
 } from '../api/auth';
 import {
   saveRemoteUserInfo,
-  getRemoteUserInfo
+  getRemoteUserInfo,
+  getNewQuestionnaires,
+  saveNewQuestionnaires
 } from '../api/backup';
 
 /* Mui elements */
@@ -43,13 +44,7 @@ class App extends Component {
     firebaseAuth().onAuthStateChanged(authInfo => {
       if (authInfo) {
         // automatic login
-        findOneIntoDatabase({ _id: INFO_OBJECT_ID })
-          .then(user => {
-            if (!user) {
-              return updateUser();
-            }
-            return user;
-          })
+        getUser()
           .then(user => getRemoteUserInfo(user))
           .then(user => updateUser(user))
           .then(user => saveRemoteUserInfo(user))
@@ -57,19 +52,18 @@ class App extends Component {
             loggedIn(user);
             return true;
           })
+          .then(() => getNewQuestionnaires())
+          .then(() => saveNewQuestionnaires())
+          // .then(result => {
+          //   console.log(result);
+          // })
           .catch(err => {
             loggedOut();
             errorLog(err);
           });
       } else {
         // logout
-        findOneIntoDatabase({ _id: INFO_OBJECT_ID })
-          .then(user => {
-            if (!user) {
-              return updateUser();
-            }
-            return user;
-          })
+        getUser()
           .then(user => updateUser(user))
           .then(user => {
             loggedOut(user);

@@ -52,6 +52,14 @@ export function updateUser(info: Object = {}) {
   return insertIntoDatabase(userInfo).then(() => userInfo);
 }
 
+export function getQuestionnaires() {
+  return findIntoDatabase({
+    $not: {
+      _id: INFO_OBJECT_ID
+    }
+  });
+}
+
 export function insertIntoDatabase(doc: Object) {
   return new Promise((resolve, reject) => {
     if (doc._id) {
