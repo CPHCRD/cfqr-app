@@ -6,7 +6,11 @@ import webpack from 'webpack';
 import validate from 'webpack-validator';
 
 // .env file fallback for environment variables
-require('dotenv').config(); // eslint-disable-line
+try {
+  require('dotenv').config(); // eslint-disable-line
+} catch (err) {
+  // ignore
+}
 
 export default validate({
   module: {
