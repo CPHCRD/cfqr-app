@@ -17,6 +17,24 @@ export default validate({
     }, {
       test: /\.json$/,
       loader: 'json-loader'
+    }, {
+      test: /\.ico$/,
+      loader: `${require.resolve('file-loader')}?name=[name].[ext]`
+    }, {
+      test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+      loader: `${require.resolve('url-loader')}?limit=10000&mimetype=application/font-woff&name=assets/[name].[ext]`
+    }, {
+      test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+      loader: `${require.resolve('url-loader')}?limit=10000&mimetype=application/font-woff&name=assets/[name].[ext]`
+    }, {
+      test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+      loader: `${require.resolve('url-loader')}?limit=10000&mimetype=application/octet-stream&name=assets/[name].[ext]`
+    }, {
+      test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+      loader: `${require.resolve('file-loader')}?name=assets/[name].[ext]`
+    }, {
+      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+      loader: `${require.resolve('url-loader')}?limit=10000&mimetype=image/svg+xml&name=assets/[name].[ext]`
     }]
   },
 

@@ -21,7 +21,7 @@ class AboutPage extends Component {
             {i18n('about-description-link-text')}
           </a>
         </p>
-        {process.env.isWeb ?
+        {process.env.isWeb === 'web' ?
           <div>
             <a href="https://www.netlify.com">
               <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="netlify-logo" />

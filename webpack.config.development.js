@@ -27,34 +27,28 @@ export default validate(merge(baseConfig, {
     publicPath: `http://localhost:${port}/dist/`
   },
 
-  module: {
-    // preLoaders: [
-    //   {
-    //     test: /\.js$/,
-    //     loader: 'eslint-loader',
-    //     exclude: /node_modules/
-    //   }
-    // ],
-    loaders: [
-      {
-        test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap']
-      },
-      {
-        test: /^((?!style).)*\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
-        ]
-      },
-
-      { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
-      { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
-      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
-      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' },
-    ]
-  },
+  // module: {
+  //   // preLoaders: [
+  //   //   {
+  //   //     test: /\.js$/,
+  //   //     loader: 'eslint-loader',
+  //   //     exclude: /node_modules/
+  //   //   }
+  //   // ],
+  //   loaders: [
+  //     {
+  //       test: /\.scss$/,
+  //       loaders: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap']
+  //     },
+  //     {
+  //       test: /^((?!style).)*\.css$/,
+  //       loaders: [
+  //         'style-loader',
+  //         'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+  //       ]
+  //     }
+  //   ]
+  // },
 
   eslint: {
     formatter
@@ -70,8 +64,7 @@ export default validate(merge(baseConfig, {
 
     // NODE_ENV should be production so that modules do not perform certain development checks
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
-      'process.env.isWeb': true
+      'process.env.NODE_ENV': JSON.stringify('development')
     })
   ],
 

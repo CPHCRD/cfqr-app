@@ -12,9 +12,10 @@ import configureStore from './store/configureStore';
 import { initDatastore } from './api/database';
 
 // CSS
-/*eslint-disable */
-import './scss/style.scss';
-/*eslint-enable */
+/* eslint-disable */
+require('!style-loader!css-loader!sass-loader!./scss/style.scss');
+require('!style-loader!css-loader!sass-loader!./scss/fonts.scss');
+/* eslint-enable */
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941

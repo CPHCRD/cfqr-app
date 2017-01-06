@@ -5,9 +5,9 @@
 import path from 'path';
 import webpack from 'webpack';
 import validate from 'webpack-validator';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import merge from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import baseConfig from './webpack.config.base';
 
 const config = validate(merge(baseConfig, {
@@ -19,19 +19,8 @@ const config = validate(merge(baseConfig, {
   ],
 
   output: {
-    path: path.join(__dirname, 'public/assets'),
+    path: path.join(__dirname, 'public'),
     publicPath: './'
-  },
-
-  module: {
-    loaders: [
-      { test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass') },
-      { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=100000&mimetype=application/font-woff' },
-      { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=100000&mimetype=application/font-woff' },
-      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=100000&mimetype=application/octet-stream' },
-      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=100000&mimetype=image/svg+xml' },
-    ]
   },
 
   plugins: [
@@ -53,12 +42,18 @@ const config = validate(merge(baseConfig, {
       }
     }),
 
-    new ExtractTextPlugin('style.css', { allChunks: true }),
     new HtmlWebpackPlugin({
-      filename: '../index.html',
-      template: 'app/index.html',
+      filename: 'index.html',
+      template: 'app/app.web.html',
       inject: false
-    })
+    }),
+
+    new CopyWebpackPlugin([
+      {
+        from: 'app/favicon.ico',
+        to: 'favicon.ico'
+      }
+    ])
   ],
 
   // https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works
