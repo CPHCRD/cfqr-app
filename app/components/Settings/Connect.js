@@ -62,6 +62,8 @@ class Settings extends Component {
           loggedIn(user);
           return true;
         })
+        .then(() => getNewQuestionnaires())
+        .then(() => saveNewQuestionnaires())
         .catch(err => {
           errorLog(err);
           loggedOut();
