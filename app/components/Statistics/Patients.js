@@ -94,7 +94,6 @@ class Patients extends Component {
               hintText={i18n('statistics-filter-patient-hint')}
               floatingLabelText={i18n('statistics-filter-patient-label')}
               floatingLabelFixed={true}
-              defaultValue=""
               dataSource={this.state.dataSource}
               onChange={(e, value) => this.setSearchValue(value)}
             />
