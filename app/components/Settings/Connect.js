@@ -12,7 +12,7 @@ import AdminLogin from '../Login';
 
 import { updateUser } from '../../api/database';
 import { register, login, logout } from '../../api/auth';
-import { updateLoginInfo, saveRemoteUserInfo } from '../../api/backup';
+import { updateLoginInfo, saveRemoteUserInfo, getNewQuestionnaires, saveNewQuestionnaires } from '../../api/backup';
 
 class Settings extends Component {
 
