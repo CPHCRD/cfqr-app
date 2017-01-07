@@ -54,9 +54,6 @@ class App extends Component {
           })
           .then(() => getNewQuestionnaires())
           .then(() => saveNewQuestionnaires())
-          // .then(result => {
-          //   console.log(result);
-          // })
           .catch(err => {
             loggedOut();
             errorLog(err);

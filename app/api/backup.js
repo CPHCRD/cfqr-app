@@ -1,5 +1,5 @@
 import { fb, firebaseAuth } from './auth';
-import { getQuestionnaires } from './database';
+import { getQuestionnaires, insertIntoDatabase } from './database';
 
 const ref = fb.database().ref();
 
@@ -48,7 +48,8 @@ export function getUserQuestionnaires() {
   return ref
     .child(`users/${firebaseCurrentUser.uid}/questionnaires`)
     .once('value')
-    .then(snapshot => snapshot.val() || []);
+    .then(snapshot => snapshot.val() || {})
+    .then(questionnaire => Object.keys(questionnaire).map(key => questionnaire[key]));
 }
 
 export function getUserQuestionnaire(questionnaireId) {
@@ -74,27 +75,39 @@ export function saveUserQuestionnaire(questionnaire) {
 }
 
 export function getNewQuestionnaires() {
+  const firebaseCurrentUser = firebaseAuth().currentUser;
+  if (!firebaseCurrentUser) {
+    return null;
+  }
   let localQuestionnairesId = [];
   return getQuestionnaires()
-    .then(questionnaires => {
-      localQuestionnairesId = questionnaires.map(qst => qst._id);
+    .then(localQuestionnaires => {
+      localQuestionnairesId = localQuestionnaires.map(qst => qst._id);
       return getUserQuestionnaires();
     })
     .then(onlineQuestionnaires => onlineQuestionnaires
       .filter(qst => (localQuestionnairesId.indexOf(qst._id) < 0))
-    );
-    // @todo save in localdb new questionnaires
+    )
+    .then(missingQuestionnaires => Promise.all(
+      missingQuestionnaires.map(missing => insertIntoDatabase(missing))
+    ));
 }
 
 export function saveNewQuestionnaires() {
+  const firebaseCurrentUser = firebaseAuth().currentUser;
+  if (!firebaseCurrentUser) {
+    return null;
+  }
   let onlineQuestionnairesId = [];
   return getUserQuestionnaires()
-    .then(questionnaires => {
-      onlineQuestionnairesId = questionnaires.map(qst => qst._id);
+    .then(onlineQuestionnaires => {
+      onlineQuestionnairesId = onlineQuestionnaires.map(qst => qst._id);
       return getQuestionnaires();
     })
     .then(localQuestionnaires => localQuestionnaires
       .filter(qst => (onlineQuestionnairesId.indexOf(qst._id) < 0))
-    );
-    // @todo upload new questionnaires
+    )
+    .then(missingQuestionnaires => Promise.all(
+      missingQuestionnaires.map(missing => saveUserQuestionnaire(missing))
+    ));
 }

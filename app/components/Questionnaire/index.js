@@ -15,6 +15,9 @@ import Dialog from 'material-ui/Dialog';
 import { connect } from '../../actions';
 import { formatQuestionnaire, findMissingAnswers } from '../../utils/questionnaire';
 import { insertIntoDatabase } from '../../api/database';
+import {
+  saveUserQuestionnaire
+} from '../../api/backup';
 
 import QuestionnaireType from './Type';
 import QuestionnaireText from './Text';
@@ -82,7 +85,7 @@ class Questionnaire extends PureComponent {
       insertIntoDatabase(doc)
         .then(result => {
           this.setState({ resultId: result._id });
-          return true;
+          return saveUserQuestionnaire(result);
         }).catch(err => {
           errorLog(err);
         });
