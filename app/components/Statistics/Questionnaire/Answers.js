@@ -6,6 +6,7 @@ import { Table, TableBody, TableHeader,
 import Subheader from 'material-ui/Subheader';
 
 import { connect } from '../../../actions';
+import { getQuestionsInfo } from '../../../utils/questionnaire';
 
 const style = {
   padding: '0.5rem',
@@ -29,6 +30,7 @@ class StatisticsQuestionnaireAnswers extends Component {
     const { i18n, questionnaireData, cfqrData } = this.props;
     const { type } = questionnaireData;
     const questionsScores = cfqrData.scores[type];
+    const questionsInfo = getQuestionsInfo(cfqrData.elements[type]);
     return (<List>
       <Subheader>{i18n('statistics-questionnaire-answers')}</Subheader>
       <ListItem
@@ -44,6 +46,7 @@ class StatisticsQuestionnaireAnswers extends Component {
             <TableRow>
               <TableHeaderColumn>question</TableHeaderColumn>
               <TableHeaderColumn>answer</TableHeaderColumn>
+              <TableHeaderColumn>type</TableHeaderColumn>
               <TableHeaderColumn>score</TableHeaderColumn>
             </TableRow>
           </TableHeader>
@@ -53,15 +56,16 @@ class StatisticsQuestionnaireAnswers extends Component {
             {Object.keys(questionnaireData).map(key => {
               if (key === 'answers') {
                 const answers = questionnaireData[key];
-                return Object.keys(answers).map(answerKey => {
-                  const questionKey = `${type}-${answerKey}`;
-                  const questionType = questionsScores[answerKey] ? questionsScores[answerKey].type : '';
-                  return (<TableRow key={answerKey}>
+                return Object.keys(answers).map(qstKey => {
+                  const questionKey = `${type}-${qstKey}`;
+                  const answer = questionnaireData.answers[qstKey];
+                  const questionType = questionsScores[qstKey] ? questionsScores[qstKey].type : '';
+                  return (<TableRow key={qstKey}>
                     <TableRowColumn style={style}>{i18n(questionKey)}</TableRowColumn>
-                    <TableRowColumn style={style}>{i18n(answers[answerKey])}</TableRowColumn>
+                    <TableRowColumn style={style}>{i18n(questionsInfo[qstKey].answers[answer])}</TableRowColumn>
                     <TableRowColumn style={style}>{
                       i18n(`statistics-questionnaire-type-${questionType}`)}</TableRowColumn>
-                    <TableRowColumn style={style}>{questionnaireData.scores[answerKey]}</TableRowColumn>
+                    <TableRowColumn style={style}>{questionsScores[qstKey].score[answer]}</TableRowColumn>
                   </TableRow>);
                 });
               }

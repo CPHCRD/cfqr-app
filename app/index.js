@@ -22,7 +22,7 @@ require('!style-loader!css-loader!sass-loader!./scss/fonts.scss');
 injectTapEventPlugin();
 
 initDatastore({
-  filename: './CFQR-questionnaire-db.db',
+  filename: './CFQR-questionnaire.db',
   // inMemoryOnly: true, //-> only dev
   timestampData: true
 });
