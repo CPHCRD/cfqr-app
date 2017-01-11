@@ -9,6 +9,7 @@ import AdminLogin from '../../Login';
 import StatisticsPatientInfo from './Info';
 import StatisticsPatientQuestionnaires from './Questionnaires';
 import Print from '../../Print';
+import SaveAs from '../../SaveAs';
 
 import { getIdFromHash } from '../../../utils/misc';
 
@@ -56,6 +57,11 @@ class StatisticsPatient extends Component {
     return (
       (!auth) ? <AdminLogin /> : <div>
         <Print style={{ float: 'right' }} />
+        <SaveAs
+          exportData={data}
+          fileName={`cfqr-app-patient-${latestQuestionnaire.patient}-export-${new Date().toString()}`}
+          style={{ float: 'right' }}
+        />
         <StatisticsPatientInfo questionnaireData={latestQuestionnaire} />
         <Divider />
         <StatisticsPatientQuestionnaires questionnairesData={data} />

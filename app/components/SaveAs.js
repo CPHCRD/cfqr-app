@@ -141,7 +141,7 @@ class SaveAs extends Component {
       const blob = new Blob([csv], {
         type: 'text/csv;charset=utf-8'
       });
-      FileSaver.saveAs(blob, `${fileName}.csv`);
+      FileSaver.saveAs(blob, (`${fileName}.csv`).replace(/\s/g, '_').toLowerCase());
     });
   }
 

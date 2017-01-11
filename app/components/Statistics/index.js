@@ -6,6 +6,7 @@ import { connect } from '../../actions';
 import AdminLogin from '../Login';
 import { INFO_OBJECT_ID, findIntoDatabase } from '../../api/database';
 import StatisticsTable from './Table';
+import SaveAs from '../SaveAs';
 
 const BASE_FILTER = {
   $not: {
@@ -84,6 +85,11 @@ class Statistics extends Component {
               floatingLabelFixed={true}
               dataSource={this.state.dataSource}
               onChange={(e, value) => this.setSearchValue(value)}
+            />
+            <SaveAs
+              exportData={data}
+              fileName={`cfqr-app-full-export-${new Date().toString()}`}
+              style={{ float: 'right' }}
             />
             <StatisticsTable rowUrl="questionnaire" urlId="_id" rows={data} />
           </div>

@@ -133,14 +133,19 @@ class StatisticsQuestionnaire extends Component {
       this.getQuestionnaire();
     }
 
-    const exportFileName = (data.type && data.createdAt) ?
-      `${data.type}-${data.createdAt.toString().replace(' ', '_')}` : '';
+    const exportPatient = data.patient ? data.patient : 'unknown';
+    const exportType = data.type ? data.type : '';
+    const exportDate = data.createdAt ? data.createdAt.toString() : '';
 
     return (
       (!auth) ? <AdminLogin /> : <div>
         <List>
           <Print style={{ float: 'right' }} />
-          <SaveAs exportData={[data]} fileName={exportFileName} style={{ float: 'right' }} />
+          <SaveAs
+            exportData={[data]}
+            fileName={`cfqr-app-patient-${exportPatient}-${exportType}-${exportDate}`}
+            style={{ float: 'right' }}
+          />
           <Subheader>{i18n('statistics-questionnaire-info')}</Subheader>
           {Object.keys(data).map(key => this.renderQuestionnaireInfo(
             key,
