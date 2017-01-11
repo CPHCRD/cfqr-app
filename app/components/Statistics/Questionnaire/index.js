@@ -21,7 +21,6 @@ import Print from '../../Print';
 import SaveAs from '../../SaveAs';
 
 import { format as dateFormat } from '../../../config/date.json';
-import { getQuestionsInfo } from '../../../utils/questionnaire';
 
 class StatisticsQuestionnaire extends Component {
 
@@ -29,8 +28,7 @@ class StatisticsQuestionnaire extends Component {
     i18n: PropTypes.func,
     errorLog: PropTypes.func,
     auth: PropTypes.bool,
-    locale: PropTypes.string,
-    cfqrData: PropTypes.instanceOf(Object)
+    locale: PropTypes.string
   };
 
   state = {
@@ -41,110 +39,6 @@ class StatisticsQuestionnaire extends Component {
   componentWillReceiveProps() {
     // ugly, params are not available
     this.getQuestionnaire();
-  }
-
-  getExportData() {
-    const { i18n, locale, cfqrData } = this.props;
-    const { data } = this.state;
-
-    const infoHead = [];
-    const infoRow = [];
-
-    infoHead.push(i18n('statistics-questionnaire-patient'));
-    infoRow.push(data.patient || i18n('statistics-questionnaire-patient-unidentified'));
-
-    infoHead.push(i18n('statistics-questionnaire-gender'));
-    infoRow.push(i18n(`statistics-questionnaire-gender-${data.gender}`));
-
-    infoHead.push(i18n('statistics-questionnaire-race'));
-    infoRow.push(i18n(`statistics-questionnaire-race-${data.race}`));
-
-    infoHead.push(i18n('statistics-questionnaire-birth-date'));
-    infoRow.push(new global.Intl.DateTimeFormat(locale, dateFormat.date).format(data['birth-date']));
-
-    if (data.relationship) {
-      infoHead.push(i18n('statistics-questionnaire-patient-parent'));
-      infoRow.push(i18n(`statistics-questionnaire-relationship-${data.relationship}`));
-    }
-
-    if (data['birth-parent']) {
-      infoHead.push(i18n('statistics-questionnaire-birth-date'));
-      infoRow.push(new global.Intl.DateTimeFormat(locale, dateFormat.date).format(data['birth-parent']));
-    }
-
-    if (data['marital-parent']) {
-      infoHead.push(i18n('statistics-questionnaire-marital'));
-      infoRow.push(i18n(`statistics-questionnaire-marital-${data['marital-parent']}`));
-    }
-
-    if (data['school-parent']) {
-      infoHead.push(i18n('statistics-questionnaire-school-level'));
-      infoRow.push(i18n(`statistics-questionnaire-school-${data['school-parent']}`));
-    }
-
-    if (data['work-parent']) {
-      infoHead.push(i18n('statistics-questionnaire-work-status'));
-      infoRow.push(i18n(`statistics-questionnaire-work-${data['work-parent']}`));
-    }
-
-    if (data['grade-young-child']) {
-      infoHead.push(i18n('statistics-questionnaire-grade'));
-      infoRow.push(i18n(`statistics-questionnaire-grade-young-child-${data['grade-young-child']}`));
-    }
-
-    if (data['grade-older-child']) {
-      infoHead.push(i18n('statistics-questionnaire-grade'));
-      infoRow.push(i18n(`statistics-questionnaire-grade-older-child-${data['grade-older-child']}`));
-    }
-
-    if (data['grade-teen-adult']) {
-      infoHead.push(i18n('statistics-questionnaire-grade'));
-      infoRow.push(i18n(`statistics-questionnaire-grade-teen-adult-${data['grade-teen-adult']}`));
-    }
-
-    if (data.work) {
-      infoHead.push(i18n('statistics-questionnaire-work-status'));
-      infoRow.push(i18n(`statistics-questionnaire-work-${data.work}`));
-    }
-
-    if (data.vacation) {
-      infoHead.push(i18n('statistics-questionnaire-vacation-recent'));
-      infoRow.push(data.vacation ? i18n('statistics-questionnaire-yes') : i18n('statistics-questionnaire-no'));
-    }
-
-    const questionnaireElements = cfqrData.elements[data.type];
-    const questionnaireScores = cfqrData.scores[data.type];
-    const questionsInfo = getQuestionsInfo(questionnaireElements);
-    const questionsIdRow = [];
-    const questionsRow = [];
-    const answersRow = [];
-    const typeRow = [];
-    const scoreRow = [];
-
-    if (data.answers) {
-      Object.keys(data.answers).forEach(qstKey => {
-        const question = questionsInfo[qstKey];
-        const answer = data.answers[qstKey];
-        questionsIdRow.push(qstKey);
-        questionsRow.push(i18n(question.key));
-        answersRow.push(i18n(question.answers[answer]));
-        typeRow.push(i18n(`statistics-questionnaire-type-${questionnaireScores[qstKey].type}`));
-        scoreRow.push(questionnaireScores[qstKey].score[answer]);
-      });
-    }
-
-    return {
-      data: [
-        infoHead,
-        infoRow,
-        [],
-        questionsIdRow,
-        questionsRow,
-        answersRow,
-        typeRow,
-        scoreRow
-      ]
-    };
   }
 
   getQuestionnaire() {
@@ -242,13 +136,11 @@ class StatisticsQuestionnaire extends Component {
     const exportFileName = (data.type && data.createdAt) ?
       `${data.type}-${data.createdAt.toString().replace(' ', '_')}` : '';
 
-    const exportData = this.getExportData();
-
     return (
       (!auth) ? <AdminLogin /> : <div>
         <List>
           <Print style={{ float: 'right' }} />
-          <SaveAs exportData={exportData} fileName={exportFileName} style={{ float: 'right' }} />
+          <SaveAs exportData={[data]} fileName={exportFileName} style={{ float: 'right' }} />
           <Subheader>{i18n('statistics-questionnaire-info')}</Subheader>
           {Object.keys(data).map(key => this.renderQuestionnaireInfo(
             key,
