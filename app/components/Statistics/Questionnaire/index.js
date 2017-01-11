@@ -124,7 +124,7 @@ class StatisticsQuestionnaire extends Component {
   }
 
   render() {
-    const { auth, i18n } = this.props;
+    const { auth, i18n, locale } = this.props;
     const { data } = this.state;
     if (!data) {
       return (<div />);
@@ -135,7 +135,9 @@ class StatisticsQuestionnaire extends Component {
 
     const exportPatient = data.patient ? data.patient : 'unknown';
     const exportType = data.type ? data.type : '';
-    const exportDate = data.createdAt ? data.createdAt.toString() : '';
+    const exportDate = data.createdAt ? new global.Intl
+      .DateTimeFormat(locale, dateFormat.date)
+      .format(data.createdAt) : '';
 
     return (
       (!auth) ? <AdminLogin /> : <div>

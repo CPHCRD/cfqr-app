@@ -117,14 +117,14 @@ class SaveAs extends Component {
     });
 
     Object.keys(scores).forEach(type => {
-      csvObject[`score.${type}`] = scores[type];
+      csvObject[`${i18n('statistics-questionnaire-score')}.${type}`] = scores[type];
     });
 
     questionsIdRow.forEach((header, i) => {
       csvObject[header] = questionsRow[i];
-      csvObject[`${header}.type`] = typeRow[i];
-      csvObject[`${header}.answer`] = answersRow[i];
-      csvObject[`${header}.score`] = scoreRow[i];
+      csvObject[`${header}.${i18n('statistics-questionnaire-type')}`] = typeRow[i];
+      csvObject[`${header}.${i18n('statistics-questionnaire-answer')}`] = answersRow[i];
+      csvObject[`${header}.${i18n('statistics-questionnaire-score')}`] = scoreRow[i];
     });
 
     return csvObject;

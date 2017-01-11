@@ -8,6 +8,8 @@ import { INFO_OBJECT_ID, findIntoDatabase } from '../../api/database';
 import StatisticsTable from './Table';
 import SaveAs from '../SaveAs';
 
+import { format as dateFormat } from '../../config/date.json';
+
 const BASE_FILTER = {
   $not: {
     _id: INFO_OBJECT_ID
@@ -20,7 +22,8 @@ class Statistics extends Component {
     i18n: PropTypes.func,
     auth: PropTypes.bool,
     setFilter: PropTypes.func,
-    errorLog: PropTypes.func
+    errorLog: PropTypes.func,
+    locale: PropTypes.string
   };
 
   state = {
@@ -72,8 +75,12 @@ class Statistics extends Component {
   }
 
   render() {
-    const { i18n, auth } = this.props;
+    const { i18n, auth, locale } = this.props;
     const { data } = this.state;
+
+    const exportDate = new global.Intl
+      .DateTimeFormat(locale, dateFormat.date)
+      .format(new Date());
 
     const dataMarkup = (
       <div>
@@ -88,7 +95,7 @@ class Statistics extends Component {
             />
             <SaveAs
               exportData={data}
-              fileName={`cfqr-app-full-export-${new Date().toString()}`}
+              fileName={`cfqr-app-full-export-${exportDate}`}
               style={{ float: 'right' }}
             />
             <StatisticsTable rowUrl="questionnaire" urlId="_id" rows={data} />

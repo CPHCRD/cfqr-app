@@ -12,13 +12,15 @@ import Print from '../../Print';
 import SaveAs from '../../SaveAs';
 
 import { getIdFromHash } from '../../../utils/misc';
+import { format as dateFormat } from '../../../config/date.json';
 
 class StatisticsPatient extends Component {
 
   static propTypes = {
     errorLog: PropTypes.func,
     auth: PropTypes.bool,
-    statistics: PropTypes.instanceOf(Object)
+    statistics: PropTypes.instanceOf(Object),
+    locale: PropTypes.string
   };
 
   state = {
@@ -46,7 +48,7 @@ class StatisticsPatient extends Component {
   }
 
   render() {
-    const { auth } = this.props;
+    const { auth, locale } = this.props;
     const { data } = this.state;
     if (data.length < 1) {
       this.getQuestionnaires();
@@ -54,12 +56,16 @@ class StatisticsPatient extends Component {
     }
     const latestQuestionnaire = data[0];
 
+    const exportDate = new global.Intl
+      .DateTimeFormat(locale, dateFormat.date)
+      .format(new Date());
+
     return (
       (!auth) ? <AdminLogin /> : <div>
         <Print style={{ float: 'right' }} />
         <SaveAs
           exportData={data}
-          fileName={`cfqr-app-patient-${latestQuestionnaire.patient}-export-${new Date().toString()}`}
+          fileName={`cfqr-app-patient-${latestQuestionnaire.patient}-export-${exportDate}`}
           style={{ float: 'right' }}
         />
         <StatisticsPatientInfo questionnaireData={latestQuestionnaire} />
