@@ -17,6 +17,7 @@ import AdminLogin from '../../Login';
 import StatisticsPatientInfo from '../Patient/Info';
 import StatisticsQuestionnaireAnswers from './Answers';
 import StatisticsQuestionnaireScore from './Score';
+import StatisticsQuestionnaireChart from './Chart';
 import Print from '../../Print';
 import SaveAs from '../../SaveAs';
 
@@ -168,6 +169,7 @@ class StatisticsQuestionnaire extends Component {
             icon={<FontIcon color={cyan700} className="material-icons">folder_shared</FontIcon>}
           /> : ''}
         <Divider />
+        <StatisticsQuestionnaireChart questionnaireData={data} />
         <StatisticsQuestionnaireScore questionnaireData={data} />
         <Divider />
         <StatisticsQuestionnaireAnswers questionnaireData={data} />

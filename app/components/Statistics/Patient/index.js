@@ -8,6 +8,7 @@ import { findIntoDatabase } from '../../../api/database';
 import AdminLogin from '../../Login';
 import StatisticsPatientInfo from './Info';
 import StatisticsPatientQuestionnaires from './Questionnaires';
+import StatisticsPatientChart from './Chart';
 import Print from '../../Print';
 import SaveAs from '../../SaveAs';
 
@@ -69,6 +70,8 @@ class StatisticsPatient extends Component {
           style={{ float: 'right' }}
         />
         <StatisticsPatientInfo questionnaireData={latestQuestionnaire} />
+        <Divider />
+        <StatisticsPatientChart questionnairesData={data} />
         <Divider />
         <StatisticsPatientQuestionnaires questionnairesData={data} />
         <Divider />

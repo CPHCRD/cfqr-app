@@ -1,7 +1,7 @@
 {
   "name": "cfqr-app",
   "productName": "CFQ-R questionnaire application",
-  "version": "0.6.3",
+  "version": "0.6.0",
   "description": "Electron application based on React, React Router, Webpack",
   "main": "main.js",
   "scripts": {
@@ -170,6 +170,7 @@
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-ga": "^2.1.2",
+    "react-google-charts": "^1.2.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.6",
