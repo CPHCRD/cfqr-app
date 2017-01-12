@@ -46,15 +46,14 @@ class StatisticsPatientChart extends Component {
         .format(questionnaire.createdAt));
       Object.keys(timescores).forEach(key => {
         const score = timescores[key][qstDate];
-        if (score) {
+        if (typeof score === 'number') {
           qstData.push(score);
         } else {
-          qstData.push(null);
+          qstData.push(0);
         }
       });
       chartData.push(qstData);
     });
-
     return chartData;
   }
 
