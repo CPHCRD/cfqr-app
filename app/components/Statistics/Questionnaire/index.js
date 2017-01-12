@@ -10,7 +10,8 @@ import Toggle from 'material-ui/Toggle';
 import { cyan700 } from 'material-ui/styles/colors';
 
 import { connect } from '../../../actions';
-import { findOneIntoDatabase } from '../../../api/database';
+import { findOneIntoDatabase, insertIntoDatabase } from '../../../api/database';
+import { saveUserQuestionnaire } from '../../../api/backup';
 import { getIdFromHash } from '../../../utils/misc';
 
 import AdminLogin from '../../Login';
@@ -49,6 +50,21 @@ class StatisticsQuestionnaire extends Component {
     findOneIntoDatabase({ _id: id })
       .then(result => {
         this.setState({ data: result });
+        return true;
+      })
+      .catch(err => {
+        errorLog(err);
+      });
+  }
+
+  changePatient(patient) {
+    const { errorLog } = this.props;
+    const questionnaire = this.state.data;
+    questionnaire.patient = patient;
+    insertIntoDatabase(questionnaire)
+      .then(() => saveUserQuestionnaire(questionnaire))
+      .then(() => {
+        this.setState({ data: questionnaire });
         return true;
       })
       .catch(err => {
@@ -155,7 +171,7 @@ class StatisticsQuestionnaire extends Component {
             data[key]))}
         </List>
         <Divider />
-        <StatisticsPatientInfo questionnaireData={data} />
+        <StatisticsPatientInfo changePatient={this.changePatient.bind(this)} questionnaireData={data} />
         {data.patient ?
           <FlatButton
             containerElement={<Link

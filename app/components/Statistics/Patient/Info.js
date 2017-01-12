@@ -2,6 +2,8 @@
 import React, { Component, PropTypes } from 'react';
 import Avatar from 'material-ui/Avatar';
 import FontIcon from 'material-ui/FontIcon';
+import IconButton from 'material-ui/IconButton';
+import TextField from 'material-ui/TextField';
 import {
   grey50,
   blue900,
@@ -19,11 +21,33 @@ class StatisticsPatientInfo extends Component {
   static propTypes = {
     i18n: PropTypes.func,
     questionnaireData: PropTypes.instanceOf(Object),
-    locale: PropTypes.string
+    locale: PropTypes.string,
+    changePatient: PropTypes.func
   };
 
+  state = {
+    edit: false,
+    patientName: this.props.questionnaireData.patient || ''
+  }
+
+  toggleEditMode() {
+    const { changePatient } = this.props;
+    if (this.state.edit) {
+      changePatient(this.state.patientName);
+    }
+    this.setState({
+      edit: !this.state.edit
+    });
+  }
+
+  changePatientName(value) {
+    this.setState({
+      patientName: value
+    });
+  }
+
   renderPatientInfo() {
-    const { i18n, questionnaireData, locale } = this.props;
+    const { i18n, questionnaireData, locale, changePatient } = this.props;
 
     return (
       <ListItem
@@ -39,10 +63,39 @@ class StatisticsPatientInfo extends Component {
         }
       >
         <div>
-          <div className="statistics__patient-name">
-            {questionnaireData.patient ?
-              questionnaireData.patient :
-              i18n('statistics-questionnaire-patient-unidentified')}
+          <div className="statistics__patient-name" style={{ position: 'relative', marginBottom: '0.5rem' }}>
+            <span style={{ display: this.state.edit ? 'none' : 'block' }}>
+              {questionnaireData.patient ?
+                questionnaireData.patient :
+                i18n('statistics-questionnaire-patient-unidentified')}
+            </span>
+            {changePatient ?
+              <div>
+                <TextField
+                  hintText={i18n('questionnaire-patient-input')}
+                  style={{
+                    marginTop: '-1rem',
+                    display: this.state.edit ? 'block' : 'none'
+                  }}
+                  defaultValue={this.state.patientName}
+                  onChange={(e, value) => this.changePatientName(value)}
+                />
+                <IconButton
+                  tooltip={i18n('Edit')}
+                  onTouchTap={this.toggleEditMode.bind(this)}
+                  style={{
+                    position: 'absolute',
+                    right: 0,
+                    top: this.state.edit ? '0' : '-0.5rem'
+                  }}
+                >
+                  <FontIcon className="material-icons">
+                    {this.state.edit ? 'save' : 'edit'}
+                  </FontIcon>
+                </IconButton>
+              </div>
+              : ''
+            }
           </div>
           <div className="statistics__patient-info">
             {i18n('statistics-questionnaire-gender')}:
