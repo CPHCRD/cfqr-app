@@ -3,14 +3,10 @@ import {
   SET_FILTER,
   SET_SORT
 } from '../actions/statistics';
-import { INFO_OBJECT_ID } from '../api/database';
+import { BASE_FILTER } from '../api/database';
 
 const DEFAULT_STATE = {
-  filter: {
-    $not: {
-      _id: INFO_OBJECT_ID
-    }
-  },
+  filter: BASE_FILTER,
   sort: {
     createdAt: -1
   }

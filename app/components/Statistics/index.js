@@ -4,23 +4,11 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from '../../actions';
 
 import AdminLogin from '../Login';
-import { INFO_OBJECT_ID, findIntoDatabase } from '../../api/database';
+import { BASE_FILTER, findIntoDatabase } from '../../api/database';
 import StatisticsTable from './Table';
 import SaveAs from '../SaveAs';
 
 import { format as dateFormat } from '../../config/date.json';
-
-const BASE_FILTER = {
-  $and: [{
-    $not: {
-      _id: INFO_OBJECT_ID
-    }
-  }, {
-    $not: {
-      isDeleted: true
-    }
-  }]
-};
 
 class Statistics extends Component {
 
@@ -96,15 +84,13 @@ class Statistics extends Component {
           dataSource={this.state.dataSource}
           onUpdateInput={value => this.setSearchValue(value)}
         />
+        <SaveAs
+          exportData={data}
+          fileName={`cfqr-app-full-export-${exportDate}`}
+          style={{ float: 'right' }}
+        />
         {data.length > 0 ?
-          <div>
-            <SaveAs
-              exportData={data}
-              fileName={`cfqr-app-full-export-${exportDate}`}
-              style={{ float: 'right' }}
-            />
-            <StatisticsTable rowUrl="questionnaire" urlId="_id" rows={data} />
-          </div> :
+          <StatisticsTable rowUrl="questionnaire" urlId="_id" rows={data} /> :
           <div>{i18n('no-data')}</div>}
       </div>
     );

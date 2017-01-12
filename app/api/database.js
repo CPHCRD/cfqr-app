@@ -4,6 +4,17 @@ import { v4 as uuidV4 } from 'uuid';
 import { platform, release, arch } from 'os';
 
 export const INFO_OBJECT_ID = 'info';
+export const BASE_FILTER = {
+  $and: [{
+    $not: {
+      _id: INFO_OBJECT_ID
+    }
+  }, {
+    $not: {
+      isDeleted: true
+    }
+  }]
+};
 
 export let Database = {}; // eslint-disable-line import/no-mutable-exports
 
@@ -53,11 +64,7 @@ export function updateUser(info: Object = {}) {
 }
 
 export function getQuestionnaires() {
-  return findIntoDatabase({
-    $not: {
-      _id: INFO_OBJECT_ID
-    }
-  });
+  return findIntoDatabase(BASE_FILTER);
 }
 
 export function insertIntoDatabase(doc: Object) {

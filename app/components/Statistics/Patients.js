@@ -4,21 +4,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from '../../actions';
 
 import AdminLogin from '../Login';
-import { INFO_OBJECT_ID, findIntoDatabase } from '../../api/database';
+import { BASE_FILTER, findIntoDatabase } from '../../api/database';
 import StatisticsTable from './Table';
-
-const BASE_FILTER = {
-  $and: [{
-    $not: {
-      _id: INFO_OBJECT_ID
-    }
-  }, {
-    $not: {
-      isDeleted: true
-    }
-  }]
-};
-
 
 class Patients extends Component {
 
