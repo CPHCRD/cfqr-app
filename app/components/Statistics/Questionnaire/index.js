@@ -5,9 +5,9 @@ import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import Divider from 'material-ui/Divider';
 import FontIcon from 'material-ui/FontIcon';
-import FlatButton from 'material-ui/FlatButton';
+import Avatar from 'material-ui/Avatar';
+import Chip from 'material-ui/Chip';
 import Toggle from 'material-ui/Toggle';
-import { cyan700 } from 'material-ui/styles/colors';
 
 import { connect } from '../../../actions';
 import { findOneIntoDatabase, insertIntoDatabase } from '../../../api/database';
@@ -214,17 +214,14 @@ class StatisticsQuestionnaire extends Component {
       <Divider />
       <StatisticsPatientInfo changePatient={this.changePatient.bind(this)} questionnaireData={data} />
       {data.patient ?
-        <FlatButton
-          containerElement={<Link
+        <Chip style={{ marginBottom: '1rem' }}>
+          <Avatar icon={<FontIcon className="material-icons">person</FontIcon>} />
+          <Link
             className="statistics__patient-link no-print"
             to={`/statistics/patient/${data.patient}`}
-            style={{ color: cyan700 }}
-          >{i18n('statistics-patient-click-here')}</Link>}
-          label={i18n('statistics-patient-view-information')}
-          labelPosition="before"
-          primary={true}
-          icon={<FontIcon color={cyan700} className="material-icons">folder_shared</FontIcon>}
-        /> : ''}
+            style={{ textDecoration: 'none', cursor: 'pointer', color: '#333' }}
+          >{i18n('statistics-patient-view-information')}</Link>
+        </Chip> : ''}
       <Divider />
       <StatisticsQuestionnaireChart questionnaireData={data} />
       <StatisticsQuestionnaireScore questionnaireData={data} />
