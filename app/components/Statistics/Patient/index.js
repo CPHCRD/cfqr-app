@@ -61,8 +61,12 @@ class StatisticsPatient extends Component {
       .DateTimeFormat(locale, dateFormat.date)
       .format(new Date());
 
+    if (!auth) {
+      return (<AdminLogin />);
+    }
+
     return (
-      (!auth) ? <AdminLogin /> : <div>
+      <div>
         <Print style={{ float: 'right' }} />
         <SaveAs
           exportData={data}

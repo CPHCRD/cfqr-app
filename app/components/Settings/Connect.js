@@ -103,8 +103,11 @@ class Settings extends Component {
     const { i18n, auth, logged, settings } = this.props;
     const { email = '' } = settings;
 
+    if (!auth) {
+      return (<AdminLogin />);
+    }
+
     return (
-      (!auth) ? <AdminLogin /> :
       <div>
         <h3 style={{ color: cyan700 }}>{i18n('settings-connect-title')}</h3>
         <p style={{ display: 'block', marginBottom: '-0.5rem' }}>{i18n('settings-connect-text')}</p>

@@ -120,7 +120,6 @@ export function getNewQuestionnaires() {
           diffQuestionnaires.push(remoteQst);
         });
       });
-      console.log('online diff', diffQuestionnaires);
       return diffQuestionnaires;
     })
     .then(missingQuestionnaires => Promise.all(
@@ -164,7 +163,6 @@ export function saveNewQuestionnaires() {
           diffQuestionnaires.push(localQst);
         });
       });
-      console.log('local diff', diffQuestionnaires);
       return diffQuestionnaires;
     })
     .then(missingQuestionnaires => Promise.all(

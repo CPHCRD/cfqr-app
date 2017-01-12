@@ -17,8 +17,11 @@ class Settings extends Component {
   render() {
     const { auth } = this.props;
 
+    if (!auth) {
+      return (<AdminLogin />);
+    }
+
     return (
-      (!auth) ? <AdminLogin /> :
       <div>
         <Paper className="settings__block" children={<SetttingsConnect />} zDepth={2} />
         <Paper className="settings__block" children={<SettingsChangePassphrase />} zDepth={2} />

@@ -21,6 +21,8 @@ import StatisticsQuestionnaireScore from './Score';
 import StatisticsQuestionnaireChart from './Chart';
 import Print from '../../Print';
 import SaveAs from '../../SaveAs';
+import Delete from '../../Delete';
+import Restore from '../../Restore';
 
 import { format as dateFormat } from '../../../config/date.json';
 
@@ -61,6 +63,36 @@ class StatisticsQuestionnaire extends Component {
     const { errorLog } = this.props;
     const questionnaire = this.state.data;
     questionnaire.patient = patient;
+    insertIntoDatabase(questionnaire)
+      .then(() => saveUserQuestionnaire(questionnaire))
+      .then(() => {
+        this.setState({ data: questionnaire });
+        return true;
+      })
+      .catch(err => {
+        errorLog(err);
+      });
+  }
+
+  deleteQuestionnaire() {
+    const { errorLog } = this.props;
+    const questionnaire = this.state.data;
+    questionnaire.isDeleted = true;
+    insertIntoDatabase(questionnaire)
+      .then(() => saveUserQuestionnaire(questionnaire))
+      .then(() => {
+        this.setState({ data: questionnaire });
+        return true;
+      })
+      .catch(err => {
+        errorLog(err);
+      });
+  }
+
+  restoreQuestionnaire() {
+    const { errorLog } = this.props;
+    const questionnaire = this.state.data;
+    questionnaire.isDeleted = false;
     insertIntoDatabase(questionnaire)
       .then(() => saveUserQuestionnaire(questionnaire))
       .then(() => {
@@ -156,69 +188,77 @@ class StatisticsQuestionnaire extends Component {
       .DateTimeFormat(locale, dateFormat.date)
       .format(data.createdAt) : '';
 
-    return (
-      (!auth) ? <AdminLogin /> : <div>
-        <List>
-          <Print style={{ float: 'right' }} />
-          <SaveAs
-            exportData={[data]}
-            fileName={`cfqr-app-patient-${exportPatient}-${exportType}-${exportDate}`}
-            style={{ float: 'right' }}
-          />
-          <Subheader>{i18n('statistics-questionnaire-info')}</Subheader>
-          {Object.keys(data).map(key => this.renderQuestionnaireInfo(
-            key,
-            data[key]))}
-        </List>
-        <Divider />
-        <StatisticsPatientInfo changePatient={this.changePatient.bind(this)} questionnaireData={data} />
-        {data.patient ?
-          <FlatButton
-            containerElement={<Link
-              className="statistics__patient-link no-print"
-              to={`/statistics/patient/${data.patient}`}
-              style={{ color: cyan700 }}
-            >{i18n('statistics-patient-click-here')}</Link>}
-            label={i18n('statistics-patient-view-information')}
-            labelPosition="before"
-            primary={true}
-            icon={<FontIcon color={cyan700} className="material-icons">folder_shared</FontIcon>}
-          /> : ''}
-        <Divider />
-        <StatisticsQuestionnaireChart questionnaireData={data} />
-        <StatisticsQuestionnaireScore questionnaireData={data} />
-        <Divider />
-        <StatisticsQuestionnaireAnswers questionnaireData={data} />
-        <div className="no-print" style={{ maxWidth: 150, marginTop: '1rem' }}>
-          <Toggle
-            label="Debug"
-            defaultToggled={this.state.debug}
-            onToggle={() => {
-              this.setState({
-                debug: !this.state.debug
-              });
-            }}
-          />
-        </div>
-        {this.state.debug ? <List>
-          {Object.keys(data).map(key => this.renderQuestionnaireDebug(
-            key,
-            data[key]))}
-          <ListItem
-            className="statistics__element"
-            key="statistics-questionnaire-debug-object"
-            disabled={true}
-          >
-            <strong>Debug object</strong>
-            <br /><br />
-            <i>
-              {JSON.stringify(data)}
-            </i>
-          </ListItem>
-        </List>
-        : ''}
+
+    if (!auth) {
+      return (<AdminLogin />);
+    }
+
+    if (data.isDeleted) {
+      return (<Restore Action={this.restoreQuestionnaire.bind(this)} />);
+    }
+
+    return (<div>
+      <List>
+        <Delete Action={this.deleteQuestionnaire.bind(this)} style={{ float: 'right' }} />
+        <Print style={{ float: 'right' }} />
+        <SaveAs
+          exportData={[data]}
+          fileName={`cfqr-app-patient-${exportPatient}-${exportType}-${exportDate}`}
+          style={{ float: 'right' }}
+        />
+        <Subheader>{i18n('statistics-questionnaire-info')}</Subheader>
+        {Object.keys(data).map(key => this.renderQuestionnaireInfo(
+          key,
+          data[key]))}
+      </List>
+      <Divider />
+      <StatisticsPatientInfo changePatient={this.changePatient.bind(this)} questionnaireData={data} />
+      {data.patient ?
+        <FlatButton
+          containerElement={<Link
+            className="statistics__patient-link no-print"
+            to={`/statistics/patient/${data.patient}`}
+            style={{ color: cyan700 }}
+          >{i18n('statistics-patient-click-here')}</Link>}
+          label={i18n('statistics-patient-view-information')}
+          labelPosition="before"
+          primary={true}
+          icon={<FontIcon color={cyan700} className="material-icons">folder_shared</FontIcon>}
+        /> : ''}
+      <Divider />
+      <StatisticsQuestionnaireChart questionnaireData={data} />
+      <StatisticsQuestionnaireScore questionnaireData={data} />
+      <Divider />
+      <StatisticsQuestionnaireAnswers questionnaireData={data} />
+      <div className="no-print" style={{ maxWidth: 150, marginTop: '1rem' }}>
+        <Toggle
+          label="Debug"
+          defaultToggled={this.state.debug}
+          onToggle={() => {
+            this.setState({
+              debug: !this.state.debug
+            });
+          }}
+        />
       </div>
-    );
+      {this.state.debug ? <List>
+        {Object.keys(data).map(key => this.renderQuestionnaireDebug(
+          key,
+          data[key]))}
+        <ListItem
+          className="statistics__element"
+          key="statistics-questionnaire-debug-object"
+          disabled={true}
+        >
+          <strong>Debug object</strong>
+          <br /><br />
+          <i>
+            {JSON.stringify(data)}
+          </i>
+        </ListItem>
+      </List>
+      : ''}
+    </div>);
   }
 }
 

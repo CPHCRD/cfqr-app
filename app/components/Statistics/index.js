@@ -11,9 +11,15 @@ import SaveAs from '../SaveAs';
 import { format as dateFormat } from '../../config/date.json';
 
 const BASE_FILTER = {
-  $not: {
-    _id: INFO_OBJECT_ID
-  }
+  $and: [{
+    $not: {
+      _id: INFO_OBJECT_ID
+    }
+  }, {
+    $not: {
+      isDeleted: true
+    }
+  }]
 };
 
 class Statistics extends Component {
@@ -70,7 +76,6 @@ class Statistics extends Component {
     if (value) {
       filter.patient = { $regex: new RegExp(value) };
     }
-
     setFilter(filter);
   }
 
@@ -84,29 +89,31 @@ class Statistics extends Component {
 
     const dataMarkup = (
       <div>
+        <AutoComplete
+          hintText={i18n('statistics-filter-patient-hint')}
+          floatingLabelText={i18n('statistics-filter-patient-label')}
+          floatingLabelFixed={true}
+          dataSource={this.state.dataSource}
+          onUpdateInput={value => this.setSearchValue(value)}
+        />
         {data.length > 0 ?
           <div>
-            <AutoComplete
-              hintText={i18n('statistics-filter-patient-hint')}
-              floatingLabelText={i18n('statistics-filter-patient-label')}
-              floatingLabelFixed={true}
-              dataSource={this.state.dataSource}
-              onChange={(e, value) => this.setSearchValue(value)}
-            />
             <SaveAs
               exportData={data}
               fileName={`cfqr-app-full-export-${exportDate}`}
               style={{ float: 'right' }}
             />
             <StatisticsTable rowUrl="questionnaire" urlId="_id" rows={data} />
-          </div>
-        : i18n('no-data')}
+          </div> :
+          <div>{i18n('no-data')}</div>}
       </div>
     );
 
-    return (
-      (!auth) ? <AdminLogin /> : dataMarkup
-    );
+    if (!auth) {
+      return (<AdminLogin />);
+    }
+
+    return (dataMarkup);
   }
 }
 

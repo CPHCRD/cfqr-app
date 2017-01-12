@@ -8,10 +8,17 @@ import { INFO_OBJECT_ID, findIntoDatabase } from '../../api/database';
 import StatisticsTable from './Table';
 
 const BASE_FILTER = {
-  $not: {
-    _id: INFO_OBJECT_ID
-  }
+  $and: [{
+    $not: {
+      _id: INFO_OBJECT_ID
+    }
+  }, {
+    $not: {
+      isDeleted: true
+    }
+  }]
 };
+
 
 class Patients extends Component {
 
@@ -88,24 +95,26 @@ class Patients extends Component {
 
     const dataMarkup = (
       <div>
+        <AutoComplete
+          hintText={i18n('statistics-filter-patient-hint')}
+          floatingLabelText={i18n('statistics-filter-patient-label')}
+          floatingLabelFixed={true}
+          dataSource={this.state.dataSource}
+          onUpdateInput={value => this.setSearchValue(value)}
+        />
         {data.length > 0 ?
           <div>
-            <AutoComplete
-              hintText={i18n('statistics-filter-patient-hint')}
-              floatingLabelText={i18n('statistics-filter-patient-label')}
-              floatingLabelFixed={true}
-              dataSource={this.state.dataSource}
-              onChange={(e, value) => this.setSearchValue(value)}
-            />
             <StatisticsTable rowUrl="patient" urlId="patient" rows={data} />
-          </div>
-        : i18n('no-data')}
+          </div> :
+          <div>{i18n('no-data')}</div>}
       </div>
     );
 
-    return (
-      (!auth) ? <AdminLogin /> : dataMarkup
-    );
+    if (!auth) {
+      return (<AdminLogin />);
+    }
+
+    return (dataMarkup);
   }
 }
 
