@@ -79,14 +79,16 @@ class Questionnaire extends PureComponent {
   }
 
   handleFinish = () => {
-    const { questionnaire, errorLog } = this.props;
+    const { questionnaire, errorLog, resetQuestionnaire } = this.props;
     if (questionnaire.valid) {
       const doc = formatQuestionnaire(questionnaire);
       insertIntoDatabase(doc)
         .then(result => {
           this.setState({ resultId: result._id });
           return saveUserQuestionnaire(result);
-        }).catch(err => {
+        })
+        .then(() => resetQuestionnaire())
+        .catch(err => {
           errorLog(err);
         });
     } else {
