@@ -75,9 +75,8 @@ const formatQuestionnaire = (state: Object) => {
   return doc;
 };
 
-const findMissingAnswers = (questionnaire: Object) => {
+const findMissingAnswers = (questionnaire: Object) =>
   questionnaire.questions.filter(questionId => !questionnaire.results[questionId]);
-};
 
 const calculateScore = (questionnaire: Object) => {
   const { answers, type } = questionnaire;

@@ -80,6 +80,10 @@ class Questionnaire extends PureComponent {
 
   handleFinish = () => {
     const { questionnaire, errorLog, resetQuestionnaire } = this.props;
+    questionnaire.questions.forEach(questionId => {
+      const questionElement = document.getElementById(questionId);
+      questionElement.style.color = '';
+    });
     if (questionnaire.valid) {
       const doc = formatQuestionnaire(questionnaire);
       insertIntoDatabase(doc)
@@ -94,11 +98,14 @@ class Questionnaire extends PureComponent {
     } else {
       const missingAnswers = findMissingAnswers(questionnaire) || [];
       if (missingAnswers.length > 0) {
-        const missingQuestion = document.getElementById(missingAnswers[0]);
-        if (missingQuestion) {
-          const screenPosition = missingQuestion.getBoundingClientRect();
-          window.scrollTo(0, window.scrollY + screenPosition.top);
-        }
+        missingAnswers.forEach((missingAnswer, i) => {
+          const missingQuestion = document.getElementById(missingAnswer);
+          missingQuestion.style.color = 'red';
+          if (i === 0) {
+            const screenPosition = missingQuestion.getBoundingClientRect();
+            window.scrollTo(0, window.scrollY + screenPosition.top);
+          }
+        });
       }
       this.setState({
         missingAnswers: true
