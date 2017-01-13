@@ -40,6 +40,7 @@
   "questionnaire-patient-enter": "Please enter a unique identifier for your patient. If this is the first time the patient is taking the questionnaire then his unique identifier can be an identification number, the full-name or a nickname. If he has already taken the test please enter the same unique identifier to group his data.",
   "questionnaire-patient-label": "Patient ID",
   "questionnaire-patient-input": "(optional)",
+  "questionnaire-doesnt-apply": "Doesn't apply",
   "questionnaire-error-missing-answer": "You should answer to all the questions.",
   "questionnaire-view-results-button": "View results",
   "patients-menu-text": "Patients",

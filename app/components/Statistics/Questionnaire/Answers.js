@@ -62,10 +62,18 @@ class StatisticsQuestionnaireAnswers extends Component {
                   const questionType = questionsScores[qstKey] ? questionsScores[qstKey].type : '';
                   return (<TableRow key={qstKey}>
                     <TableRowColumn style={style}>{i18n(questionKey)}</TableRowColumn>
-                    <TableRowColumn style={style}>{i18n(questionsInfo[qstKey].answers[answer])}</TableRowColumn>
+                    <TableRowColumn style={style}>
+                      {questionsInfo[qstKey].answers[answer] ?
+                        i18n(questionsInfo[qstKey].answers[answer]) :
+                        i18n('questionnaire-doesnt-apply')}
+                    </TableRowColumn>
                     <TableRowColumn style={style}>{
                       i18n(`statistics-questionnaire-type-${questionType}`)}</TableRowColumn>
-                    <TableRowColumn style={style}>{questionsScores[qstKey].score[answer]}</TableRowColumn>
+                    <TableRowColumn style={style}>
+                      {questionsScores[qstKey].score[answer] >= 0 ?
+                        questionsScores[qstKey].score[answer] :
+                        '-'}
+                    </TableRowColumn>
                   </TableRow>);
                 });
               }

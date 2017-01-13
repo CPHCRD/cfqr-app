@@ -99,8 +99,11 @@ const calculateScore = (questionnaire: Object) => {
         count: 0
       };
     }
-    scoresByType[questionType].total += score;
-    scoresByType[questionType].count += 1;
+    if (score >= 0) {
+      // -1 means "doesn't apply"
+      scoresByType[questionType].total += score;
+      scoresByType[questionType].count += 1;
+    }
   });
 
   const finalScores = {};

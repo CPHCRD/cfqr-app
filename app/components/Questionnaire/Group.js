@@ -42,7 +42,12 @@ class QuestionnaireGroup extends PureComponent {
         <div className="question__title" style={{ color: cyan700 }}>{i18n(elementKey)}</div>
         <div className="question__group-container">
           {elementQuestions.map(question => {
-            const { key: questionKey, id: groupQuestionId } = question;
+            const { key: questionKey, id: groupQuestionId, 'doesnt-apply': doesntApply = false } = question;
+            const elementAnswers = Object.assign([], elementQuestionsAnswers);
+            if (doesntApply) {
+              elementAnswers.push('questionnaire-doesnt-apply');
+            }
+
             const currentAnswer = getCurrentQuestionAnswer(results, groupQuestionId);
             return (<div className="question__group-item" id={groupQuestionId} key={questionKey}>
               <div className="question__subtitle">{i18n(questionKey)}</div>
@@ -51,7 +56,7 @@ class QuestionnaireGroup extends PureComponent {
                 name={groupQuestionId}
                 defaultSelected={currentAnswer}
               >
-                {elementQuestionsAnswers.map((answerKey, answerValue) => <RadioButton
+                {elementAnswers.map((answerKey, answerValue) => <RadioButton
                   className="question__radio-item"
                   key={`${groupQuestionId}-${answerKey}`}
                   name={groupQuestionId}
