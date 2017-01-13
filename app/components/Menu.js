@@ -28,7 +28,7 @@ class Menu extends Component {
   };
 
   state = {
-    open: true
+    open: false
   };
 
   handleToggle = () => this.setState({ open: !this.state.open });
