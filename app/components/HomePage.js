@@ -6,6 +6,8 @@ import FontIcon from 'material-ui/FontIcon';
 
 import { connect } from '../actions';
 
+import NotConnected from './NotConnected';
+
 class HomePage extends Component {
 
   static propTypes = {
@@ -32,6 +34,7 @@ class HomePage extends Component {
           style={{ margin: '1rem 0' }}
           icon={<FontIcon className="muidocs-icon-custom-github" />}
         />
+        <NotConnected />
       </article>
     );
   }

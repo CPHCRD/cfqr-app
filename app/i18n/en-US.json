@@ -10,6 +10,8 @@
   "deleted-element": "Element deleted",
   "restore-element": "Restore this element?",
   "cancel": "Cancel",
+  "device-not-connected": "This device is not associated to an account.",
+  "device-not-connected-message": " Data will be temporary stored in the application cache. It can be lost anytime. Click here to create an account.",
   "home-menu-text": "Home",
   "home-title": "Cystic Fibrosis Questionnaire Revised",
   "home-description-1": "This software calculates the score derived from the CFQ-R questionnaire alghoritm (4 versions availaible). It may be used clinically during routine CF care and for CF resarch.",

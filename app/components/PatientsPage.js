@@ -4,6 +4,8 @@ import { connect } from '../actions';
 
 import Patients from './Statistics/Patients';
 
+import NotConnected from './NotConnected';
+
 class PatientsPage extends Component {
 
   static propTypes = {
@@ -16,6 +18,7 @@ class PatientsPage extends Component {
     return (
       <article>
         <h2>{i18n('patients-title')}</h2>
+        <NotConnected />
         <Patients />
       </article>
     );
