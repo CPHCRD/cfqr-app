@@ -11,7 +11,7 @@ import { connect } from '../../actions';
 import AdminLogin from '../Login';
 
 import { updateUser } from '../../api/database';
-import { register, login, logout, verify } from '../../api/auth';
+import { register, login, logout, verify, resetPassword } from '../../api/auth';
 import { updateLoginInfo, saveRemoteUserInfo, getNewQuestionnaires, saveNewQuestionnaires } from '../../api/backup';
 
 class Settings extends Component {
@@ -100,6 +100,24 @@ class Settings extends Component {
     }
   }
 
+  resetUserPassword() {
+    const { errorLog, i18n } = this.props;
+
+    if (this.state.email) {
+      resetPassword(this.state.email)
+        .then(() => {
+          this.snackbarOpen(i18n('settings-email-sent'));
+          return true;
+        })
+        .catch(err => {
+          errorLog(err);
+          this.snackbarOpen(err.message || err);
+        });
+    } else {
+      this.snackbarOpen(i18n('settings-insert-email'));
+    }
+  }
+
   render() {
     const { i18n, auth, logged, settings } = this.props;
     const { email = '' } = settings;
@@ -144,6 +162,12 @@ class Settings extends Component {
             style={{ margin: '0 0.5rem 1rem 0' }}
             icon={<FontIcon className="material-icons">edit</FontIcon>}
             onTouchTap={this.registerUser.bind(this)}
+          />
+          <FlatButton
+            labelPosition="before"
+            label={i18n('settings-reset-password')}
+            style={{ margin: '0 0.5rem 1rem 0' }}
+            onTouchTap={this.resetUserPassword.bind(this)}
           />
           <Snackbar
             open={!!this.state.message}

@@ -27,3 +27,7 @@ export function verify() {
   }
   return firebaseCurrentUser.sendEmailVerification();
 }
+
+export function resetPassword(email) {
+  return firebaseAuth().sendPasswordResetEmail(email);
+}
