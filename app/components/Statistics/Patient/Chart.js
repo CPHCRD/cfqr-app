@@ -43,7 +43,7 @@ class StatisticsPatientChart extends Component {
       const qstData = [];
       qstData.push(new global.Intl
         .DateTimeFormat(locale, dateFormat.date)
-        .format(questionnaire.createdAt));
+        .format(new Date(questionnaire.createdAt)));
       Object.keys(timescores).forEach(key => {
         const score = timescores[key][qstDate];
         if (typeof score === 'number') {

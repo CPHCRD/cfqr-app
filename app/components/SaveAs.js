@@ -35,8 +35,10 @@ class SaveAs extends Component {
     infoHead.push(i18n('statistics-questionnaire-race'));
     infoRow.push(i18n(`statistics-questionnaire-race-${data.race}`));
 
-    infoHead.push(i18n('statistics-questionnaire-birth-date'));
-    infoRow.push(new global.Intl.DateTimeFormat(locale, dateFormat.date).format(data['birth-date']));
+    if (data['birth-date']) {
+      infoHead.push(i18n('statistics-questionnaire-birth-date'));
+      infoRow.push(new global.Intl.DateTimeFormat(locale, dateFormat.date).format(new Date(data['birth-date'])));
+    }
 
     if (data.relationship) {
       infoHead.push(i18n('statistics-questionnaire-patient-parent'));
@@ -45,7 +47,7 @@ class SaveAs extends Component {
 
     if (data['birth-parent']) {
       infoHead.push(i18n('statistics-questionnaire-birth-date'));
-      infoRow.push(new global.Intl.DateTimeFormat(locale, dateFormat.date).format(data['birth-parent']));
+      infoRow.push(new global.Intl.DateTimeFormat(locale, dateFormat.date).format(new Date(data['birth-parent'])));
     }
 
     if (data['marital-parent']) {

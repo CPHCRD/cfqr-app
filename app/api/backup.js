@@ -3,6 +3,11 @@ import { getQuestionnaires, insertIntoDatabase } from './database';
 
 const ref = fb.database().ref();
 
+function formatDataForDatabase(data) {
+  const formattedData = JSON.parse(JSON.stringify(data));
+  return Object.assign({}, formattedData);
+}
+
 export function updateLoginInfo(userInfo) {
   const firebaseCurrentUser = firebaseAuth().currentUser;
   if (!firebaseCurrentUser) {
@@ -15,11 +20,12 @@ export function updateLoginInfo(userInfo) {
 
 export function saveRemoteUserInfo(userInfo) {
   const firebaseCurrentUser = firebaseAuth().currentUser;
-  const remoteUserInfo = Object.assign({}, userInfo);
-  delete remoteUserInfo._id; // useless
   if (!firebaseCurrentUser) {
-    return remoteUserInfo;
+    return userInfo;
   }
+  const formattedData = formatDataForDatabase(userInfo);
+  const remoteUserInfo = Object.assign({}, formattedData);
+  delete remoteUserInfo._id; // useless
   return ref
     .child(`users/${firebaseCurrentUser.uid}/info`)
     .set(remoteUserInfo)
@@ -64,14 +70,15 @@ export function getUserQuestionnaire(questionnaireId) {
 }
 
 export function saveUserQuestionnaire(questionnaire) {
+  const formattedData = formatDataForDatabase(questionnaire);
   const firebaseCurrentUser = firebaseAuth().currentUser;
   if (!firebaseCurrentUser) {
     return null;
   }
   return ref
-    .child(`users/${firebaseCurrentUser.uid}/questionnaires/${questionnaire._id}`)
-    .set(questionnaire)
-    .then(() => questionnaire);
+    .child(`users/${firebaseCurrentUser.uid}/questionnaires/${formattedData._id}`)
+    .set(formattedData)
+    .then(() => formattedData);
 }
 
 export function getDiffQuestionnaire(oldQst, newQst) {

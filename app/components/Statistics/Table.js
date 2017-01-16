@@ -59,7 +59,7 @@ class StatisticsTable extends Component {
             <TableRowColumn>
               {new global.Intl
                 .DateTimeFormat(locale, dateFormat.full)
-                .format(row.createdAt)}
+                .format(new Date(row.createdAt))}
             </TableRowColumn>
             <TableRowColumn>{i18n(row.type)}</TableRowColumn>
             <TableRowColumn>

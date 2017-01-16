@@ -118,7 +118,7 @@ class StatisticsQuestionnaire extends Component {
             <strong>{i18n(`statistics-questionnaire-${key}`)}: </strong>
             {new global.Intl
               .DateTimeFormat(locale, dateFormat.full)
-              .format(answer)}
+              .format(new Date(answer))}
           </ListItem>
         );
       case 'type':
@@ -151,7 +151,7 @@ class StatisticsQuestionnaire extends Component {
             <strong>{key}: </strong>
             {new global.Intl
               .DateTimeFormat(locale, dateFormat.full)
-              .format(answer)}
+              .format(new Date(answer))}
           </ListItem>
         );
       case '_id':
@@ -186,7 +186,7 @@ class StatisticsQuestionnaire extends Component {
     const exportType = data.type ? data.type : '';
     const exportDate = data.createdAt ? new global.Intl
       .DateTimeFormat(locale, dateFormat.date)
-      .format(data.createdAt) : '';
+      .format(new Date(data.createdAt)) : '';
 
 
     if (!auth) {

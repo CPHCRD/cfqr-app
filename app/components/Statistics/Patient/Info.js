@@ -107,9 +107,9 @@ class StatisticsPatientInfo extends Component {
           </div>
           <div className="statistics__patient-info">
             {i18n('statistics-questionnaire-birth-date')}:
-            <strong> {new global.Intl
+            <strong> {questionnaireData['birth-date'] ? new global.Intl
                 .DateTimeFormat(locale, dateFormat.date)
-                .format(questionnaireData['birth-date'])}</strong>
+                .format(new Date(questionnaireData['birth-date'])) : ''}</strong>
           </div>
           {questionnaireData['grade-young-child'] ? <div className="statistics__patient-info">
             {i18n('statistics-questionnaire-grade')}:
@@ -158,9 +158,9 @@ class StatisticsPatientInfo extends Component {
           </div>
           <div className="statistics__patient-info">
             {i18n('statistics-questionnaire-birth-date')}:
-            <strong> {new global.Intl
+            <strong> {questionnaireData['birth-date'] ? new global.Intl
                 .DateTimeFormat(locale, dateFormat.date)
-                .format(questionnaireData['birth-parent'])}</strong>
+                .format(new Date(questionnaireData['birth-parent'])) : ''}</strong>
           </div>
           <div className="statistics__patient-info">
             {i18n('statistics-questionnaire-marital')}:

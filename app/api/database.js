@@ -57,7 +57,7 @@ export function updateUser(info: Object = {}) {
     },
     userAgent: navigator.userAgent,
     language: navigator.language,
-    lastVisit: new Date().toString()
+    lastVisit: new Date()
   });
 
   return insertIntoDatabase(userInfo).then(() => userInfo);
