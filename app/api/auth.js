@@ -19,3 +19,11 @@ export function logout() {
 export function login(email, password) {
   return firebaseAuth().signInWithEmailAndPassword(email, password);
 }
+
+export function verify() {
+  const firebaseCurrentUser = firebaseAuth().currentUser;
+  if (!firebaseCurrentUser) {
+    return false;
+  }
+  return firebaseCurrentUser.sendEmailVerification();
+}

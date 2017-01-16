@@ -11,7 +11,7 @@ import { connect } from '../../actions';
 import AdminLogin from '../Login';
 
 import { updateUser } from '../../api/database';
-import { register, login, logout } from '../../api/auth';
+import { register, login, logout, verify } from '../../api/auth';
 import { updateLoginInfo, saveRemoteUserInfo, getNewQuestionnaires, saveNewQuestionnaires } from '../../api/backup';
 
 class Settings extends Component {
@@ -88,6 +88,7 @@ class Settings extends Component {
 
     if (this.state.email && this.state.password) {
       register(this.state.email, this.state.password)
+        .then(() => verify())
         .then(() => {
           this.loginUser();
           return true;
