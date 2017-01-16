@@ -11,6 +11,10 @@
     "url": "/about",
     "icon": "people"
   },
+  "how-it-works": {
+    "url": "/how-it-works",
+    "icon": "toys"
+  },
   "terms": {
     "url": "/terms",
     "icon": "list"

@@ -5,6 +5,7 @@ import App from './containers/App';
 
 import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';
+import HowItWorksPage from './components/HowItWorksPage';
 import PatientsPage from './components/PatientsPage';
 import StatisticsPage from './components/StatisticsPage';
 import StatisticsQuestionnairePage from './components/StatisticsQuestionnairePage';
@@ -19,6 +20,7 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage} />
     <Route path={routesConfig.about.url} component={AboutPage} />
+    <Route path={routesConfig['how-it-works'].url} component={HowItWorksPage} />
     <Route path={routesConfig.patients.url} component={PatientsPage} />
     <Route path={routesConfig.questionnaire.url} component={QuestionnairePage} />
     <Route path={routesConfig.settings.url} component={SettingsPage} />

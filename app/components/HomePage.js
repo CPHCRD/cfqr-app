@@ -24,9 +24,13 @@ class HomePage extends Component {
     return (
       <article>
         <h2>{ i18n('home-title') }</h2>
-        <p>{ i18n('home-description-1') }</p>
-        <p>{ i18n('home-description-2') }</p>
-        <p>{ i18n('home-description-3') }</p>
+        <p>{i18n('home-description-1')}</p>
+        <p>
+          {i18n('home-description-2')}
+          <a target="_blank" rel="noopener noreferrer" href={i18n('home-description-link-url')}>
+            {i18n('home-description-link-text')}
+          </a>
+        </p>
         <RaisedButton
           containerElement={<Link to={routes.questionnaire.url}>{i18n('home-button-start')}</Link>}
           label={i18n('home-button-start')}
