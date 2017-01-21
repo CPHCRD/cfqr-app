@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import Divider from 'material-ui/Divider';
 
 import { connect } from '../../../actions';
-import { findIntoDatabase } from '../../../api/database';
+import { BASE_FILTER, findIntoDatabase } from '../../../api/database';
 
 import AdminLogin from '../../Login';
 import StatisticsPatientInfo from './Info';
@@ -38,7 +38,10 @@ class StatisticsPatient extends Component {
     const { sort } = statistics;
     const patient = getIdFromHash();
 
-    findIntoDatabase({ patient }, { sort })
+    const filter = Object.assign({}, BASE_FILTER);
+    filter.patient = patient;
+
+    findIntoDatabase(filter, { sort })
       .then(result => {
         this.setState({ data: result });
         return true;
