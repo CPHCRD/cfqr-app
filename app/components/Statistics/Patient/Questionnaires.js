@@ -45,24 +45,33 @@ class StatisticsPatientQuestionnaires extends Component {
             adjustForCheckbox={false}
           >
             <TableRow>
-              <TableHeaderColumn>date</TableHeaderColumn>
-              <TableHeaderColumn>type</TableHeaderColumn>
+              <TableHeaderColumn>{i18n('date')}</TableHeaderColumn>
+              <TableHeaderColumn>{i18n('type')}</TableHeaderColumn>
+              <TableHeaderColumn>{i18n('statistics-patient-mucus')}</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody
             displayRowCheckbox={false}
           >
-            {questionnairesData.map((row, i) => <TableRow
-              key={`statistics-table-row-${i}`}
-              style={{ cursor: 'pointer' }}
-            >
-              <TableRowColumn>
-                {new global.Intl
-                  .DateTimeFormat(locale, dateFormat.full)
-                  .format(new Date(row.createdAt))}
-              </TableRowColumn>
-              <TableRowColumn>{i18n(row.type)}</TableRowColumn>
-            </TableRow>)}
+            {questionnairesData.map((row, i) => {
+              const mucusAnswer = questionnairesData['question-mucus'];
+              let mucusText = '';
+              if (mucusAnswer) {
+                mucusText = i18n(mucusAnswer);
+              }
+              return (<TableRow
+                key={`statistics-table-row-${i}`}
+                style={{ cursor: 'pointer' }}
+              >
+                <TableRowColumn>
+                  {new global.Intl
+                    .DateTimeFormat(locale, dateFormat.full)
+                    .format(new Date(row.createdAt))}
+                </TableRowColumn>
+                <TableRowColumn>{i18n(row.type)}</TableRowColumn>
+                <TableRowColumn>{mucusText}</TableRowColumn>
+              </TableRow>);
+            })}
           </TableBody>
         </Table>
       </ListItem>

@@ -44,9 +44,9 @@ class StatisticsTable extends Component {
           adjustForCheckbox={false}
         >
           <TableRow>
-            <TableHeaderColumn>Date</TableHeaderColumn>
-            <TableHeaderColumn>Type</TableHeaderColumn>
-            <TableHeaderColumn>Patient</TableHeaderColumn>
+            <TableHeaderColumn>{i18n('date')}</TableHeaderColumn>
+            <TableHeaderColumn>{i18n('type')}</TableHeaderColumn>
+            <TableHeaderColumn>{i18n('statistics-questionnaire-patient')}</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody

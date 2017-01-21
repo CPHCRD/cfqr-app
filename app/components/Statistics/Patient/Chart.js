@@ -68,7 +68,6 @@ class StatisticsPatientChart extends Component {
         <Subheader>{i18n('statistics-graph-score-trend')}</Subheader>
         <ListItem
           className="statistics__element"
-          key="qst-stats-patient-vacation"
           disabled={true}
         >
           <Chart
