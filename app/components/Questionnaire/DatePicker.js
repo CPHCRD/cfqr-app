@@ -49,13 +49,12 @@ class QuestionnaireDatePicker extends PureComponent {
             onChange={(e, value) => answerQuestion(questionId, value)}
           />
         ) : (
-          <DatePicker
-            locale={locale}
-            DateTimeFormat={global.Intl.DateTimeFormat}
-            hintText={i18n('questionnaire-date-enter')}
-            onChange={(e, value) => answerQuestion(questionId, value)}
-          />
-        )}
+        <DatePicker
+          locale={locale}
+          DateTimeFormat={global.Intl.DateTimeFormat}
+          hintText={i18n('questionnaire-date-enter')}
+          onChange={(e, value) => answerQuestion(questionId, value)}
+        />)}
       </div>
     );
   }
