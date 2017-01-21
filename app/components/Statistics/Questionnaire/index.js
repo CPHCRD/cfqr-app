@@ -188,7 +188,6 @@ class StatisticsQuestionnaire extends Component {
       .DateTimeFormat(locale, dateFormat.date)
       .format(new Date(data.createdAt)) : '';
 
-
     if (!auth) {
       return (<AdminLogin />);
     }

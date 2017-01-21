@@ -24,8 +24,6 @@ class StatisticsQuestionnaireAnswers extends Component {
     questionnaireData: PropTypes.instanceOf(Object)
   };
 
-  // const answerKey = `${type}-${key}`;
-
   render() {
     const { i18n, questionnaireData, cfqrData } = this.props;
     const { type } = questionnaireData;
@@ -60,10 +58,14 @@ class StatisticsQuestionnaireAnswers extends Component {
                   const questionKey = `${type}-${qstKey}`;
                   const answer = questionnaireData.answers[qstKey];
                   const questionType = questionsScores[qstKey] ? questionsScores[qstKey].type : '';
+                  const questionAnswers = questionsInfo[qstKey];
+                  if (!questionAnswers) {
+                    return '';
+                  }
                   return (<TableRow key={qstKey}>
                     <TableRowColumn style={style}>{i18n(questionKey)}</TableRowColumn>
                     <TableRowColumn style={style}>
-                      {questionsInfo[qstKey].answers[answer] ?
+                      {questionAnswers.answers[answer] ?
                         i18n(questionsInfo[qstKey].answers[answer]) :
                         i18n('questionnaire-doesnt-apply')}
                     </TableRowColumn>
