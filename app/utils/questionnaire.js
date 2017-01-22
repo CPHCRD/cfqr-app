@@ -1,6 +1,8 @@
 // @flow
 import cfqrData from 'cfqr-data';
 
+const MUCUS_QUESTION_ID = 'question-mucus';
+
 const getQuestionsInfo = (elements: Object) => {
   let questions = {};
   if (!elements) {
@@ -118,6 +120,7 @@ const calculateScore = (questionnaire: Object) => {
 };
 
 export {
+  MUCUS_QUESTION_ID,
   calculateScore,
   getQuestionsIds,
   getQuestionsInfo,

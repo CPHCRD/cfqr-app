@@ -13,8 +13,8 @@ import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 
 import { connect } from '../../../actions';
-
 import { format as dateFormat } from '../../../config/date.json';
+import { MUCUS_QUESTION_ID, getQuestionsInfo } from '../../../utils/questionnaire';
 
 class StatisticsPatientInfo extends Component {
 
@@ -22,6 +22,9 @@ class StatisticsPatientInfo extends Component {
     i18n: PropTypes.func,
     questionnaireData: PropTypes.instanceOf(Object),
     locale: PropTypes.string,
+    cfqrData: PropTypes.shape({
+      elements: PropTypes.object
+    }),
     changePatient: PropTypes.func
   };
 
@@ -180,11 +183,22 @@ class StatisticsPatientInfo extends Component {
   }
 
   render() {
-    const { i18n, questionnaireData } = this.props;
+    const { i18n, questionnaireData, cfqrData } = this.props;
     if (!questionnaireData) {
       return (<div />);
     }
     const { type } = questionnaireData;
+
+    const mucusAnswer = questionnaireData[MUCUS_QUESTION_ID];
+    let mucusText = '';
+    if (typeof mucusAnswer !== 'undefined') {
+      const questionsInfo = getQuestionsInfo(cfqrData.elements[type]);
+      const qstData = questionsInfo[MUCUS_QUESTION_ID]; // eslint-disable-line
+      if (qstData) {
+        mucusText = i18n(qstData.answers[mucusAnswer]);
+      }
+    }
+
     return (
       <List>
         <Subheader>{i18n('statistics-questionnaire-patient')}</Subheader>
@@ -202,6 +216,11 @@ class StatisticsPatientInfo extends Component {
               i18n('statistics-questionnaire-yes')
             }</strong>
           </div>
+          {mucusText ?
+            <div className="statistics__patient-info">
+              {i18n('statistics-patient-mucus')}:
+              <strong> {mucusText}</strong>
+            </div> : ''}
         </ListItem>
       </List>
     );
