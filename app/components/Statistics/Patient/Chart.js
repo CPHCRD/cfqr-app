@@ -82,7 +82,7 @@ class StatisticsPatientChart extends Component {
             }}
             graph_id="LineScoreChart"
             width="100%"
-            height="400px"
+            height="450px"
             data={this.getChartData()}
             legend_toggle
           />
