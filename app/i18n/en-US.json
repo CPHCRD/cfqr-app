@@ -45,7 +45,7 @@
   "questionnaire-select-done": "All done",
   "questionnaire-text-done": "Congratulations, you completed the questionnaire. Thanks for your time.",
   "questionnaire-date-enter": "Enter a date...",
-  "questionnaire-patient-enter": "Please enter a unique identifier for your patient. If this is the first time the patient is taking the questionnaire then his unique identifier can be an identification number, the full-name or a nickname. If he has already taken the test please enter the same unique identifier to group his data.",
+  "questionnaire-patient-enter": "Please enter a unique identifier for your patient.  If he/she has already taken the CFQ-R please enter the same unique identifier.",
   "questionnaire-patient-label": "Patient ID",
   "questionnaire-patient-input": "(optional)",
   "questionnaire-doesnt-apply": "Doesn't apply",
