@@ -1,13 +1,37 @@
 {
   "defaultLocale": "en-US",
   "availableLocales": {
+    "da-DK": {
+      "name": "Dansk",
+      "flag": "🇩🇰"
+    },
+    "de-DE": {
+      "name": "Deutsche",
+      "flag": "🇩🇪"
+    },
     "en-US": {
       "name": "English",
       "flag": "🇺🇸"
     },
+    "es-ES": {
+      "name": "Español",
+      "flag": "🇪🇸"
+    },
     "fr-FR": {
       "name": "Français",
       "flag": "🇫🇷"
+    },
+    "it-IT": {
+      "name": "Italiano",
+      "flag": "🇮🇹"
+    },
+    "nl-NL": {
+      "name": "Nederlands",
+      "flag": "🇳🇱"
+    },
+    "se-SE": {
+      "name": "Svenska",
+      "flag": "🇸🇪"
     }
   }
 }
