@@ -103,6 +103,9 @@ class SaveAs extends Component {
       Object.keys(data.answers).forEach(qstKey => {
         const question = questionsInfo[qstKey];
         const answer = data.answers[qstKey];
+        if (!question || !answer) {
+          return false;
+        }
         questionsIdRow.push(qstKey);
         questionsRow.push(i18n(question.key));
         answersRow.push(i18n(question.answers[answer]));
