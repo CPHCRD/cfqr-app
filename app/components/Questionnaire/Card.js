@@ -15,8 +15,7 @@ class QuestionnaireCard extends PureComponent {
     answers: PropTypes.arrayOf(PropTypes.string).isRequired,
     i18n: PropTypes.func,
     locale: PropTypes.string,
-    answerQuestion: PropTypes.func,
-    questionnaire: PropTypes.shape({})
+    answerQuestion: PropTypes.func
   };
 
   state = {

@@ -40,22 +40,20 @@ class QuestionnaireDatePicker extends PureComponent {
     return (
       <div className="question" id={questionId} key={elementKey}>
         <div className="question__title">{i18n(elementKey)}</div>
-        {currentAnswer ? (
-          <DatePicker
+        {currentAnswer ?
+          (<DatePicker
             locale={locale}
             defaultDate={currentAnswer}
             DateTimeFormat={global.Intl.DateTimeFormat}
             hintText={i18n('questionnaire-date-enter')}
             onChange={(e, value) => answerQuestion(questionId, value)}
-          />
-        ) : (
-          <DatePicker
+          />) :
+          (<DatePicker
             locale={locale}
             DateTimeFormat={global.Intl.DateTimeFormat}
             hintText={i18n('questionnaire-date-enter')}
             onChange={(e, value) => answerQuestion(questionId, value)}
-          />
-        )}
+          />)}
       </div>
     );
   }
