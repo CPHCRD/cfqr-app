@@ -1,0 +1,55 @@
+$blue-color: #37cbff;
+$orange-color: #ffc000;
+
+.card__open-button--blue .material-icons {
+  color: $blue-color !important;
+}
+
+.card__open-button--orange .material-icons  {
+  color: $orange-color !important;
+}
+
+.card__container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+}
+
+.card__item {
+  display: flex;
+  align-items: flex-start;
+  width: 200px;
+  margin: 10px;
+  height: 300px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: $z-depth-1 !important;
+
+  &:hover {
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.25);
+    box-shadow: $z-depth-4 !important;
+  }
+}
+
+.card__item--blue {
+  background: $blue-color !important;
+
+  &:hover {
+    background: lighten($blue-color, 2%) !important;
+  }
+}
+
+.card__item--orange {
+  background: $orange-color !important;
+
+  &:hover {
+    background: lighten($orange-color, 2%) !important;
+  }
+}

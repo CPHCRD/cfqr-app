@@ -10,9 +10,11 @@ body {
   line-height: 20px;
 }
 
+@import 'animations';
 @import 'menu';
 @import 'page';
 @import 'questionnaire';
+@import 'card';
 @import 'settings';
 @import 'statistics';
 
