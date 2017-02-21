@@ -2,6 +2,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from '../actions';
 
+import appConfig from '../config/app.json';
+
 class HowItWorksPage extends Component {
 
   static propTypes = {
@@ -21,13 +23,19 @@ class HowItWorksPage extends Component {
           {i18n('how-it-works-description-2-a')} <a
             target="_blank"
             rel="noopener noreferrer"
-            href={`mailto:${i18n('cfqr-email')}`}
+            href={`mailto:${appConfig['cfqr-email']}`}
           >
-            {i18n('cfqr-email')}
+            {appConfig['cfqr-email']}
           </a>. {i18n('how-it-works-description-2-b')} <a
             target="_blank"
             rel="noopener noreferrer"
-            href={i18n('cfqr-github')}
+            href={`mailto:${appConfig['qst-email']}`}
+          >
+            {appConfig['qst-email']}
+          </a>. {i18n('how-it-works-description-2-c')} <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={appConfig['cfqr-github']}
           >
             Github
           </a>.
