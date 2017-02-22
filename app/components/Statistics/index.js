@@ -17,7 +17,8 @@ class Statistics extends Component {
     auth: PropTypes.bool,
     setFilter: PropTypes.func,
     errorLog: PropTypes.func,
-    locale: PropTypes.string
+    locale: PropTypes.string,
+    statistics: PropTypes.instanceOf(Object),
   };
 
   state = {

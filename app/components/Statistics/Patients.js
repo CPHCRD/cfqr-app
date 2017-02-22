@@ -13,7 +13,8 @@ class Patients extends Component {
     i18n: PropTypes.func,
     auth: PropTypes.bool,
     setFilter: PropTypes.func,
-    errorLog: PropTypes.func
+    errorLog: PropTypes.func,
+    statistics: PropTypes.instanceOf(Object),
   };
 
   state = {
