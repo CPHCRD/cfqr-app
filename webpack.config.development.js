@@ -15,7 +15,7 @@ const port = process.env.PORT || 3500;
 export default validate(merge(baseConfig, {
   debug: true,
 
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
 
   entry: [
     `webpack-hot-middleware/client?path=http://localhost:${port}/__webpack_hmr`,
