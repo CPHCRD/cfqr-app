@@ -1,6 +1,8 @@
 {
   "site-title": "CFQ-R questionnaire",
   "deployed-by": "This web application deploys by",
+  "new-version": "A new version is available",
+  "update": "update",
   "date": "Date",
   "type": "Type",
   "print": "Print",

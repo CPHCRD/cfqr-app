@@ -1,4 +1,4 @@
-const placeholder = () => true;
+const appVersion = process.env.APP_VERSION;
 
 const getIdFromHash = () => {
   const { hash } = window.location;
@@ -21,7 +21,7 @@ const stringToColour = (str) => {
 };
 
 export {
-  placeholder,
+  appVersion,
   getIdFromHash,
   stringToColour
 };

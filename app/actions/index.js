@@ -12,10 +12,11 @@ import * as StatisticsActions from './statistics';
 import * as ErrorActions from './error';
 
 import translations from '../api/i18n';
+import appConfig from '../config/app.json';
 import routes from '../config/routes.json';
 import i18n from '../config/i18n.json';
 
-const config = { routes, i18n };
+const config = { app: appConfig, routes, i18n };
 
 const mapStateToProps = (state) => ({
   config,

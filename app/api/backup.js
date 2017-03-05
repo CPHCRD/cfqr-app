@@ -3,6 +3,13 @@ import { getQuestionnaires, insertIntoDatabase } from './database';
 
 const ref = fb.database().ref();
 
+export function getLatestAppVersion() {
+  return ref
+    .child('appVersion')
+    .once('value')
+    .then(snapshot => snapshot.val());
+}
+
 function formatDataForDatabase(data) {
   const formattedData = JSON.parse(JSON.stringify(data));
   return Object.assign({}, formattedData);
