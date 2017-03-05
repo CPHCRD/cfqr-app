@@ -109,7 +109,7 @@ class App extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
-          <Toolbar style={{ display: !this.state.isUpdated && isWebVersion ? 'none' : 'flex' }}>
+          <Toolbar style={{ display: !this.state.isUpdated && !isWebVersion ? 'none' : 'flex' }}>
             <ToolbarGroup firstChild={true}>
               <FontIcon className="material-icons">warning</FontIcon>
               <ToolbarTitle
