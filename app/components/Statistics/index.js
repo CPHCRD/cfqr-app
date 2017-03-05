@@ -9,6 +9,7 @@ import StatisticsTable from './Table';
 import SaveAs from '../SaveAs';
 
 import { format as dateFormat } from '../../config/date.json';
+import { sortQuestionnairesByDate } from '../../utils/questionnaire';
 
 class Statistics extends Component {
 
@@ -48,6 +49,7 @@ class Statistics extends Component {
           }
           patients[qst.patient] = qst;
         });
+        questionnaires.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
         this.setState({
           data: questionnaires,
           dataSource: Object.keys(patients)

@@ -43,6 +43,7 @@ class StatisticsPatient extends Component {
 
     findIntoDatabase(filter, { sort })
       .then(result => {
+        result.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
         this.setState({ data: result });
         return true;
       })

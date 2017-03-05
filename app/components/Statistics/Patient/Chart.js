@@ -20,6 +20,7 @@ class StatisticsPatientChart extends Component {
   getChartData() {
     const { i18n, locale, questionnairesData } = this.props;
     const timescores = {};
+    questionnairesData.reverse();
     questionnairesData.forEach(questionnaire => {
       const scores = calculateScore(questionnaire);
       Object.keys(scores).forEach(key => {

@@ -48,6 +48,7 @@ class Patients extends Component {
     this.getQuestionnaires(...options)
       .then(questionnaires => {
         const patients = {};
+        questionnaires.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
         questionnaires.forEach(qst => {
           if (typeof qst.patient !== 'string' && patients[qst.patient]) {
             return false;
