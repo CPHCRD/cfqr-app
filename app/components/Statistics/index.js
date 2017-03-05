@@ -9,7 +9,6 @@ import StatisticsTable from './Table';
 import SaveAs from '../SaveAs';
 
 import { format as dateFormat } from '../../config/date.json';
-import { sortQuestionnairesByDate } from '../../utils/questionnaire';
 
 class Statistics extends Component {
 
