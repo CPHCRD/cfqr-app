@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
+import { persistStore } from 'redux-persist';
 import ReactGA from 'react-ga';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -29,6 +30,9 @@ initDatastore({
 
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
+persistStore(store, {
+  whitelist: ['locale']
+});
 
 ReactGA.initialize('UA-89248310-1', { debug: true });
 

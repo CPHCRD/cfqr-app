@@ -54,7 +54,7 @@ class Menu extends Component {
               <DropDownMenu
                 underlineStyle={{ border: 'none' }}
                 labelStyle={{ fontSize: '2rem', lineHeight: '150%', top: '0.3rem' }}
-                iconStyle={{ top: '0' }}
+                iconStyle={{ top: '0', height: '100%', lineHeight: '100%' }}
                 value={locale}
                 onChange={(event, index, value) => changeLocale(value)}
               >

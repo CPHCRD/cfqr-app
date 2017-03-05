@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import { hashHistory } from 'react-router';
 import { routerMiddleware, push } from 'react-router-redux';
 import createLogger from 'redux-logger';
+import { autoRehydrate } from 'redux-persist';
 import rootReducer from '../reducers';
 
 import * as localeActions from '../actions/locale';
@@ -41,7 +42,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
   compose;
 /* eslint-enable no-underscore-dangle */
 const enhancer = composeEnhancers(
-  applyMiddleware(thunk, router, logger)
+  applyMiddleware(thunk, router, logger),
+  autoRehydrate(),
 );
 
 export default function configureStore(initialState: Object) {
