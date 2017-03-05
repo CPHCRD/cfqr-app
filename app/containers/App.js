@@ -109,21 +109,23 @@ class App extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
-          <Toolbar style={{ display: !this.state.isUpdated && !isWebVersion ? 'none' : 'flex' }}>
-            <ToolbarGroup firstChild={true}>
-              <FontIcon className="material-icons">warning</FontIcon>
-              <ToolbarTitle
-                style={{ marginLeft: '0.5rem', fontSize: '1rem' }}
-                text={`${i18n('new-version')} (${latestAppVersion})`}
-              />
-              <RaisedButton
-                label={i18n('update')}
-                href={config.app['cfqr-website']}
-                primary={true}
-                target="_blank"
-              />
-            </ToolbarGroup>
-          </Toolbar>
+          {!this.state.isUpdated && !isWebVersion ? (
+            <Toolbar>
+              <ToolbarGroup firstChild={true}>
+                <FontIcon className="material-icons">warning</FontIcon>
+                <ToolbarTitle
+                  style={{ marginLeft: '0.5rem', fontSize: '1rem' }}
+                  text={`${i18n('new-version')} (${latestAppVersion})`}
+                />
+                <RaisedButton
+                  label={i18n('update')}
+                  href={config.app['cfqr-website']}
+                  primary={true}
+                  target="_blank"
+                />
+              </ToolbarGroup>
+            </Toolbar>
+          ) : ''}
           <Menu />
           <div className="page">
             {this.props.children}
