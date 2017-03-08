@@ -4,6 +4,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import validate from 'webpack-validator';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 // .env file fallback for environment variables
 try {
@@ -11,6 +12,8 @@ try {
 } catch (err) {
   // ignore
 }
+
+const extractCSS = new ExtractTextPlugin('[name].css');
 
 export default validate({
   module: {
@@ -39,6 +42,10 @@ export default validate({
     }, {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
       loader: `${require.resolve('url-loader')}?limit=10000&mimetype=image/svg+xml&name=assets/[name].[ext]`
+    },
+    {
+      test: /\.scss$/i,
+      loader: extractCSS.extract(['css', 'sass'])
     }]
   },
 
@@ -59,9 +66,11 @@ export default validate({
         APP_VERSION: JSON.stringify(process.env.npm_package_version),
         FIREBASE_API_KEY: JSON.stringify(process.env.FIREBASE_API_KEY),
         FIREBASE_AUTH_DOMAIN: JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
-        FIREBASE_DATABASE_URL: JSON.stringify(process.env.FIREBASE_DATABASE_URL)
+        FIREBASE_DATABASE_URL: JSON.stringify(process.env.FIREBASE_DATABASE_URL),
+        GOOGLE_ANALYTICS_ID: JSON.stringify(process.env.GOOGLE_ANALYTICS_ID),
       }
     }),
+    extractCSS,
   ],
 
   externals: [

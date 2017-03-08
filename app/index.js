@@ -14,8 +14,8 @@ import { initDatastore } from './api/database';
 
 // CSS
 /* eslint-disable */
-require('!style-loader!css-loader!sass-loader!./scss/style.scss');
-require('!style-loader!css-loader!sass-loader!./scss/fonts.scss');
+import './scss/fonts.scss';
+import './scss/style.scss';
 /* eslint-enable */
 
 // Needed for onTouchTap
@@ -24,7 +24,6 @@ injectTapEventPlugin();
 
 initDatastore({
   filename: './CFQR-questionnaire.db',
-  // inMemoryOnly: true, //-> only dev
   timestampData: true
 });
 
@@ -34,7 +33,9 @@ persistStore(store, {
   whitelist: ['locale']
 });
 
-ReactGA.initialize('UA-89248310-1', { debug: true });
+ReactGA.initialize(process.env.GOOGLE_ANALYTICS_ID, {
+  debug: process.env.NODE_ENV !== 'production'
+});
 
 function logPageView() {
   // Google Analytics

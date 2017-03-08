@@ -74,10 +74,15 @@ app.on('ready', async () => {
 
   if (process.platform === 'darwin') {
     template = [{
-      label: 'Electron',
+      label: 'CFQ-R',
       submenu: [{
-        label: 'About ElectronReact',
+        label: 'About CFQ-R app',
         selector: 'orderFrontStandardAboutPanel:'
+      }, {
+        label: 'Update Application',
+        click() {
+          shell.openExternal('https://cfqr.github.io');
+        }
       }, {
         type: 'separator'
       }, {
@@ -86,7 +91,7 @@ app.on('ready', async () => {
       }, {
         type: 'separator'
       }, {
-        label: 'Hide ElectronReact',
+        label: 'Hide CFQ-R app',
         accelerator: 'Command+H',
         selector: 'hide:'
       }, {
@@ -182,22 +187,17 @@ app.on('ready', async () => {
       submenu: [{
         label: 'Learn More',
         click() {
-          shell.openExternal('http://electron.atom.io');
+          shell.openExternal('https://cfqr.github.io');
         }
       }, {
-        label: 'Documentation',
+        label: 'CFQ-R Documentation',
         click() {
-          shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme');
+          shell.openExternal('http://www.psy.miami.edu/cfq_QLab/');
         }
       }, {
-        label: 'Community Discussions',
+        label: 'Bugs and Feature Requests',
         click() {
-          shell.openExternal('https://discuss.atom.io/c/electron');
-        }
-      }, {
-        label: 'Search Issues',
-        click() {
-          shell.openExternal('https://github.com/atom/electron/issues');
+          shell.openExternal('https://github.com/CFQR/cfqr-app/issues');
         }
       }]
     }];
@@ -249,22 +249,22 @@ app.on('ready', async () => {
       submenu: [{
         label: 'Learn More',
         click() {
-          shell.openExternal('http://electron.atom.io');
+          shell.openExternal('https://cfqr.github.io');
         }
       }, {
-        label: 'Documentation',
+        label: 'CFQ-R Documentation',
         click() {
-          shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme');
+          shell.openExternal('http://www.psy.miami.edu/cfq_QLab/');
         }
       }, {
-        label: 'Community Discussions',
+        label: 'Bugs and Feature Requests',
         click() {
-          shell.openExternal('https://discuss.atom.io/c/electron');
+          shell.openExternal('https://github.com/CFQR/cfqr-app/issues');
         }
       }, {
-        label: 'Search Issues',
+        label: 'Update Application',
         click() {
-          shell.openExternal('https://github.com/atom/electron/issues');
+          shell.openExternal('https://cfqr.github.io');
         }
       }]
     }];

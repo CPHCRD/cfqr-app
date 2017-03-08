@@ -1,8 +1,8 @@
 {
-  "name": "cfqr",
-  "productName": "cfqr-questionnaire",
-  "version": "0.1.0",
-  "description": "Electron application based on React, React Router, Webpack",
+  "name": "cfqr-app",
+  "productName": "cfqr-app",
+  "version": "1.0.0",
+  "description": "CFQ-R questionnaire application",
   "main": "./main.js",
   "author": {
     "name": "Jonathan Argentiero",
