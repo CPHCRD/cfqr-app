@@ -53,6 +53,10 @@ const config = validate(merge(baseConfig, {
       {
         from: 'app/favicon.ico',
         to: 'favicon.ico'
+      },
+      {
+        from: 'resources/icons',
+        to: 'icons'
       }
     ])
   ],
