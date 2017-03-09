@@ -22,8 +22,18 @@ import './scss/style.scss';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
+
+let databasePath = 'CFQR-questionnaire.db';
+if (!process.env.isWeb) {
+  /* eslint-disable */
+  const remote = require('electron').remote;
+  const { app } = remote;
+  databasePath = `${app.getPath('userData')}/${databaseName}`;
+  /* eslint-enable */
+}
+
 initDatastore({
-  filename: './CFQR-questionnaire.db',
+  filename: databasePath,
   timestampData: true
 });
 

@@ -36,12 +36,10 @@
     <script>
       /*eslint-disable */
       (function() {
-        if (!process.env.HOT) {
-          const link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.href = './dist/main.css';
-          document.write(link.outerHTML);
-        }
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = './dist/main.css';
+        document.write(link.outerHTML);
       }());
     </script>
   </head>
