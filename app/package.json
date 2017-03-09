@@ -1,6 +1,6 @@
 {
   "name": "cfqr-app",
-  "productName": "cfqr-app",
+  "productName": "CFQR",
   "version": "0.16.0",
   "description": "CFQ-R questionnaire application",
   "main": "./main.js",
