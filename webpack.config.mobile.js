@@ -64,7 +64,7 @@ const config = validate(merge(baseConfig, {
 
     new CordovaPlugin({
       config: 'mobile/config.xml',  // Location of Cordova' config.xml (will be created if not found)
-      src: 'www/index.html',            // Set entry-point of cordova in config.xml
+      src: 'index.html',            // Set entry-point of cordova in config.xml
       platform: ['android'],        // Set `webpack-dev-server` to correct `contentBase` to use Cordova plugins.
       version: true,                // Set config.xml' version. (true = use version from package.json)
     }),
