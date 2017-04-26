@@ -37,7 +37,7 @@ yarn.lock
 # App packaged
 release
 public
-mobile/www
+mobile
 app/main.js
 app/main.js.map
 app/bundle.js
