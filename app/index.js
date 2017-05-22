@@ -28,7 +28,7 @@ if (!process.env.isWeb) {
   /* eslint-disable */
   const remote = require('electron').remote;
   const { app } = remote;
-  databasePath = `${app.getPath('userData')}/${databaseName}`;
+  databasePath = `${app.getPath('userData')}/${databasePath}`;
   /* eslint-enable */
 }
 
