@@ -22,12 +22,13 @@ class StatisticsPatientChart extends Component {
     const timescores = {};
     questionnairesData.reverse();
     questionnairesData.forEach(questionnaire => {
+      const qstDate = new Date(questionnaire.createdAt);
       const scores = calculateScore(questionnaire);
       Object.keys(scores).forEach(key => {
         if (!timescores[key]) {
           timescores[key] = {};
         }
-        timescores[key][+questionnaire.createdAt] = scores[key];
+        timescores[key][+qstDate] = scores[key];
       });
     });
 
@@ -40,13 +41,13 @@ class StatisticsPatientChart extends Component {
 
     const chartData = [chartHeaders];
     questionnairesData.forEach(questionnaire => {
-      const qstDate = +questionnaire.createdAt;
+      const qstDate = new Date(questionnaire.createdAt);
       const qstData = [];
       qstData.push(new global.Intl
         .DateTimeFormat(locale, dateFormat.date)
-        .format(new Date(questionnaire.createdAt)));
+        .format(qstDate));
       Object.keys(timescores).forEach(key => {
-        const score = timescores[key][qstDate];
+        const score = timescores[key][+qstDate];
         if (typeof score === 'number') {
           qstData.push(score);
         } else {
