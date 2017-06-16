@@ -162,7 +162,7 @@
     "webpack-validator": "^2.2.9"
   },
   "dependencies": {
-    "cfqr-data": "git+https://github.com/CFQR/cfqr-data.git#v1.7.0",
+    "cfqr-data": "git+https://github.com/CFQR/cfqr-data.git#v1.7.1",
     "console-polyfill": "^0.2.3",
     "file-saver": "^1.3.3",
     "firebase": "3.3.0",
