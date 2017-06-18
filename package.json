@@ -146,6 +146,7 @@
     "react-addons-test-utils": "^15.3.2",
     "redux-logger": "^2.7.4",
     "sass-loader": "^4.0.2",
+    "script-loader": "^0.7.0",
     "sinon": "^1.17.6",
     "source-map-support": "^0.4.6",
     "spectron": "^3.4.0",
