@@ -1,0 +1,10 @@
+td, th {
+  padding: 0.10rem 0.50rem !important;
+}
+
+@media screen and (max-width: 400px) {
+  td, th {
+    padding: 0.10rem 0.30rem !important;
+    font-size: 0.6rem !important;
+  }
+}
