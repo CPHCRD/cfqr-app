@@ -86,12 +86,13 @@ class Menu extends Component {
             const menuItemName = i18n(`${key}-menu-text`);
             return (<MenuItem
               key={`${key}-menu-item`}
-              containerElement={<Link to={menuItem.url}>{menuItemName}</Link>}
+              containerElement={<Link to={menuItem.url} style={{ cursor: 'pointer' }}>{menuItemName}</Link>}
               primaryText={menuItemName}
               leftIcon={
                 <FontIcon className="material-icons">{menuItem.icon}</FontIcon>
               }
               onTouchTap={this.handleClose}
+              onClick={this.handleClose}
               style={{ cursor: 'pointer' }}
             />);
           })}
@@ -103,6 +104,7 @@ class Menu extends Component {
                   <FontIcon className="material-icons">lock</FontIcon>
             }
                 onTouchTap={() => signOut()}
+                onClick={() => signOut()}
                 style={{ cursor: 'pointer' }}
               /> : ''
           }
