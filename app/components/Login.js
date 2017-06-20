@@ -40,7 +40,7 @@ class AdminLogin extends Component {
           secondary
           icon={<FontIcon className="material-icons">vpn_key</FontIcon>}
           onTouchTap={this.handleOpen}
-          style={{ margin: '1rem 0' }}
+          style={{ margin: '1rem 0', cursor: 'pointer' }}
         />
         <Dialog
           title={i18n('auth-admin-login')}

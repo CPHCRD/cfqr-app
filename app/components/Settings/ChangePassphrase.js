@@ -76,7 +76,7 @@ class SettingsChangePassphrase extends Component {
           secondary
           icon={<FontIcon className="material-icons">vpn_key</FontIcon>}
           onTouchTap={this.handleOpen}
-          style={{ marginBottom: '1.5rem' }}
+          style={{ marginBottom: '1.5rem', cursor: 'pointer' }}
         />
         <Dialog
           title={i18n('auth-admin-passphrase')}

@@ -77,7 +77,7 @@ class QuestionnaireGroupQuestion extends PureComponent {
               className="question__radio-item"
               key={`${groupQuestionId}-${answerKey}`}
               name={groupQuestionId}
-              style={{ padding: '0.5rem 0' }}
+              style={{ padding: '0.5rem 0', cursor: 'pointer' }}
               value={answerValue}
               label={i18n(`${answerKey}`)}
               onTouchTap={() => answerQuestion(groupQuestionId, answerValue, answerKey)}

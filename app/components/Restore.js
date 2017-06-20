@@ -20,7 +20,7 @@ class Restore extends Component {
           onTouchTap={Action}
           label={i18n('restore-element')}
           labelPosition="before"
-          style={{ color: 'green' }}
+          style={{ color: 'green', cursor: 'pointer' }}
           icon={<FontIcon className="material-icons" color="green">restore</FontIcon>}
         />
       </div>

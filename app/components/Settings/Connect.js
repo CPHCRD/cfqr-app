@@ -153,20 +153,20 @@ class Settings extends Component {
             labelPosition="before"
             primary={true}
             icon={<FontIcon className="material-icons">vpn_key</FontIcon>}
-            style={{ margin: '0 0.5rem 1rem 0' }}
+            style={{ margin: '0 0.5rem 1rem 0', cursor: 'pointer' }}
             onTouchTap={this.loginUser.bind(this)}
           />
           <FlatButton
             labelPosition="before"
             label={i18n('settings-register')}
-            style={{ margin: '0 0.5rem 1rem 0' }}
+            style={{ margin: '0 0.5rem 1rem 0', cursor: 'pointer' }}
             icon={<FontIcon className="material-icons">edit</FontIcon>}
             onTouchTap={this.registerUser.bind(this)}
           />
           <FlatButton
             labelPosition="before"
             label={i18n('settings-reset-password')}
-            style={{ margin: '0 0.5rem 1rem 0' }}
+            style={{ margin: '0 0.5rem 1rem 0', cursor: 'pointer' }}
             onTouchTap={this.resetUserPassword.bind(this)}
           />
           <Snackbar
@@ -180,7 +180,7 @@ class Settings extends Component {
           <FlatButton
             labelPosition="before"
             label={i18n('settings-logout')}
-            style={{ margin: '0 0.5rem 1rem 0' }}
+            style={{ margin: '0 0.5rem 1rem 0', cursor: 'pointer' }}
             icon={<FontIcon className="material-icons">exit_to_app</FontIcon>}
             onTouchTap={this.logoutUser.bind(this)}
           />

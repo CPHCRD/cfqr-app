@@ -35,10 +35,11 @@ class Delete extends Component {
       <FlatButton
         label={i18n('cancel')}
         onTouchTap={this.handleClose}
+        style={{ cursor: 'pointer' }}
       />,
       <FlatButton
         label={i18n('delete')}
-        style={{ color: 'red' }}
+        style={{ color: 'red', cursor: 'pointer' }}
         onTouchTap={Action}
       />,
     ];
@@ -48,7 +49,7 @@ class Delete extends Component {
         <IconButton
           onTouchTap={this.handleOpen}
           tooltip={i18n('delete')}
-          style={{ float: 'right' }}
+          style={{ float: 'right', cursor: 'pointer' }}
         >
           <FontIcon className="material-icons" color="red">
             delete

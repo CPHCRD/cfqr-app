@@ -189,6 +189,7 @@ class Questionnaire extends PureComponent {
                 primary
                 onTouchTap={() => setQuestionnaireStep(1)}
                 className="step__buttons-left"
+                style={{ cursor: 'pointer' }}
               />
             </StepContent>
           </Step>
@@ -206,12 +207,14 @@ class Questionnaire extends PureComponent {
                   primary
                   onTouchTap={() => setQuestionnaireStep(2)}
                   className="step__buttons-left"
+                  style={{ cursor: 'pointer' }}
                 />
                 <FlatButton
                   label="Back"
                   disableTouchRipple
                   disableFocusRipple
                   onTouchTap={() => setQuestionnaireStep(0)}
+                  style={{ cursor: 'pointer' }}
                 />
               </div>
             </StepContent>
@@ -230,11 +233,13 @@ class Questionnaire extends PureComponent {
                   primary
                   onTouchTap={this.handleFinish}
                   className="step__buttons-left"
+                  style={{ cursor: 'pointer' }}
                 />
                 <RaisedButton
                   label={i18n('abort')}
                   className="step__buttons-right"
                   onTouchTap={this.showAbortDialog.bind(this)}
+                  style={{ cursor: 'pointer' }}
                 />
               </div>
             </StepContent>
@@ -252,13 +257,13 @@ class Questionnaire extends PureComponent {
             <RaisedButton
               label={i18n('questionnaire-view-results-button')}
               secondary
-              style={{ margin: '0 0.5rem 1rem 0' }}
+              style={{ margin: '0 0.5rem 1rem 0', cursor: 'pointer' }}
               onTouchTap={() => this.viewResults()}
             />,
             <RaisedButton
               containerElement={<Link to={routes.home.url}>{i18n('home-button-back')}</Link>}
               label={i18n('home-button-back')}
-              style={{ margin: '0 0.5rem 1rem 0' }}
+              style={{ margin: '0 0.5rem 1rem 0', cursor: 'pointer' }}
             />
           ]}
           modal
@@ -272,12 +277,12 @@ class Questionnaire extends PureComponent {
             <RaisedButton
               label={i18n('cancel')}
               secondary
-              style={{ margin: '0 0.5rem 1rem 0' }}
+              style={{ margin: '0 0.5rem 1rem 0', cursor: 'pointer' }}
               onTouchTap={this.hideAbortDialog.bind(this)}
             />,
             <RaisedButton
               label={i18n('abort')}
-              style={{ margin: '0 0.5rem 1rem 0' }}
+              style={{ margin: '0 0.5rem 1rem 0', cursor: 'pointer' }}
               onTouchTap={() => {
                 resetQuestionnaire();
                 this.setState({

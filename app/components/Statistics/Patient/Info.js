@@ -89,7 +89,8 @@ class StatisticsPatientInfo extends Component {
                   style={{
                     position: 'absolute',
                     right: 0,
-                    top: this.state.edit ? '0' : '-0.5rem'
+                    top: this.state.edit ? '0' : '-0.5rem',
+                    cursor: 'pointer'
                   }}
                 >
                   <FontIcon className="material-icons">

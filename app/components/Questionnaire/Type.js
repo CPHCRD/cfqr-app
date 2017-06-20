@@ -36,14 +36,15 @@ class QuestionnaireType extends PureComponent {
           {Object.keys(elements).map(elementKey => <RadioButton
             name="qst-choice"
             key={`qst-choice-${elementKey}`}
-            style={{ padding: '0.5rem 0' }}
+            style={{ padding: '0.5rem 0', cursor: 'pointer' }}
             value={elementKey}
             label={
               <span>
                 <strong>{i18n(`${elementKey}`)}</strong>
                 <i style={{ display: 'block' }}>{i18n(`${elementKey}-description`)}</i>
               </span>
-            } onTouchTap={() => changeQuestionnaire(elementKey)}
+            }
+            onTouchTap={() => changeQuestionnaire(elementKey)}
           />)}
         </RadioButtonGroup>
       </div>

@@ -59,7 +59,7 @@ class QuestionnaireCard extends PureComponent {
           tooltipPosition={'bottom-left'}
           tooltip={i18n('questionnaire-open-cards')}
           className={`card__open-button--${type}`}
-          style={{ padding: 0, width: '40px', height: '40px' }}
+          style={{ padding: 0, width: '40px', height: '40px', cursor: 'pointer' }}
         >
           <FontIcon className="material-icons">view_week</FontIcon>
         </IconButton>
@@ -81,6 +81,7 @@ class QuestionnaireCard extends PureComponent {
                   answerQuestion(question.id, answerValue, answerKey);
                   this.handleCardClose();
                 }}
+                style={{ cursor: 'pointer' }}
               >
                 {i18n(`${answerKey}`)}
               </Paper>

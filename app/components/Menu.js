@@ -45,7 +45,7 @@ class Menu extends Component {
         <AppBar
           title={i18n('site-title')}
           iconElementLeft={
-            <IconButton onTouchTap={this.handleToggle}>
+            <IconButton onTouchTap={this.handleToggle} style={{ cursor: 'pointer' }}>
               <FontIcon className="material-icons">menu</FontIcon>
             </IconButton>
           }
@@ -77,7 +77,7 @@ class Menu extends Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({ open })}
         >
-          <AppBar onTouchTap={this.handleToggle} style={{ marginBottom: '1rem' }} />
+          <AppBar onTouchTap={this.handleToggle} style={{ marginBottom: '1rem', cursor: 'pointer' }} />
           {Object.keys(menuItems).map((key) => {
             const menuItem = menuItems[key];
             if (menuItem === true) {
@@ -92,6 +92,7 @@ class Menu extends Component {
                 <FontIcon className="material-icons">{menuItem.icon}</FontIcon>
               }
               onTouchTap={this.handleClose}
+              style={{ cursor: 'pointer' }}
             />);
           })}
           {
@@ -102,6 +103,7 @@ class Menu extends Component {
                   <FontIcon className="material-icons">lock</FontIcon>
             }
                 onTouchTap={() => signOut()}
+                style={{ cursor: 'pointer' }}
               /> : ''
           }
         </Drawer>

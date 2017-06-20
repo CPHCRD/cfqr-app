@@ -42,7 +42,7 @@ class QuestionnaireQuestion extends PureComponent {
           {elementAnswers.map((answerKey, answerValue) => <RadioButton
             name={elementKey}
             key={`${elementKey}-${answerKey}`}
-            style={{ padding: '0.5rem 0' }}
+            style={{ padding: '0.5rem 0', cursor: 'pointer' }}
             value={answerValue}
             label={
               <span>

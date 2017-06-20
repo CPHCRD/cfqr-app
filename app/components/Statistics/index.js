@@ -89,7 +89,7 @@ class Statistics extends Component {
         <SaveAs
           exportData={data}
           fileName={`cfqr-app-full-export-${exportDate}`}
-          style={{ float: 'right' }}
+          style={{ float: 'right', cursor: 'pointer' }}
         />
         {data.length > 0 ?
           <StatisticsTable rowUrl="questionnaire" urlId="_id" rows={data} /> :

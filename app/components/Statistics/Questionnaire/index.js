@@ -199,11 +199,11 @@ class StatisticsQuestionnaire extends Component {
     return (<div>
       <List>
         <Delete Action={this.deleteQuestionnaire.bind(this)} style={{ float: 'right' }} />
-        <Print style={{ float: 'right' }} />
+        <Print style={{ float: 'right', cursor: 'pointer' }} />
         <SaveAs
           exportData={[data]}
           fileName={`cfqr-app-patient-${exportPatient}-${exportType}-${exportDate}`}
-          style={{ float: 'right' }}
+          style={{ float: 'right', cursor: 'pointer' }}
         />
         <Subheader>{i18n('statistics-questionnaire-info')}</Subheader>
         {Object.keys(data).map(key => this.renderQuestionnaireInfo(

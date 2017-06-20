@@ -71,11 +71,11 @@ class StatisticsPatient extends Component {
 
     return (
       <div>
-        <Print style={{ float: 'right' }} />
+        <Print style={{ float: 'right', cursor: 'pointer' }} />
         <SaveAs
           exportData={data}
           fileName={`cfqr-app-patient-${latestQuestionnaire.patient}-export-${exportDate}`}
-          style={{ float: 'right' }}
+          style={{ float: 'right', cursor: 'pointer' }}
         />
         <StatisticsPatientInfo questionnaireData={latestQuestionnaire} />
         <Divider />
