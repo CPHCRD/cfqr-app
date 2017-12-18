@@ -1,14 +1,13 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
-  "esversion": 6,
   "env": {
     "browser": true,
     "mocha": true,
     "node": true
   },
   "rules": {
-    "max-len": ["error", 120],
+    "max-len": ["error", { "code": 120 }],
     "arrow-parens": ["off"],
     "consistent-return": "off",
     "comma-dangle": "off",
@@ -25,7 +24,7 @@
     "react/no-children-prop": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
     "react/prefer-stateless-function": "off",
-    "flowtype-errors/show-errors": 2,
+    "flowtype-errors/show-errors": 2
   },
   "plugins": [
     "flowtype-errors",
