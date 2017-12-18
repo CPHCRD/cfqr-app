@@ -1,6 +1,6 @@
 # CFQ-R questionnaire
 
-[![Build Status](https://travis-ci.org/CFQR/cfqr-app.svg?branch=master)](https://travis-ci.org/CFQR/cfqr-app)
+[![Build Status](https://travis-ci.org/cphcrd/cfqr-app.svg?branch=master)](https://travis-ci.org/cphcrd/cfqr-app)
 
 ## Preview
 
@@ -18,7 +18,7 @@ You can find a live version of the application at [http://cfqr-app.netlify.com/]
 First, clone the repo via git:
 
 ```bash
-git clone https://github.com/CFQR/cfqr-app.git
+git clone https://github.com/cphcrd/cfqr-app.git
 ```
 
 And then install dependencies.

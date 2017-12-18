@@ -197,7 +197,7 @@ app.on('ready', async () => {
       }, {
         label: 'Bugs and Feature Requests',
         click() {
-          shell.openExternal('https://github.com/CFQR/cfqr-app/issues');
+          shell.openExternal('https://github.com/cphcrd/cfqr-app/issues');
         }
       }]
     }];
@@ -259,7 +259,7 @@ app.on('ready', async () => {
       }, {
         label: 'Bugs and Feature Requests',
         click() {
-          shell.openExternal('https://github.com/CFQR/cfqr-app/issues');
+          shell.openExternal('https://github.com/cphcrd/cfqr-app/issues');
         }
       }, {
         label: 'Update Application',

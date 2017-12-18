@@ -24,3 +24,9 @@ body {
     display: none !important;
   }
 }
+
+@media (max-width: 2500px) {
+  body {
+    color: red !important;
+  }
+}
