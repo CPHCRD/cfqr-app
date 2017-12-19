@@ -7,7 +7,6 @@ import Statistics from './Statistics';
 import NotConnected from './NotConnected';
 
 class StatisticsPage extends Component {
-
   static propTypes = {
     i18n: PropTypes.func
   };

@@ -17,8 +17,7 @@ const DEFAULT_STATE = {
   results: {}
 };
 
-export default function questionnaire(
-  state: Object = Object.assign({}, DEFAULT_STATE), action: Object) {
+export default function questionnaire(state: Object = Object.assign({}, DEFAULT_STATE), action: Object) {
   const { data, type } = action;
   let newState;
 
@@ -51,6 +50,5 @@ export default function questionnaire(
 
     default:
       return state;
-
   }
 }

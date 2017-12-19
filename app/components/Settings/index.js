@@ -9,7 +9,6 @@ import SettingsChangePassphrase from './ChangePassphrase';
 import SettingsToggleAnalytics from './ToggleAnalytics';
 
 class Settings extends Component {
-
   static propTypes = {
     auth: PropTypes.bool
   };

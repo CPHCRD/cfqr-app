@@ -27,7 +27,6 @@ import Restore from '../../Restore';
 import { format as dateFormat } from '../../../config/date.json';
 
 class StatisticsQuestionnaire extends Component {
-
   static propTypes = {
     i18n: PropTypes.func,
     errorLog: PropTypes.func,
@@ -196,65 +195,71 @@ class StatisticsQuestionnaire extends Component {
       return (<Restore Action={this.restoreQuestionnaire.bind(this)} />);
     }
 
-    return (<div>
-      <List>
-        <Delete Action={this.deleteQuestionnaire.bind(this)} style={{ float: 'right' }} />
-        <Print style={{ float: 'right', cursor: 'pointer' }} />
-        <SaveAs
-          exportData={[data]}
-          fileName={`cfqr-app-patient-${exportPatient}-${exportType}-${exportDate}`}
-          style={{ float: 'right', cursor: 'pointer' }}
-        />
-        <Subheader>{i18n('statistics-questionnaire-info')}</Subheader>
-        {Object.keys(data).map(key => this.renderQuestionnaireInfo(
-          key,
-          data[key]))}
-      </List>
-      <Divider />
-      <StatisticsPatientInfo changePatient={this.changePatient.bind(this)} questionnaireData={data} />
-      {data.patient ?
-        <Chip style={{ marginBottom: '1rem' }}>
-          <Avatar icon={<FontIcon className="material-icons">person</FontIcon>} />
-          <Link
-            className="statistics__patient-link no-print"
-            to={`/statistics/patient/${data.patient}`}
-            style={{ textDecoration: 'none', cursor: 'pointer', color: '#333' }}
-          >{i18n('statistics-patient-view-information')}</Link>
-        </Chip> : ''}
-      <Divider />
-      <StatisticsQuestionnaireChart questionnaireData={data} />
-      <StatisticsQuestionnaireScore questionnaireData={data} />
-      <Divider />
-      <StatisticsQuestionnaireAnswers questionnaireData={data} />
-      <div className="no-print" style={{ maxWidth: 150, marginTop: '1rem' }}>
-        <Toggle
-          label="Debug"
-          defaultToggled={this.state.debug}
-          onToggle={() => {
-            this.setState({
-              debug: !this.state.debug
-            });
-          }}
-        />
+    return (
+      <div>
+        <List>
+          <Delete Action={this.deleteQuestionnaire.bind(this)} style={{ float: 'right' }} />
+          <Print style={{ float: 'right', cursor: 'pointer' }} />
+          <SaveAs
+            exportData={[data]}
+            fileName={`cfqr-app-patient-${exportPatient}-${exportType}-${exportDate}`}
+            style={{ float: 'right', cursor: 'pointer' }}
+          />
+          <Subheader>{i18n('statistics-questionnaire-info')}</Subheader>
+          {Object.keys(data).map(key => this.renderQuestionnaireInfo(
+            key,
+            data[key]
+          ))}
+        </List>
+        <Divider />
+        <StatisticsPatientInfo changePatient={this.changePatient.bind(this)} questionnaireData={data} />
+        {data.patient ?
+          <Chip style={{ marginBottom: '1rem' }}>
+            <Avatar icon={<FontIcon className="material-icons">person</FontIcon>} />
+            <Link
+              className="statistics__patient-link no-print"
+              to={`/statistics/patient/${data.patient}`}
+              style={{ textDecoration: 'none', cursor: 'pointer', color: '#333' }}
+            >{i18n('statistics-patient-view-information')}
+            </Link>
+          </Chip> : ''}
+        <Divider />
+        <StatisticsQuestionnaireChart questionnaireData={data} />
+        <StatisticsQuestionnaireScore questionnaireData={data} />
+        <Divider />
+        <StatisticsQuestionnaireAnswers questionnaireData={data} />
+        <div className="no-print" style={{ maxWidth: 150, marginTop: '1rem' }}>
+          <Toggle
+            label="Debug"
+            defaultToggled={this.state.debug}
+            onToggle={() => {
+              this.setState({
+                debug: !this.state.debug
+              });
+            }}
+          />
+        </div>
+        {this.state.debug ? (
+          <List>
+            {Object.keys(data).map(key => this.renderQuestionnaireDebug(
+              key,
+              data[key]
+            ))}
+            <ListItem
+              className="statistics__element"
+              key="statistics-questionnaire-debug-object"
+              disabled={true}
+            >
+              <strong>Debug object</strong>
+              <br /><br />
+              <i>
+                {JSON.stringify(data)}
+              </i>
+            </ListItem>
+          </List>
+        ) : ''}
       </div>
-      {this.state.debug ? <List>
-        {Object.keys(data).map(key => this.renderQuestionnaireDebug(
-          key,
-          data[key]))}
-        <ListItem
-          className="statistics__element"
-          key="statistics-questionnaire-debug-object"
-          disabled={true}
-        >
-          <strong>Debug object</strong>
-          <br /><br />
-          <i>
-            {JSON.stringify(data)}
-          </i>
-        </ListItem>
-      </List>
-      : ''}
-    </div>);
+    );
   }
 }
 

@@ -36,7 +36,6 @@ const muiTheme = getMuiTheme({
 });
 
 class App extends Component {
-
   static propTypes = {
     children: PropTypes.element.isRequired,
     loadDatabase: PropTypes.func,
@@ -55,7 +54,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { loadDatabase, loggedIn, loggedOut, errorLog } = this.props;
+    const {
+      loadDatabase, loggedIn, loggedOut, errorLog
+    } = this.props;
     loadDatabase();
 
     firebaseAuth().onAuthStateChanged(authInfo => {

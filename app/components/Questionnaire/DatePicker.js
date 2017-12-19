@@ -1,11 +1,10 @@
 // @flow
-import React, { PureComponent, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import DatePicker from 'material-ui/DatePicker';
 
 import { connect } from '../../actions';
 
-class QuestionnaireDatePicker extends PureComponent {
-
+class QuestionnaireDatePicker extends Component {
   static propTypes = {
     element: PropTypes.shape({
       key: PropTypes.string.isRequired,
@@ -32,7 +31,8 @@ class QuestionnaireDatePicker extends PureComponent {
     const {
       element, getCurrentQuestionAnswer,
       i18n, locale,
-      answerQuestion, questionnaire } = this.props;
+      answerQuestion, questionnaire
+    } = this.props;
     const { key: elementKey, id: questionId } = element;
     const { results } = questionnaire;
     const currentAnswer = getCurrentQuestionAnswer(results, questionId);

@@ -15,7 +15,6 @@ const INITIAL_STATE = {
 };
 
 class SettingsChangePassphrase extends Component {
-
   static propTypes = {
     i18n: PropTypes.func,
     changePassphrase: PropTypes.func

@@ -12,7 +12,6 @@ import Divider from 'material-ui/Divider';
 import { connect } from '../actions';
 
 class Menu extends Component {
-
   static propTypes = {
     config: PropTypes.shape({
       i18n: PropTypes.object
@@ -36,7 +35,9 @@ class Menu extends Component {
   handleClose = () => this.setState({ open: false });
 
   render() {
-    const { config, i18n, changeLocale, locale, auth, signOut } = this.props;
+    const {
+      config, i18n, changeLocale, locale, auth, signOut
+    } = this.props;
     const { availableLocales } = config.i18n;
     const menuItems = config.routes;
 

@@ -11,7 +11,6 @@ import SaveAs from '../SaveAs';
 import { format as dateFormat } from '../../config/date.json';
 
 class Statistics extends Component {
-
   static propTypes = {
     i18n: PropTypes.func,
     auth: PropTypes.bool,

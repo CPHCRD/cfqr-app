@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from '../actions';
@@ -5,7 +6,6 @@ import { connect } from '../actions';
 import appConfig from '../config/app.json';
 
 class HowItWorksPage extends Component {
-
   static propTypes = {
     i18n: PropTypes.func
   };
@@ -51,7 +51,6 @@ class HowItWorksPage extends Component {
       </article>
     );
   }
-
 }
 
 export default connect(HowItWorksPage);

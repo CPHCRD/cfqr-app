@@ -1,11 +1,10 @@
 // @flow
-import React, { PureComponent, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import TextField from 'material-ui/TextField';
 
 import { connect } from '../../actions';
 
-class QuestionnairePatient extends PureComponent {
-
+class QuestionnairePatient extends Component {
   static propTypes = {
     i18n: PropTypes.func,
     locale: PropTypes.string,

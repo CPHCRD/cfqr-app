@@ -1,11 +1,10 @@
 // @flow
-import React, { PureComponent, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 
 import { connect } from '../../actions';
 
-class QuestionnaireType extends PureComponent {
-
+class QuestionnaireType extends Component {
   static propTypes = {
     cfqrData: PropTypes.shape({
       elements: PropTypes.object
@@ -27,13 +26,15 @@ class QuestionnaireType extends PureComponent {
   }
 
   render() {
-    const { i18n, cfqrData, questionnaire, changeQuestionnaire } = this.props;
+    const {
+      i18n, cfqrData, questionnaire, changeQuestionnaire
+    } = this.props;
     const { elements } = cfqrData;
 
     return (
       <div>
         <RadioButtonGroup name="qst-choice" defaultSelected={questionnaire.type} style={{ padding: '1rem 0' }}>
-          {Object.keys(elements).map(elementKey => <RadioButton
+          {Object.keys(elements).map(elementKey => (<RadioButton
             name="qst-choice"
             key={`qst-choice-${elementKey}`}
             style={{ padding: '0.5rem 0', cursor: 'pointer' }}
@@ -45,7 +46,7 @@ class QuestionnaireType extends PureComponent {
               </span>
             }
             onTouchTap={() => changeQuestionnaire(elementKey)}
-          />)}
+          />))}
         </RadioButtonGroup>
       </div>
     );

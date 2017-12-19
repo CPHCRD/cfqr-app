@@ -1,13 +1,12 @@
 // @flow
-import React, { PureComponent, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { cyan700 } from 'material-ui/styles/colors';
 
 import { connect } from '../../actions';
 
 import QuestionnaireGroupQuestion from './GroupQuestion';
 
-class QuestionnaireGroup extends PureComponent {
-
+class QuestionnaireGroup extends Component {
   static propTypes = {
     element: PropTypes.shape({
       key: PropTypes.string.isRequired,
@@ -35,7 +34,8 @@ class QuestionnaireGroup extends PureComponent {
       key: elementKey,
       questions: elementQuestions,
       cards: elementCards,
-      answers: elementQuestionsAnswers } = element;
+      answers: elementQuestionsAnswers
+    } = element;
 
     return (
       <div className="question question--landscape" key={elementKey}>
@@ -44,13 +44,12 @@ class QuestionnaireGroup extends PureComponent {
         </div>
         <div className="question__group-container">
           {elementQuestions.map(question =>
-            <QuestionnaireGroupQuestion
+            (<QuestionnaireGroupQuestion
               key={`${elementKey}-${question.id}`}
               cards={elementCards}
               question={question}
               answers={elementQuestionsAnswers}
-            />
-          )}
+            />))}
         </div>
       </div>
     );

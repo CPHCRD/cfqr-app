@@ -9,7 +9,6 @@ import { connect } from '../actions';
 import NotConnected from './NotConnected';
 
 class HomePage extends Component {
-
   static propTypes = {
     config: PropTypes.shape({
       routes: PropTypes.object
@@ -42,7 +41,6 @@ class HomePage extends Component {
       </article>
     );
   }
-
 }
 
 export default connect(HomePage);

@@ -10,7 +10,6 @@ import { getQuestionsInfo, calculateScore } from '../utils/questionnaire';
 import { format as dateFormat } from '../config/date.json';
 
 class SaveAs extends Component {
-
   static propTypes = {
     i18n: PropTypes.func,
     style: PropTypes.instanceOf(Object),

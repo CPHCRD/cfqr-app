@@ -1,13 +1,12 @@
 // @flow
-import React, { PureComponent, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 
 import { connect } from '../../actions';
 
 import QuestionnaireCard from './Card';
 
-class QuestionnaireGroupQuestion extends PureComponent {
-
+class QuestionnaireGroupQuestion extends Component {
   static propTypes = {
     answers: PropTypes.arrayOf(PropTypes.string).isRequired,
     cards: PropTypes.string,
@@ -37,7 +36,8 @@ class QuestionnaireGroupQuestion extends PureComponent {
   }
 
   render() {
-    const { i18n,
+    const {
+      i18n,
       getCurrentQuestionAnswer,
       answerQuestion,
       questionnaire,
@@ -73,7 +73,7 @@ class QuestionnaireGroupQuestion extends PureComponent {
           valueSelected={currentAnswer}
         >
           {elementAnswers.map((answerKey, answerValue) =>
-            <RadioButton
+            (<RadioButton
               className="question__radio-item"
               key={`${groupQuestionId}-${answerKey}`}
               name={groupQuestionId}
@@ -81,8 +81,7 @@ class QuestionnaireGroupQuestion extends PureComponent {
               value={answerValue}
               label={i18n(`${answerKey}`)}
               onTouchTap={() => answerQuestion(groupQuestionId, answerValue, answerKey)}
-            />
-          )}
+            />))}
         </RadioButtonGroup>
       </div>
     );

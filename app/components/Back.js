@@ -6,7 +6,6 @@ import IconButton from 'material-ui/IconButton';
 import { connect } from '../actions';
 
 class Back extends Component {
-
   static propTypes = {
     i18n: PropTypes.func,
     style: PropTypes.instanceOf(Object)

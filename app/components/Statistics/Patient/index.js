@@ -16,7 +16,6 @@ import { getIdFromHash } from '../../../utils/misc';
 import { format as dateFormat } from '../../../config/date.json';
 
 class StatisticsPatient extends Component {
-
   static propTypes = {
     errorLog: PropTypes.func,
     auth: PropTypes.bool,

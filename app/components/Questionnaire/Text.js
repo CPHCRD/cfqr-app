@@ -1,9 +1,8 @@
 // @flow
-import React, { PureComponent, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from '../../actions';
 
-class QuestionnaireText extends PureComponent {
-
+class QuestionnaireText extends Component {
   static propTypes = {
     element: PropTypes.shape({
       key: PropTypes.string.isRequired

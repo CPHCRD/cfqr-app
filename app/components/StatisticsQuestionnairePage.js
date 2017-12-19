@@ -7,7 +7,6 @@ import { connect } from '../actions';
 import StatisticsQuestionnaire from './Statistics/Questionnaire';
 
 class StatisticsQuestionnairePage extends Component {
-
   static propTypes = {
     i18n: PropTypes.func
   };

@@ -117,9 +117,7 @@ export function getNewQuestionnaires() {
       return onlineQuestionnaires
         .filter(qst => (localQuestionnairesId.indexOf(qst._id) < 0));
     })
-    .then(missingQuestionnaires => Promise.all(
-      missingQuestionnaires.map(missing => insertIntoDatabase(missing))
-    ))
+    .then(missingQuestionnaires => Promise.all(missingQuestionnaires.map(missing => insertIntoDatabase(missing))))
     .then(() => {
       const diffQuestionnaires = [];
       onlineQuestionnaires.forEach(remoteQst => {
@@ -136,9 +134,7 @@ export function getNewQuestionnaires() {
       });
       return diffQuestionnaires;
     })
-    .then(missingQuestionnaires => Promise.all(
-      missingQuestionnaires.map(missing => insertIntoDatabase(missing))
-    ));
+    .then(missingQuestionnaires => Promise.all(missingQuestionnaires.map(missing => insertIntoDatabase(missing))));
 }
 
 export function saveNewQuestionnaires() {
@@ -160,9 +156,7 @@ export function saveNewQuestionnaires() {
       return localQuestionnaires
         .filter(qst => (onlineQuestionnairesId.indexOf(qst._id) < 0));
     })
-    .then(missingQuestionnaires => Promise.all(
-      missingQuestionnaires.map(missing => saveUserQuestionnaire(missing))
-    ))
+    .then(missingQuestionnaires => Promise.all(missingQuestionnaires.map(missing => saveUserQuestionnaire(missing))))
     .then(() => {
       const diffQuestionnaires = [];
       localQuestionnaires.forEach(localQst => {
@@ -179,7 +173,5 @@ export function saveNewQuestionnaires() {
       });
       return diffQuestionnaires;
     })
-    .then(missingQuestionnaires => Promise.all(
-      missingQuestionnaires.map(missing => saveUserQuestionnaire(missing))
-    ));
+    .then(missingQuestionnaires => Promise.all(missingQuestionnaires.map(missing => saveUserQuestionnaire(missing))));
 }

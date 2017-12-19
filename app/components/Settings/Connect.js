@@ -15,7 +15,6 @@ import { register, login, logout, verify, resetPassword } from '../../api/auth';
 import { updateLoginInfo, saveRemoteUserInfo, getNewQuestionnaires, saveNewQuestionnaires } from '../../api/backup';
 
 class Settings extends Component {
-
   static propTypes = {
     errorLog: PropTypes.func,
     i18n: PropTypes.func,
@@ -51,7 +50,9 @@ class Settings extends Component {
   }
 
   loginUser() {
-    const { errorLog, loggedIn, loggedOut, settings: userInfo } = this.props;
+    const {
+      errorLog, loggedIn, loggedOut, settings: userInfo
+    } = this.props;
 
     if (this.state.email && this.state.password) {
       login(this.state.email, this.state.password)
@@ -119,7 +120,9 @@ class Settings extends Component {
   }
 
   render() {
-    const { i18n, auth, logged, settings } = this.props;
+    const {
+      i18n, auth, logged, settings
+    } = this.props;
     const { email = '' } = settings;
 
     if (!auth) {
@@ -130,52 +133,55 @@ class Settings extends Component {
       <div>
         <h3 style={{ color: cyan700 }}>{i18n('settings-connect-title')}</h3>
         <p style={{ display: 'block', marginBottom: '-0.5rem' }}>{i18n('settings-connect-text')}</p>
-        {!logged ? <div>
-          <div style={{ marginBottom: '1rem' }}>
-            <TextField
-              id="user-email"
-              floatingLabelText={i18n('settings-email-address')}
-              type="email"
-              defaultValue={email}
-              onChange={this.changeEmail.bind(this)}
-              style={{ maxWidth: '100%', display: 'block' }}
+        {!logged ? (
+          <div>
+            <div style={{ marginBottom: '1rem' }}>
+              <TextField
+                id="user-email"
+                floatingLabelText={i18n('settings-email-address')}
+                type="email"
+                defaultValue={email}
+                onChange={this.changeEmail.bind(this)}
+                style={{ maxWidth: '100%', display: 'block' }}
+              />
+              <TextField
+                id="user-password"
+                floatingLabelText={i18n('settings-password')}
+                type="password"
+                onChange={this.changePassword.bind(this)}
+                style={{ maxWidth: '100%', display: 'block', marginTop: '-1rem' }}
+              />
+            </div>
+            <RaisedButton
+              label={i18n('settings-login')}
+              labelPosition="before"
+              primary={true}
+              icon={<FontIcon className="material-icons">vpn_key</FontIcon>}
+              style={{ margin: '0 0.5rem 1rem 0', cursor: 'pointer' }}
+              onTouchTap={this.loginUser.bind(this)}
             />
-            <TextField
-              id="user-password"
-              floatingLabelText={i18n('settings-password')}
-              type="password"
-              onChange={this.changePassword.bind(this)}
-              style={{ maxWidth: '100%', display: 'block', marginTop: '-1rem' }}
+            <FlatButton
+              labelPosition="before"
+              label={i18n('settings-register')}
+              style={{ margin: '0 0.5rem 1rem 0', cursor: 'pointer' }}
+              icon={<FontIcon className="material-icons">edit</FontIcon>}
+              onTouchTap={this.registerUser.bind(this)}
+            />
+            <FlatButton
+              labelPosition="before"
+              label={i18n('settings-reset-password')}
+              style={{ margin: '0 0.5rem 1rem 0', cursor: 'pointer' }}
+              onTouchTap={this.resetUserPassword.bind(this)}
+            />
+            <Snackbar
+              open={!!this.state.message}
+              message={this.state.message}
+              autoHideDuration={3000}
+              onRequestClose={this.snackbarClose.bind(this)}
             />
           </div>
-          <RaisedButton
-            label={i18n('settings-login')}
-            labelPosition="before"
-            primary={true}
-            icon={<FontIcon className="material-icons">vpn_key</FontIcon>}
-            style={{ margin: '0 0.5rem 1rem 0', cursor: 'pointer' }}
-            onTouchTap={this.loginUser.bind(this)}
-          />
-          <FlatButton
-            labelPosition="before"
-            label={i18n('settings-register')}
-            style={{ margin: '0 0.5rem 1rem 0', cursor: 'pointer' }}
-            icon={<FontIcon className="material-icons">edit</FontIcon>}
-            onTouchTap={this.registerUser.bind(this)}
-          />
-          <FlatButton
-            labelPosition="before"
-            label={i18n('settings-reset-password')}
-            style={{ margin: '0 0.5rem 1rem 0', cursor: 'pointer' }}
-            onTouchTap={this.resetUserPassword.bind(this)}
-          />
-          <Snackbar
-            open={!!this.state.message}
-            message={this.state.message}
-            autoHideDuration={3000}
-            onRequestClose={this.snackbarClose.bind(this)}
-          />
-        </div> : <div>
+      ) : (
+        <div>
           <p style={{ marginTop: '1rem', color: cyan700 }}>{i18n('settings-connected')}</p>
           <FlatButton
             labelPosition="before"
@@ -184,7 +190,8 @@ class Settings extends Component {
             icon={<FontIcon className="material-icons">exit_to_app</FontIcon>}
             onTouchTap={this.logoutUser.bind(this)}
           />
-        </div> }
+        </div>
+      )}
       </div>
     );
   }

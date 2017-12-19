@@ -8,7 +8,6 @@ import { BASE_FILTER, findIntoDatabase } from '../../api/database';
 import StatisticsTable from './Table';
 
 class Patients extends Component {
-
   static propTypes = {
     i18n: PropTypes.func,
     auth: PropTypes.bool,

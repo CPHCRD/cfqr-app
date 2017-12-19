@@ -111,7 +111,7 @@ const calculateScore = (questionnaire: Object) => {
   Object.keys(scoresByType).forEach(scoreTypeKey => {
     const scoreType = scoresByType[scoreTypeKey];
     finalScores[scoreTypeKey] = ((scoreType.total - scoreType.count) / (scoreType.count * 3)) * 100;
-    if (isNaN(finalScores[scoreTypeKey])) {
+    if (isNaN(finalScores[scoreTypeKey])) { // eslint-disable-line no-restricted-globals
       finalScores[scoreTypeKey] = 0;
     }
     finalScores[scoreTypeKey] = +finalScores[scoreTypeKey].toFixed(2);

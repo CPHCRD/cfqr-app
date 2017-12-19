@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link, hashHistory } from 'react-router';
 import {
   Step,
@@ -28,8 +28,7 @@ import QuestionnaireGroup from './Group';
 import QuestionnaireSection from './Section';
 import QuestionnairePatient from './Patient';
 
-class Questionnaire extends PureComponent {
-
+class Questionnaire extends Component {
   static propTypes = {
     cfqrData: PropTypes.shape({
       elements: PropTypes.object
@@ -161,8 +160,10 @@ class Questionnaire extends PureComponent {
   }
 
   render() {
-    const { i18n, config, cfqrData, questionnaire,
-      counter, setQuestionnaireStep, resetQuestionnaire } = this.props;
+    const {
+      i18n, config, cfqrData, questionnaire,
+      counter, setQuestionnaireStep, resetQuestionnaire
+    } = this.props;
     const { step } = counter;
     const { routes } = config;
     const { type } = questionnaire;

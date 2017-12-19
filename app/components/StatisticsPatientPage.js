@@ -6,7 +6,6 @@ import StatisticsPatient from './Statistics/Patient';
 import Back from './Back';
 
 class StatisticsPatientPage extends Component {
-
   static propTypes = {
     i18n: PropTypes.func
   };

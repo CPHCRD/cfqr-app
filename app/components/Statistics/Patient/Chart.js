@@ -10,7 +10,6 @@ import { calculateScore } from '../../../utils/questionnaire';
 import { format as dateFormat } from '../../../config/date.json';
 
 class StatisticsPatientChart extends Component {
-
   static propTypes = {
     i18n: PropTypes.func,
     questionnairesData: PropTypes.instanceOf(Object),
@@ -32,12 +31,9 @@ class StatisticsPatientChart extends Component {
       });
     });
 
-    const chartHeaders = [i18n('statistics-patient-questionnaires')].concat(
-      Object
-        .keys(timescores)
-        .map(key => i18n(`statistics-questionnaire-type-${key}`)
-      )
-    );
+    const chartHeaders = [i18n('statistics-patient-questionnaires')].concat(Object
+      .keys(timescores)
+      .map(key => i18n(`statistics-questionnaire-type-${key}`)));
 
     const chartData = [chartHeaders];
     questionnairesData.forEach(questionnaire => {

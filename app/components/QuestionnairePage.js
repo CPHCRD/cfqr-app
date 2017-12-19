@@ -5,7 +5,6 @@ import { connect } from '../actions';
 import Questionnaire from './Questionnaire';
 
 class QuestionnairePage extends Component {
-
   static propTypes = {
     i18n: PropTypes.func
   };

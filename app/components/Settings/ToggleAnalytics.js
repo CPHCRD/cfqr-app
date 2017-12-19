@@ -6,7 +6,6 @@ import { cyan700 } from 'material-ui/styles/colors';
 import { connect } from '../../actions';
 
 class SettingsToggleAnalytics extends Component {
-
   static propTypes = {
     i18n: PropTypes.func,
     settings: PropTypes.shape({

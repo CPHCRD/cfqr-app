@@ -3,7 +3,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from '../actions';
 
 class AboutPage extends Component {
-
   static propTypes = {
     i18n: PropTypes.func
   };
@@ -18,7 +17,6 @@ class AboutPage extends Component {
       </article>
     );
   }
-
 }
 
 export default connect(AboutPage);

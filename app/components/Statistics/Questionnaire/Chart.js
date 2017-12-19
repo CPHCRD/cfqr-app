@@ -10,7 +10,6 @@ import { stringToColour } from '../../../utils/misc';
 import { calculateScore } from '../../../utils/questionnaire';
 
 class StatisticsQuestionnaireChart extends Component {
-
   static propTypes = {
     i18n: PropTypes.func,
     questionnaireData: PropTypes.instanceOf(Object)

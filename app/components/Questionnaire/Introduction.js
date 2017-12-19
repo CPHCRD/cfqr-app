@@ -1,11 +1,10 @@
 // @flow
-import React, { PureComponent, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { cyan700 } from 'material-ui/styles/colors';
 
 import { connect } from '../../actions';
 
-class QuestionnaireIntroduction extends PureComponent {
-
+class QuestionnaireIntroduction extends Component {
   static propTypes = {
     element: PropTypes.shape({
       key: PropTypes.string.isRequired

@@ -9,8 +9,8 @@ import rootReducer from '../reducers';
 const router = routerMiddleware(hashHistory);
 
 const enhancer = compose(
- applyMiddleware(thunk, router),
- autoRehydrate(),
+  applyMiddleware(thunk, router),
+  autoRehydrate(),
 );
 
 export default function configureStore(initialState: Object) {

@@ -1,9 +1,8 @@
 // @flow
-import React, { PureComponent, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from '../../actions';
 
-class QuestionnaireSection extends PureComponent {
-
+class QuestionnaireSection extends Component {
   static propTypes = {
     element: PropTypes.shape({
       key: PropTypes.string.isRequired,
@@ -37,4 +36,3 @@ class QuestionnaireSection extends PureComponent {
 }
 
 export default connect(QuestionnaireSection);
-

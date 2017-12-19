@@ -5,7 +5,6 @@ import { connect } from '../actions';
 import Settings from './Settings';
 
 class SettingsPage extends Component {
-
   static propTypes = {
     i18n: PropTypes.func
   };

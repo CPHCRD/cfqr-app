@@ -46,15 +46,15 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(Object.assign(
-    {},
-    LocaleActions,
-    QuestionnaireActions,
-    DatabaseActions,
-    AuthActions,
-    StatisticsActions,
-    SettingsActions,
-    ErrorActions
-  ), dispatch);
+  {},
+  LocaleActions,
+  QuestionnaireActions,
+  DatabaseActions,
+  AuthActions,
+  StatisticsActions,
+  SettingsActions,
+  ErrorActions
+), dispatch);
 
 
 export const connect: Function = reduxConnect(mapStateToProps, mapDispatchToProps);

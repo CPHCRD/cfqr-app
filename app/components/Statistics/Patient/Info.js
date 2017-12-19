@@ -17,7 +17,6 @@ import { format as dateFormat } from '../../../config/date.json';
 import { MUCUS_QUESTION_ID, getQuestionsInfo } from '../../../utils/questionnaire';
 
 class StatisticsPatientInfo extends Component {
-
   static propTypes = {
     i18n: PropTypes.func,
     questionnaireData: PropTypes.instanceOf(Object),
@@ -50,7 +49,9 @@ class StatisticsPatientInfo extends Component {
   }
 
   renderPatientInfo() {
-    const { i18n, questionnaireData, locale, changePatient } = this.props;
+    const {
+      i18n, questionnaireData, locale, changePatient
+    } = this.props;
 
     return (
       <ListItem
@@ -111,32 +112,46 @@ class StatisticsPatientInfo extends Component {
           </div>
           <div className="statistics__patient-info">
             {i18n('statistics-questionnaire-birth-date')}:
-            <strong> {questionnaireData['birth-date'] ? new global.Intl
+            <strong> {questionnaireData['birth-date'] ?
+              new global.Intl
                 .DateTimeFormat(locale, dateFormat.date)
-                .format(new Date(questionnaireData['birth-date'])) : ''}</strong>
+                .format(new Date(questionnaireData['birth-date']))
+              : ''}
+            </strong>
           </div>
-          {questionnaireData['grade-young-child'] ? <div className="statistics__patient-info">
-            {i18n('statistics-questionnaire-grade')}:
-            <strong> {
-              i18n(`statistics-questionnaire-grade-young-child-${questionnaireData['grade-young-child']}`)
-            }</strong>
-          </div> : ''}
-          {questionnaireData['grade-older-child'] ? <div className="statistics__patient-info">
-            {i18n('statistics-questionnaire-grade')}:
-            <strong> {
-              i18n(`statistics-questionnaire-grade-older-child-${questionnaireData['grade-older-child']}`)
-            }</strong>
-          </div> : ''}
-          {questionnaireData['grade-teen-adult'] ? <div className="statistics__patient-info">
-            {i18n('statistics-questionnaire-grade')}:
-            <strong> {
-              i18n(`statistics-questionnaire-grade-teen-adult-${questionnaireData['grade-teen-adult']}`)
-            }</strong>
-          </div> : ''}
-          {questionnaireData.work ? <div className="statistics__patient-info">
-            {i18n('statistics-questionnaire-work-status')}:
-            <strong> {i18n(`statistics-questionnaire-work-${questionnaireData.work}`)}</strong>
-          </div> : ''}
+          {questionnaireData['grade-young-child'] ? (
+            <div className="statistics__patient-info">
+              {i18n('statistics-questionnaire-grade')}:
+              <strong> {
+                i18n(`statistics-questionnaire-grade-young-child-${questionnaireData['grade-young-child']}`)
+              }
+              </strong>
+            </div>
+          ) : ''}
+          {questionnaireData['grade-older-child'] ? (
+            <div className="statistics__patient-info">
+              {i18n('statistics-questionnaire-grade')}:
+              <strong> {
+                i18n(`statistics-questionnaire-grade-older-child-${questionnaireData['grade-older-child']}`)
+              }
+              </strong>
+            </div>
+          ) : ''}
+          {questionnaireData['grade-teen-adult'] ? (
+            <div className="statistics__patient-info">
+              {i18n('statistics-questionnaire-grade')}:
+              <strong> {
+                i18n(`statistics-questionnaire-grade-teen-adult-${questionnaireData['grade-teen-adult']}`)
+              }
+              </strong>
+            </div>
+          ) : ''}
+          {questionnaireData.work ? (
+            <div className="statistics__patient-info">
+              {i18n('statistics-questionnaire-work-status')}:
+              <strong> {i18n(`statistics-questionnaire-work-${questionnaireData.work}`)}</strong>
+            </div>
+          ) : ''}
         </div>
       </ListItem>
     );
@@ -162,9 +177,12 @@ class StatisticsPatientInfo extends Component {
           </div>
           <div className="statistics__patient-info">
             {i18n('statistics-questionnaire-birth-date')}:
-            <strong> {questionnaireData['birth-date'] ? new global.Intl
+            <strong> {questionnaireData['birth-date'] ?
+              new global.Intl
                 .DateTimeFormat(locale, dateFormat.date)
-                .format(new Date(questionnaireData['birth-parent'])) : ''}</strong>
+                .format(new Date(questionnaireData['birth-parent']))
+                : ''}
+            </strong>
           </div>
           <div className="statistics__patient-info">
             {i18n('statistics-questionnaire-marital')}:
@@ -215,7 +233,8 @@ class StatisticsPatientInfo extends Component {
             <strong> {questionnaireData.vacation ?
               i18n('statistics-questionnaire-no') :
               i18n('statistics-questionnaire-yes')
-            }</strong>
+            }
+            </strong>
           </div>
           {mucusText ?
             <div className="statistics__patient-info">

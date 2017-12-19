@@ -74,5 +74,5 @@ render(
   <Provider store={store}>
     <Router history={history} routes={routes} onUpdate={logPageView.bind(this)} />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root') // eslint-disable-line flowtype-errors/show-errors
 );

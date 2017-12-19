@@ -16,7 +16,6 @@ import { connect } from '../../actions';
 import { format as dateFormat } from '../../config/date.json';
 
 class StatisticsTable extends Component {
-
   static propTypes = {
     i18n: PropTypes.func,
     rows: PropTypes.instanceOf(Array),
@@ -52,28 +51,32 @@ class StatisticsTable extends Component {
         <TableBody
           displayRowCheckbox={false}
         >
-          {rows.map((row, i) => <TableRow
-            key={`statistics-table-row-${i}`}
-            style={{ cursor: 'pointer' }}
-          >
-            <TableRowColumn>
-              {new global.Intl
-                .DateTimeFormat(locale, dateFormat.full)
-                .format(new Date(row.createdAt))}
-            </TableRowColumn>
-            <TableRowColumn>{i18n(row.type)}</TableRowColumn>
-            <TableRowColumn>
-              <Avatar
-                icon={<FontIcon className="material-icons">
-                  {row.type === 'qst-child-parent' ? 'people' : 'person'}
-                </FontIcon>}
-                color={grey50}
-                size={22}
-                style={{ marginRight: '0.25rem' }}
-                backgroundColor={row.gender === 1 ? pink300 : blue900}
-              /> {row.patient}
-            </TableRowColumn>
-          </TableRow>)}
+          {rows.map((row, i) => (
+            <TableRow
+              key={`statistics-table-row-${i}`}
+              style={{ cursor: 'pointer' }}
+            >
+              <TableRowColumn>
+                {new global.Intl
+                  .DateTimeFormat(locale, dateFormat.full)
+                  .format(new Date(row.createdAt))}
+              </TableRowColumn>
+              <TableRowColumn>{i18n(row.type)}</TableRowColumn>
+              <TableRowColumn>
+                <Avatar
+                  icon={
+                    <FontIcon className="material-icons">
+                      {row.type === 'qst-child-parent' ? 'people' : 'person'}
+                    </FontIcon>
+                  }
+                  color={grey50}
+                  size={22}
+                  style={{ marginRight: '0.25rem' }}
+                  backgroundColor={row.gender === 1 ? pink300 : blue900}
+                /> {row.patient}
+              </TableRowColumn>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     );
