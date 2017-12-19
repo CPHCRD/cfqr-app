@@ -1,6 +1,6 @@
 # CFQ-R questionnaire
 
-[![Build Status](https://travis-ci.org/cphcrd/cfqr-app.svg?branch=master)](https://travis-ci.org/cphcrd/cfqr-app)
+[![Build Status](https://travis-ci.org/CPHCRD/cfqr-app.svg?branch=master)](https://travis-ci.org/CPHCRD/cfqr-app)
 
 ## Preview
 
