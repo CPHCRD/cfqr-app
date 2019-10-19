@@ -188,7 +188,7 @@
     "semver-compare": "^1.0.0"
   },
   "devEngines": {
-    "node": ">=6.x",
-    "npm": ">=3.x"
+    "node": "8",
+    "npm": ">=5.x"
   }
 }
