@@ -1,7 +1,7 @@
 {
   "name": "cfqr-app",
   "productName": "CFQ-R questionnaire application",
-  "version": "0.19.1",
+  "version": "0.19.2",
   "author": {
     "name": "CPHCRD",
     "url": "https://cphcrd.github.io"
