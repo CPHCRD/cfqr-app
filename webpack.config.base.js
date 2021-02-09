@@ -8,7 +8,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 // .env file fallback for environment variables
 try {
-  require('dotenv').config(); // eslint-disable-line
+  require('dotenv').config({silent: true}); // eslint-disable-line
 } catch (err) {
   // ignore
 }
