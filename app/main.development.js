@@ -38,13 +38,21 @@ const installExtensions = async () => {
   }
 };
 
+// disable security warnings
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
+
 app.on('ready', async () => {
   await installExtensions();
 
   mainWindow = new BrowserWindow({
     show: false,
     width: 1024,
-    height: 728
+    height: 728,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+      allowEval: false,
+    }
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
