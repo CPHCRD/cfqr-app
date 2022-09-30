@@ -1,6 +1,6 @@
 # CFQ-R questionnaire
 
-[![Build Status](https://travis-ci.org/CPHCRD/cfqr-app.svg?branch=master)](https://travis-ci.org/CPHCRD/cfqr-app)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/512d9a1f-ff4d-45e7-839b-24fafc75e894/deploy-status)](https://app.netlify.com/sites/cfqr-app/deploys)
 
 ## Preview
 
