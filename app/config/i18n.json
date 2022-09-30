@@ -1,6 +1,10 @@
 {
   "defaultLocale": "en-US",
   "availableLocales": {
+    "cz-CZ": {
+      "name": "Čeština",
+      "flag": "🇨🇿"
+    },
     "da-DK": {
       "name": "Dansk",
       "flag": "🇩🇰"
