@@ -4,7 +4,7 @@
 
 ## Preview
 
-You can find a live version of the application at [http://cfqr-app.netlify.com/](http://cfqr-app.netlify.com/).
+You can find a live version of the application at [http://cfqr-app.netlify.app/](http://cfqr-app.netlify.app/).
 
 <a href="https://www.netlify.com">
   <img src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="netlify-logo" />
