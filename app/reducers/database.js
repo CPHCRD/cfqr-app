@@ -1,11 +1,10 @@
-// @flow
 import {
   LOAD_DATABASE_DONE
 } from '../actions/database';
 
-export default function database(state: Object = {
+export default function database(state = {
   loaded: false
-}, action: Object) {
+}, action) {
   switch (action.type) {
     case LOAD_DATABASE_DONE:
       return Object.assign({}, state, {

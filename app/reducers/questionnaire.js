@@ -1,4 +1,3 @@
-// @flow
 import {
   RESET_QUESTIONNAIRE,
   CHANGE_QUESTIONNAIRE,
@@ -17,7 +16,7 @@ const DEFAULT_STATE = {
   results: {}
 };
 
-export default function questionnaire(state: Object = Object.assign({}, DEFAULT_STATE), action: Object) {
+export default function questionnaire(state = Object.assign({}, DEFAULT_STATE), action) {
   const { data, type } = action;
   let newState;
 

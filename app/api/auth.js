@@ -1,4 +1,6 @@
-import firebase from 'firebase';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/database';
 
 export const fb = firebase.initializeApp({
   apiKey: process.env.FIREBASE_API_KEY,
@@ -6,7 +8,7 @@ export const fb = firebase.initializeApp({
   databaseURL: process.env.FIREBASE_DATABASE_URL
 });
 
-export const firebaseAuth = fb.auth;
+export const firebaseAuth = () => fb.auth();
 
 export function register(email, password) {
   return firebaseAuth().createUserWithEmailAndPassword(email, password);

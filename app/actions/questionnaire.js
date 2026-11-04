@@ -1,6 +1,5 @@
-// @flow
 export const CHANGE_QUESTIONNAIRE = 'CHANGE_QUESTIONNAIRE';
-export function changeQuestionnaire(questionnaireId: string) {
+export function changeQuestionnaire(questionnaireId) {
   return {
     type: CHANGE_QUESTIONNAIRE,
     data: questionnaireId
@@ -8,7 +7,7 @@ export function changeQuestionnaire(questionnaireId: string) {
 }
 
 export const ANSWER_QUESTION = 'ANSWER_QUESTION';
-export function answerQuestion(question: string, answer: number, key: string) {
+export function answerQuestion(question, answer, key) {
   return {
     type: ANSWER_QUESTION,
     data: { question, answer, key }
@@ -16,7 +15,7 @@ export function answerQuestion(question: string, answer: number, key: string) {
 }
 
 export const SET_PROPERTY = 'SET_PROPERTY';
-export function setProperty(id: string, value: string) {
+export function setProperty(id, value) {
   return {
     type: SET_PROPERTY,
     data: { id, value }
@@ -31,7 +30,7 @@ export function resetQuestionnaire() {
 }
 
 export const SET_QUESTIONNAIRE_STEP = 'SET_QUESTIONNAIRE_STEP';
-export function setQuestionnaireStep(stepIndex: number) {
+export function setQuestionnaireStep(stepIndex) {
   return {
     type: SET_QUESTIONNAIRE_STEP,
     data: stepIndex

@@ -39,7 +39,7 @@ export function saveRemoteUserInfo(userInfo) {
     .then(() => userInfo);
 }
 
-export function getRemoteUserInfo(user: Object = {}) {
+export function getRemoteUserInfo(user = {}) {
   const firebaseCurrentUser = firebaseAuth().currentUser;
   if (!firebaseCurrentUser) {
     return user;

@@ -1,7 +1,5 @@
-// @flow
-import Datastore from 'nedb';
+import Datastore from '@seald-io/nedb';
 import { v4 as uuidV4 } from 'uuid';
-import { platform, release, arch } from 'os';
 
 export const INFO_OBJECT_ID = 'info';
 export const BASE_FILTER = {
@@ -16,9 +14,9 @@ export const BASE_FILTER = {
   }]
 };
 
-export let Database = {}; // eslint-disable-line import/no-mutable-exports
+export let Database = {};
 
-export function initDatastore(options: Object) {
+export function initDatastore(options) {
   Database = new Datastore(options);
 }
 
@@ -43,7 +41,7 @@ export function getUser() {
     });
 }
 
-export function updateUser(info: Object = {}) {
+export function updateUser(info = {}) {
   const userInfo = Object.assign({
     _id: INFO_OBJECT_ID,
     uuid: uuidV4(),
@@ -51,9 +49,10 @@ export function updateUser(info: Object = {}) {
     analytics: true
   }, info, {
     os: {
-      platform: platform(),
-      release: release(),
-      arch: arch()
+      // same values the old webpack `os` polyfill returned in the browser
+      platform: 'browser',
+      release: navigator.appVersion || '',
+      arch: 'javascript'
     },
     userAgent: navigator.userAgent,
     language: navigator.language,
@@ -67,7 +66,7 @@ export function getQuestionnaires() {
   return findIntoDatabase(BASE_FILTER);
 }
 
-export function insertIntoDatabase(doc: Object) {
+export function insertIntoDatabase(doc) {
   return new Promise((resolve, reject) => {
     if (doc._id) {
       // doc.updatedAt = new Date();
@@ -93,7 +92,7 @@ export function insertIntoDatabase(doc: Object) {
   });
 }
 
-export function findIntoDatabase(options: Object, params: Object = {}) {
+export function findIntoDatabase(options, params = {}) {
   return new Promise((resolve, reject) => {
     let findPromise = Database.find(options);
     if (params.sort) {
@@ -108,7 +107,7 @@ export function findIntoDatabase(options: Object, params: Object = {}) {
   });
 }
 
-export function findOneIntoDatabase(options: Object) {
+export function findOneIntoDatabase(options) {
   return new Promise((resolve, reject) => {
     Database.findOne(options, (err, results) => {
       if (err) {

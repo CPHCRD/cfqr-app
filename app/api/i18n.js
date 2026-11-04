@@ -1,14 +1,14 @@
 import cfqrData from 'cfqr-data';
 import i18nConfig from '../config/i18n.json';
 
-const requireContext = require.context('../i18n', true, /\.json$/);
+const localeFiles = import.meta.glob('../i18n/*.json', { eager: true, import: 'default' });
 const cfqrDataTranslations = cfqrData.translations;
 
 const i18n = {};
 
-requireContext.keys().forEach(filePath => {
-  const locale = filePath.replace('./', '').replace('.json', '');
-  i18n[locale] = requireContext(filePath);
+Object.keys(localeFiles).forEach(filePath => {
+  const locale = filePath.replace('../i18n/', '').replace('.json', '');
+  i18n[locale] = localeFiles[filePath];
   const translationObjects = cfqrDataTranslations[locale]
     || cfqrDataTranslations[i18nConfig.defaultLocale];
 

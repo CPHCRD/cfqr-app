@@ -1,9 +1,8 @@
-// @flow
 import cfqrData from 'cfqr-data';
 
 const MUCUS_QUESTION_ID = 'question-mucus';
 
-const getQuestionsInfo = (elements: Object) => {
+const getQuestionsInfo = (elements) => {
   let questions = {};
   if (!elements) {
     return questions;
@@ -29,7 +28,7 @@ const getQuestionsInfo = (elements: Object) => {
   return questions;
 };
 
-const getQuestionsIds = (elements: Object) => {
+const getQuestionsIds = (elements) => {
   const questionsInfo = getQuestionsInfo(elements);
   return Object.keys(questionsInfo).map(key => questionsInfo[key].id);
 };
@@ -42,14 +41,14 @@ const getQuestionsFromData = () => {
   return cfqrQuestions;
 };
 
-const validateQuestionnaire = (state: Object) => {
+const validateQuestionnaire = (state) => {
   if (state.questions.length > Object.keys(state.results).length) {
     return false;
   }
   return true;
 };
 
-const formatQuestionnaire = (state: Object) => {
+const formatQuestionnaire = (state) => {
   const questionnaireType = state.type;
   const questionsScores = cfqrData.scores[questionnaireType];
   const doc = {};
@@ -77,10 +76,10 @@ const formatQuestionnaire = (state: Object) => {
   return doc;
 };
 
-const findMissingAnswers = (questionnaire: Object) =>
+const findMissingAnswers = (questionnaire) =>
   questionnaire.questions.filter(questionId => !questionnaire.results[questionId]);
 
-const calculateScore = (questionnaire: Object) => {
+const calculateScore = (questionnaire) => {
   const { answers, type } = questionnaire;
   const questionsScores = cfqrData.scores[type];
   if (!questionsScores) {

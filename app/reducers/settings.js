@@ -1,4 +1,3 @@
-// @flow
 import {
   LOAD_DATABASE_DONE
 } from '../actions/database';
@@ -11,7 +10,7 @@ import {
   CHANGE_PASSPHRASE_DONE
 } from '../actions/settings';
 
-export default function settings(state: Object = {}, action: Object) {
+export default function settings(state = {}, action) {
   switch (action.type) {
     case LOAD_DATABASE_DONE:
     case LOGGED_IN:
