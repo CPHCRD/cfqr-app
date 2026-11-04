@@ -1,6 +1,5 @@
-// @flow
 import { bindActionCreators } from 'redux';
-import { connect as reduxConnect, Connector } from 'react-redux';
+import { connect as reduxConnect } from 'react-redux';
 import cfqrData from 'cfqr-data';
 
 import * as LocaleActions from './locale';
@@ -57,6 +56,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(Object.assign(
 ), dispatch);
 
 
-export const connect: Function = reduxConnect(mapStateToProps, mapDispatchToProps);
+export const connect = reduxConnect(mapStateToProps, mapDispatchToProps);
 
-export const connector: Function = Connector;

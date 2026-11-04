@@ -1,4 +1,3 @@
-// @flow
 import { ERROR } from './error';
 
 import {
@@ -11,7 +10,7 @@ import {
 export const LOAD_DATABASE = 'LOAD_DATABASE';
 export function loadDatabase() {
   // callback hell yeah!
-  return (dispatch: Function) => {
+  return (dispatch) => {
     loadDatastore()
       .then(() => findOneIntoDatabase({ _id: INFO_OBJECT_ID }))
       .then(user => {
@@ -32,7 +31,7 @@ export function loadDatabase() {
 }
 
 export const LOAD_DATABASE_DONE = 'LOAD_DATABASE_DONE';
-export function loadDatabaseDone(error: string | null, info: Object | null) {
+export function loadDatabaseDone(error, info) {
   if (error) {
     return {
       type: ERROR,

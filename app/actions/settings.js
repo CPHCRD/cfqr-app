@@ -1,12 +1,11 @@
-// @flow
 import { getUser, updateUser } from '../api/database';
 import { ERROR } from './error';
 
 import { saveRemoteUserInfo } from '../api/backup';
 
 export const CHANGE_PASSPHRASE = 'CHANGE_PASSPHRASE';
-export function changePassphrase(newPassphrase: string) {
-  return (dispatch: Function) => {
+export function changePassphrase(newPassphrase) {
+  return (dispatch) => {
     getUser()
       .then(user => updateUser(Object.assign({}, user, {
         passphrase: newPassphrase
@@ -23,7 +22,7 @@ export function changePassphrase(newPassphrase: string) {
 }
 
 export const CHANGE_PASSPHRASE_DONE = 'CHANGE_PASSPHRASE_DONE';
-export function changePassphraseDone(error: string | null, value: string | null) {
+export function changePassphraseDone(error, value) {
   if (error) {
     return {
       type: ERROR,
@@ -37,8 +36,8 @@ export function changePassphraseDone(error: string | null, value: string | null)
 }
 
 export const TOGGLE_ANALYTICS = 'TOGGLE_ANALYTICS';
-export function toggleAnalytics(value: boolean) {
-  return (dispatch: Function) => {
+export function toggleAnalytics(value) {
+  return (dispatch) => {
     getUser()
       .then(user => updateUser(Object.assign({}, user, {
         analytics: !!value
@@ -55,7 +54,7 @@ export function toggleAnalytics(value: boolean) {
 }
 
 export const TOGGLE_ANALYTICS_DONE = 'TOGGLE_ANALYTICS_DONE';
-export function toggleAnalyticsDone(error: string | null, value: boolean | null) {
+export function toggleAnalyticsDone(error, value) {
   if (error) {
     return {
       type: ERROR,

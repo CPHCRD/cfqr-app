@@ -23,11 +23,7 @@ coverage
 build/Release
 
 # Dependency directory
-# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
-app/node_modules
-yarn.lock
-package-lock.json
 
 # OSX
 .DS_Store
@@ -35,17 +31,6 @@ package-lock.json
 # Config
 .env
 
-# App packaged
-release
-public
-mobile
-app/main.js
-app/main.js.map
-app/bundle.js
-app/bundle.js.map
-app/style.css
-app/style.css.map
-app/dist
-main.js
-main.js.map
+# Build output
+dist
 *.db

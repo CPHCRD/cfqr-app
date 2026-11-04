@@ -1,4 +1,3 @@
-// @flow
 import {
   SET_FILTER,
   SET_SORT
@@ -12,7 +11,7 @@ const DEFAULT_STATE = {
   }
 };
 
-export default function database(state: Object = DEFAULT_STATE, action: Object) {
+export default function database(state = DEFAULT_STATE, action) {
   switch (action.type) {
     case SET_FILTER:
       return Object.assign({}, state, {

@@ -1,4 +1,3 @@
-// @flow
 import {
   AUTHENTICATE_DONE,
   SIGN_OUT
@@ -7,7 +6,7 @@ import {
   LOAD_DATABASE_DONE
 } from '../actions/database';
 
-export default function auth(state: boolean = false, action: Object) {
+export default function auth(state = false, action) {
   switch (action.type) {
     case LOAD_DATABASE_DONE:
       return !action.data.passphrase;

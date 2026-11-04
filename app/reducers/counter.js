@@ -1,10 +1,9 @@
-// @flow
 import {
   RESET_QUESTIONNAIRE,
   SET_QUESTIONNAIRE_STEP
 } from '../actions/questionnaire';
 
-export default function counter(state: Object = { count: 0, step: 0 }, action: Object) {
+export default function counter(state = { count: 0, step: 0 }, action) {
   switch (action.type) {
     case RESET_QUESTIONNAIRE:
       return Object.assign({}, state, {
