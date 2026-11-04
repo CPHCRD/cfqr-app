@@ -27,6 +27,15 @@ export default defineConfig(({ mode }) => {
   return {
     publicDir: 'static',
     define,
+    plugins: [{
+      // Exposes the deployed version as <meta name="app-version"> in the page head
+      name: 'app-version-meta',
+      transformIndexHtml: () => [{
+        tag: 'meta',
+        attrs: { name: 'app-version', content: version },
+        injectTo: 'head'
+      }]
+    }],
     resolve: {
       // Browser polyfills for the Node core modules used by @seald-io/nedb
       alias: {
